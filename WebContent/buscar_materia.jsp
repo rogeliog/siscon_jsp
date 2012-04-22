@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>SISCON | Buscar Sal&oacute;n</title>
+    <title>SISCON | Buscar Materia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -51,8 +51,8 @@
 
   <body>
 
-
-    <div class="wrapper"><!-- Barra de navegacion -->
+    <div class="wrapper">
+      <!-- Barra de navegacion -->
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
@@ -64,23 +64,23 @@
             <a class="brand" href="#">SISCON</a>
             <div class="nav-collapse">
               <ul class="nav">
-                <li ><a href="inicio.html"><i class="icon-home icon-white"></i> Inicio</a></li>
+                <li ><a href="inicio.jsp"><i class="icon-home icon-white"></i> Inicio</a></li>
                 <li class="dropdown active">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-search icon-white"></i> Busquedas <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><a href="buscar_materia.html">Busqueda de materia</a></li>
-                      <li><a href="buscar_profesor.html">Busqueda de profesor</a></li>
-                      <li><a href="buscar_salon.html">Busqueda de sal&oacute;n</a></li>
+                      <li><a href="buscar_materia.jsp">Busqueda de materia</a></li>
+                      <li><a href="buscar_profesor.jsp">Busqueda de profesor</a></li>
+                      <li><a href="buscar_salon.jsp">Busqueda de sal&oacute;n</a></li>
                     </ul>
                 </li>
-                <li><a href="subir_archivo.html"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
-                <li><a href="calendario.html"><i class="icon-calendar icon-white"></i> Calendario</a></li>
+                <li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
+                <li><a href="calendario.jsp"><i class="icon-calendar icon-white"></i> Calendario</a></li>
               </ul>
               <ul class="nav pull-right">
-                <li><a href="index.html"><i class="icon-off icon-white"></i> Cerrar Sesi&oacute;n</a></li>
-                <!-- <li><a href="iniciar_sesion.html"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
+                <li><a href="index.jsp"><i class="icon-off icon-white"></i> Cerrar Sesi&oacute;n</a></li>
+                <!-- <li><a href="iniciar_sesion.jsp"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
                 <li class="divider-vertical"></li>
-                <li><a href="registrar_usuario.html"><i class="icon-pencil icon-white"></i> Registrarse</a></li> -->
+                <li><a href="registrar_usuario.jsp"><i class="icon-pencil icon-white"></i> Registrarse</a></li> -->
               </ul>
             </div><!--/.nav-collapse -->
           </div> <!-- /.container -->
@@ -91,16 +91,15 @@
       <div class="container">
       
           <div class="row">
-      
             <div class="span7 offset2">
-                <form action="calendario.html" class="form-horizontal">
+                <form action="calendario.jsp" class="form-horizontal">
                     <fieldset>
-                        <legend>Buscar Sal&oacute;n</legend>
+                        <legend>Buscar Materia</legend>
                         <div class="control-group">
-                          <label for="nombreSalon" class="control-label">Nombre del sal&oacute;n</label>
-                          <div class="controls">
-                            <input name="salon" type="text" class="input-xlarge" id="nombreSalon">
-                          </div>
+                            <label for="nombreMateria" class="control-label">Nombre de la materia</label>
+                            <div class="controls">
+                              <input name="materia" type="text" class="input-xlarge" id="nombreMateria">
+                            </div>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-inverse">Buscar</button>
@@ -109,18 +108,16 @@
                     </fieldset>
                 </form>
             </div> <!-- /span -->
-          
           </div> <!-- /row -->
-      
       </div> <!-- /container -->
-      <div class="push"><!-- empuja el footer al fondo --></div>
-    </div> <!-- /wrapper -->
+      <div class="push"><!-- empuja el footer hacia el fondo --></div>
+    </div> <!-- wrapper -->
     <footer class="container">
       <p>SISCON &copy; Departamento de Ciencias Computacionales</p>
-      <p>Ave. Eugenio Garza Sada 2501 Sur Col. TecnolÃ³gico C.P. 64849 | Monterrey, Nuevo LeÃ³n, MÃ©xico | Tel. +52 (81) 8358-2000 </p>
-      <p>D.R.Â© Instituto TecnolÃ³gico y de Estudios Superiores de Monterrey, MÃ©xico. 2012 </p>
+      <p>Ave. Eugenio Garza Sada 2501 Sur Col. Tecnológico C.P. 64849 | Monterrey, Nuevo León, México | Tel. +52 (81) 8358-2000 </p>
+      <p>D.R.© Instituto Tecnológico y de Estudios Superiores de Monterrey, México. 2012 </p>
     </footer>
-
+    
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

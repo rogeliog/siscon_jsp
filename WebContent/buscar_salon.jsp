@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>SISCON</title>
+    <title>SISCON | Buscar Sal&oacute;n</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -34,20 +34,6 @@
       .wrapper > .container {      
           height: 95%;
       }
-      /* size down hero unit contents to fit a narrow viewport */
-      @media (max-width: 480px) {
-          .hero-unit {
-          padding: 0;
-          margin: 0;
-          /*background: transparent;*/
-          }
-          .hero-unit h1 {
-          font-size: 250%;
-          }
-          .hero-unit h2 {
-          font-size: 180%;
-          }
-      }
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -64,8 +50,9 @@
   </head>
 
   <body>
-    <div class="wrapper">
-      <!-- Barra de navegacion -->
+
+
+    <div class="wrapper"><!-- Barra de navegacion -->
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
@@ -77,23 +64,23 @@
             <a class="brand" href="#">SISCON</a>
             <div class="nav-collapse">
               <ul class="nav">
-                <li class="active"><a href="inicio.html"><i class="icon-home icon-white"></i> Inicio</a></li>
-                <li class="dropdown">
+                <li ><a href="inicio.jsp"><i class="icon-home icon-white"></i> Inicio</a></li>
+                <li class="dropdown active">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-search icon-white"></i> Busquedas <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><a href="buscar_materia.html">Busqueda de materia</a></li>
-                      <li><a href="buscar_profesor.html">Busqueda de profesor</a></li>
-                      <li><a href="buscar_salon.html">Busqueda de sal&oacute;n</a></li>
+                      <li><a href="buscar_materia.jsp">Busqueda de materia</a></li>
+                      <li><a href="buscar_profesor.jsp">Busqueda de profesor</a></li>
+                      <li><a href="buscar_salon.jsp">Busqueda de sal&oacute;n</a></li>
                     </ul>
                 </li>
-                <li><a href="subir_archivo.html"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
-                <li><a href="calendario.html"><i class="icon-calendar icon-white"></i> Calendario</a></li>
+                <li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
+                <li><a href="calendario.jsp"><i class="icon-calendar icon-white"></i> Calendario</a></li>
               </ul>
               <ul class="nav pull-right">
-                <li><a href="index.html"><i class="icon-off icon-white"></i> Cerrar Sesi&oacute;n</a></li>
-                <!-- <li><a href="iniciar_sesion.html"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
+                <li><a href="index.jsp"><i class="icon-off icon-white"></i> Cerrar Sesi&oacute;n</a></li>
+                <!-- <li><a href="iniciar_sesion.jsp"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
                 <li class="divider-vertical"></li>
-                <li><a href="registrar_usuario.html"><i class="icon-pencil icon-white"></i> Registrarse</a></li> -->
+                <li><a href="registrar_usuario.jsp"><i class="icon-pencil icon-white"></i> Registrarse</a></li> -->
               </ul>
             </div><!--/.nav-collapse -->
           </div> <!-- /.container -->
@@ -104,21 +91,34 @@
       <div class="container">
       
           <div class="row">
-            <div class="span8 offset2">
-              
-              <div class="hero-unit">
-                  <h1>Bienvenido a SISCON</h1>
-                  <p>Sistema Integrador de Servicios para Consultas en Objetos Normativos</p>
-              </div>
-            </div>
+      
+            <div class="span7 offset2">
+                <form action="calendario.jsp" class="form-horizontal">
+                    <fieldset>
+                        <legend>Buscar Sal&oacute;n</legend>
+                        <div class="control-group">
+                          <label for="nombreSalon" class="control-label">Nombre del sal&oacute;n</label>
+                          <div class="controls">
+                            <input name="salon" type="text" class="input-xlarge" id="nombreSalon">
+                          </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-inverse">Buscar</button>
+                            <button type="reset" class="btn">Cancelar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div> <!-- /span -->
+          
           </div> <!-- /row -->
+      
       </div> <!-- /container -->
-      <div class="push"><!-- empuja el footer hacia el fondo --></div>
-    </div> <!-- wrapper -->
+      <div class="push"><!-- empuja el footer al fondo --></div>
+    </div> <!-- /wrapper -->
     <footer class="container">
       <p>SISCON &copy; Departamento de Ciencias Computacionales</p>
-      <p>Ave. Eugenio Garza Sada 2501 Sur Col. TecnolÃ³gico C.P. 64849 | Monterrey, Nuevo LeÃ³n, MÃ©xico | Tel. +52 (81) 8358-2000 </p>
-      <p>D.R.Â© Instituto TecnolÃ³gico y de Estudios Superiores de Monterrey, MÃ©xico. 2012 </p>
+      <p>Ave. Eugenio Garza Sada 2501 Sur Col. Tecnológico C.P. 64849 | Monterrey, Nuevo León, México | Tel. +52 (81) 8358-2000 </p>
+      <p>D.R.© Instituto Tecnológico y de Estudios Superiores de Monterrey, México. 2012 </p>
     </footer>
 
     <!-- Le javascript
@@ -126,6 +126,14 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.js"></script>
+    <!-- 
+    <script src="assets/js/jquery.validate.js"></script>
+    <script>
+    $(document).ready(function(){
+      $("#commentForm").validate();
+    });
+    </script>
+     -->
     <!--
     <script src="js/bootstrap-transition.js"></script>
     <script src="js/bootstrap-alert.js"></script>

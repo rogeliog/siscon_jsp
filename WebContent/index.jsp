@@ -89,9 +89,9 @@
               <a class="brand" href="#">Tecnol&oacute;gico de Monterrey</a>
               <div class="nav-collapse">
                 <ul class="nav pull-right">
-                    <li class="active"><a href="index.html"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
+                    <li class="active"><a href="index.jsp"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
                     <li class="divider-vertical"></li>
-                    <li><a href="registrar_usuario.html"><i class="icon-pencil icon-white"></i> Registrarse</a></li>
+                    <li><a href="registrar_usuario.jsp"><i class="icon-pencil icon-white"></i> Registrarse</a></li>
                   </ul>
               </div> <!-- /nav-collapse -->
             </div> <!-- /.container -->
@@ -107,9 +107,9 @@
                     </div>
                 </div> <!-- /span -->
                     <div class="span4 offset4">
-                      <!-- <form method="get" action="servidor.html" class="well-large"> -->
-                      <!-- <form method="get" action="index.html" class="well-large"> -->
-                      <form action="inicio.html" class="well">
+                      <!-- <form method="get" action="servidor.jsp" class="well-large"> -->
+                      <!-- <form method="get" action="index.jsp" class="well-large"> -->
+                      <form action="inicio.jsp" class="well">
                         <fieldset>
                           <h1>Iniciar Sesi&oacute;n</h1>
                             <div class="control-group">
@@ -136,10 +136,10 @@
         </div> <!-- /container -->
         <div class="push"><!-- footer al fondo --></div>
       </div><!-- /wrapper -->
-    <footer class="container">
+        <footer class="container">
       <p>SISCON &copy; Departamento de Ciencias Computacionales</p>
-      <p>Ave. Eugenio Garza Sada 2501 Sur Col. TecnolÃ³gico C.P. 64849 | Monterrey, Nuevo LeÃ³n, MÃ©xico | Tel. +52 (81) 8358-2000 </p>
-      <p>D.R.Â© Instituto TecnolÃ³gico y de Estudios Superiores de Monterrey, MÃ©xico. 2012 </p>
+      <p>Ave. Eugenio Garza Sada 2501 Sur Col. Tecnológico C.P. 64849 | Monterrey, Nuevo León, México | Tel. +52 (81) 8358-2000 </p>
+      <p>D.R.© Instituto Tecnológico y de Estudios Superiores de Monterrey, México. 2012 </p>
     </footer>
         
     </body>

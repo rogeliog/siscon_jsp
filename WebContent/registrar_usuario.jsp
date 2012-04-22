@@ -81,9 +81,9 @@
               <a class="brand" href="#">Tecnol&oacute;gico de Monterrey</a>
               <div class="nav-collapse">
                 <ul class="nav pull-right">
-                    <li><a href="index.html"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
+                    <li><a href="index.jsp"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
                     <li class="divider-vertical"></li>
-                    <li class="active"><a href="registrar_usuario.html"><i class="icon-pencil icon-white"></i> Registrarse</a></li>
+                    <li class="active"><a href="registrar_usuario.jsp"><i class="icon-pencil icon-white"></i> Registrarse</a></li>
                   </ul>
               </div> <!-- /nav-collapse -->
             </div> <!-- /.container -->
@@ -110,7 +110,7 @@
 
         <div class="row">      
             <div class="span7 offset2">          
-                        <form class="form-horizontal well" action="servidor.html" method="get">
+                        <form class="form-horizontal well" action="servidor.jsp" method="get">
                             <h1>Registro</h1>
                             <fieldset>
                                 <legend>Favor de llenar la informaci&oacute;n necesaria</legend>
@@ -209,10 +209,10 @@
         </div> <!-- /container -->
         <div class="push"><!-- footer al fondo --></div>
       </div> <!-- /wrapper -->
-      <footer class="container">
+    <footer class="container">
       <p>SISCON &copy; Departamento de Ciencias Computacionales</p>
-      <p>Ave. Eugenio Garza Sada 2501 Sur Col. TecnolÃ³gico C.P. 64849 | Monterrey, Nuevo LeÃ³n, MÃ©xico | Tel. +52 (81) 8358-2000 </p>
-      <p>D.R.Â© Instituto TecnolÃ³gico y de Estudios Superiores de Monterrey, MÃ©xico. 2012 </p>
+      <p>Ave. Eugenio Garza Sada 2501 Sur Col. Tecnológico C.P. 64849 | Monterrey, Nuevo León, México | Tel. +52 (81) 8358-2000 </p>
+      <p>D.R.© Instituto Tecnológico y de Estudios Superiores de Monterrey, México. 2012 </p>
     </footer>
 
     <!-- Le javascript
