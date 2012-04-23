@@ -16,8 +16,8 @@ function errorMsg()	{
 			var currentTime = new Date()
 			var mes = currentTime.getMonth() + 1;
 			var dia = currentTime.getDate();
-			var año = currentTime.getFullYear();
-			var fecha =dia + "/" + mes + "/" + año +" ";
+			var anio = currentTime.getFullYear();
+			var fecha =dia + "/" + mes + "/" + anio +" ";
 			var hora = currentTime.getHours() + ":" + currentTime.getMinutes() ;
 			document.getElementById("fecha").innerHTML=fecha + " a las " + hora;
 			var resultado= document.getElementById("resultadolectura");
