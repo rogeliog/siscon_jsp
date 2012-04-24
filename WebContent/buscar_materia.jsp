@@ -17,6 +17,7 @@
                   </div>
                   <div class="form-actions">
                       <button type="submit" class="btn btn-inverse">Buscar</button>
+                      <a href="buscar_materia_atributo.jsp" class="btn btn-inverse">Busqueda Avanzada</a>
                       <button type="reset" class="btn">Cancelar</button>
                   </div>
               </fieldset>
