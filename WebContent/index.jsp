@@ -1,6 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+  pageEncoding="ISO-8859-1"%>
 <%
 	String pageTitle = "SISCON | Iniciar Sesi&oacute;n";
+  //get attributes from the session
+  String msg = (String) session.getAttribute("msg");
+  // handle null values
+  if (msg == null) {
+      msg = "";
+  }
 %>
+<%@ include file="includes/usuario.jsp" %>
 <%@ include file="includes/header_principal.jsp" %>
 
          <div class="container">
@@ -14,7 +23,7 @@
                     <div class="span4 offset4">
                       <!-- <form method="get" action="servidor.jsp" class="well-large"> -->
                       <!-- <form method="get" action="index.jsp" class="well-large"> -->
-                      <form action="bienvenido.jsp" class="well" method="post">
+                      <form action="IniciarSesion" class="well" method="post">
                         <fieldset>
                           <h1>Iniciar Sesi&oacute;n</h1>
                             <div class="control-group">

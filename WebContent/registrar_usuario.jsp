@@ -1,6 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <% 
     String pageTitle = "SISCON | Registrar Usuario";
+    //get attributes from the session
+    String msg = (String) session.getAttribute("msg");
+
+    // handle null values
+    if (msg == null) {
+        msg = "";
+    }
 %>
+<%@ include file="includes/usuario.jsp" %>
 <%@ include file="includes/header_principal.jsp" %>
 
         <div class="container">
@@ -22,7 +32,7 @@
 
         <div class="row">      
             <div class="span7 offset2">          
-                        <form class="form-horizontal well" action="servidor.jsp" method="get">
+                        <form class="form-horizontal well" action="Registro" method="post">
                             <h1>Registro</h1>
                             <fieldset>
                                 <legend>Favor de llenar la informaci&oacute;n necesaria</legend>
