@@ -97,7 +97,7 @@
                                     <div class="controls">
                                         <select id="departamento" name="departamento">
                                             <option value="0">Seleccione su departamento</option>
-                                            <option value="ciencias comp">Ciencias Computacionales</option>
+                                            <option value="1">Ciencias Computacionales</option>
                                             <option value="otro">Otro</option>
                                             <option value="otro">Otro</option>
                                             <option value="otro">Otro</option>
