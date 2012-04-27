@@ -23,9 +23,11 @@
                     <div class="span4 offset4">
                       <!-- <form method="get" action="servidor.jsp" class="well-large"> -->
                       <!-- <form method="get" action="index.jsp" class="well-large"> -->
+<!--                       <form action="IniciarSesion" class="well" method="post"> -->
                       <form action="IniciarSesion" class="well" method="post">
                         <fieldset>
                           <h1>Iniciar Sesi&oacute;n</h1>
+                          <p style="font-size: 13px; color:red"><i><%= msg %></i></p>
                             <div class="control-group">
                               <label class="control-label" for="usuario">Usuario</label>
                               <div class="controls">

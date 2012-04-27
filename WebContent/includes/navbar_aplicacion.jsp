@@ -25,6 +25,7 @@
                 <li class="active"><a href="horario_usuario.jsp"><i class="icon-time icon-white"></i> Mi Horario</a></li>
               </ul>
               <ul class="nav pull-right">
+<%--               	<li><a href="#"><%= name %></a></li> --%>
                 <li><a href="index.jsp"><i class="icon-off icon-white"></i> Cerrar Sesi&oacute;n</a></li>
                 <!-- <li><a href="iniciar_sesion.jsp"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
                 <li class="divider-vertical"></li>

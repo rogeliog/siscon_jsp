@@ -15,7 +15,8 @@ $(function() {
   //empieza pagina de registrar
   $('#matricula').validate( {
     expression: "if (!isNaN(VAL) && VAL) return true; else return false;",
-    message: "Formato inválido"
+    message: "Formato inv\u00E1lido"
+    //message: "Formato inválido"
   });
 
   $('#contrasenia').validate( {
@@ -25,7 +26,8 @@ $(function() {
 
   $('#contraseniaC').validate( {
     expression: "if(VAL == $('#contrasenia').val() && VAL) return true; else return false;",
-    message: "Las contraseñas deben ser iguales"
+    message: "Las contrase\u00F1as deben ser iguales"
+    //message: "Las contraseñas deben ser iguales" no funciona en jsp debe usarse el caracter en unicode
   });
 
   $('#nombre').validate( {
@@ -50,7 +52,8 @@ $(function() {
 
   jQuery("#email").validate({
     expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
-    message: "Formato de email no válido"
+    message: "Formato de email no v\u00E1lido"
+    //message: "Formato de email no válido"
   });
 
 });

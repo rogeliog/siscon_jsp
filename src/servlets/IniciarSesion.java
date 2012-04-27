@@ -31,7 +31,12 @@ public class IniciarSesion extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException, SQLException {
 	        response.setContentType("text/html;charset=UTF-8");
-	        
+	        try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        String url = "jdbc:mysql://localhost/SISCON";
 	        Connection con = (Connection) DriverManager.getConnection(url, "root", "");
 	        Statement query = (Statement) con.createStatement();
@@ -57,7 +62,7 @@ public class IniciarSesion extends HttpServlet {
 	    	String telefonos[] = {"0", "0", "0", "0", "0"};
 	    	
 	    	
-	        String q = "SELECT * FROM usuario WHERE idUsuario='" + matricula + "' and password ='" + contrasenia + "'";
+	        String q = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "' and password ='" + contrasenia + "'";
 	        ResultSet rs = query.executeQuery(q);
 	        while (rs.next()) {
 	        	cont++;
@@ -73,7 +78,7 @@ public class IniciarSesion extends HttpServlet {
 	        }
 
 	        if (cont == 1) {
-	        	q = "SELECT telefono, extension FROM telefono, usuario WHERE telefono.indexUsuario = usuario.indexUsuario AND usuario.idUsuario = '" + matricula + "'";
+	        	q = "SELECT telefono, extension FROM Telefono, Usuario WHERE Telefono.indexUsuario = Usuario.indexUsuario AND Usuario.idUsuario = '" + matricula + "'";
 	            rs = query.executeQuery(q);
 	            int i = 0;
 	            while (rs.next()) {
@@ -107,6 +112,7 @@ public class IniciarSesion extends HttpServlet {
 	        }
 	        
 	        session.setAttribute("msg", msg);
+	        session.setAttribute("name", nombre);
 
 	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(forward);
 	        dispatcher.forward(request, response);
