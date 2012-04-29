@@ -59,7 +59,7 @@ public class IniciarSesion extends HttpServlet {
 	    	boolean alta = false;
 	    	boolean esAdmin = false;
 	    	char rol = ' ';
-	    	String telefonos[] = {"0", "0", "0", "0", "0"};
+//	    	String telefonos[] = {"0", "0", "0", "0", "0"};
 	    	
 	    	
 	        String q = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "' and password ='" + contrasenia + "'";
@@ -78,16 +78,16 @@ public class IniciarSesion extends HttpServlet {
 	        }
 
 	        if (cont == 1) {
-	        	q = "SELECT telefono, extension FROM Telefono, Usuario WHERE Telefono.indexUsuario = Usuario.indexUsuario AND Usuario.idUsuario = '" + matricula + "'";
-	            rs = query.executeQuery(q);
-	            int i = 0;
-	            while (rs.next()) {
-	            	telefonos[i] = rs.getString("telefono");
-	            	if(!rs.getString("extension").equals("")) {
-	            		telefonos[i] += "-" + rs.getString("extension");
-	            	}
-	            	i++;
-	            }
+//	        	q = "SELECT telefono, extension FROM Telefono, Usuario WHERE Telefono.indexUsuario = Usuario.indexUsuario AND Usuario.idUsuario = '" + matricula + "'";
+//	            rs = query.executeQuery(q);
+//	            int i = 0;
+//	            while (rs.next()) {
+//	            	telefonos[i] = rs.getString("telefono");
+//	            	if(!rs.getString("extension").equals("")) {
+//	            		telefonos[i] += "-" + rs.getString("extension");
+//	            	}
+//	            	i++;
+//	            }
 	        	msg = "";
 	            Usuario usuario = new Usuario();
 	            
@@ -102,17 +102,24 @@ public class IniciarSesion extends HttpServlet {
 	            usuario.setAlta(alta);
 	            usuario.setEsAdmin(esAdmin);
 	            usuario.setRol(rol);
-	            usuario.setTelefonos(telefonos);
-
-	            session.setAttribute("usuario", usuario);
-	            forward = "/bienvenido.jsp";
+//	            usuario.setTelefonos(telefonos);
+	            
+	            if (alta) {
+	            	session.setAttribute("usuario", usuario);
+		            forward = "/bienvenido.jsp";
+		            	
+	            }
+	            else {
+	            	msg = "Este usuario no esta dado de alta";
+		            forward = "/index.jsp";
+	            }
+	            
 	        } else {
 	            msg = "Usuario o contrase&ntilde;a incorrecta";
 	            forward = "/index.jsp";
 	        }
 	        
 	        session.setAttribute("msg", msg);
-	        session.setAttribute("name", nombre);
 
 	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(forward);
 	        dispatcher.forward(request, response);

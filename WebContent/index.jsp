@@ -9,7 +9,6 @@
       msg = "";
   }
 %>
-<%@ include file="includes/usuario.jsp" %>
 <%@ include file="includes/header_principal.jsp" %>
 
          <div class="container">
