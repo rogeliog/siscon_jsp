@@ -1,6 +1,6 @@
-    <div class="wrapper">
+    <div id="wrap" class="wrapper">
       <!-- Barra de navegacion -->
-      <div class="navbar navbar-fixed-top">
+      <div id="nav" class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
