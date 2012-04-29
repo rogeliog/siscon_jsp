@@ -2,7 +2,7 @@
   String pageTitle = "SISCON | Calendario";
 %>
 <%@ include file="includes/header_calendario.jsp" %>
-<<script type="text/javascript">
+<script type="text/javascript">
 	function exporta(){
 		var navbar = document.getElementById("nav");
 		var wrap = document.getElementById("wrap");
