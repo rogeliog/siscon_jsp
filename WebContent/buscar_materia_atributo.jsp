@@ -1,6 +1,4 @@
-<% 
-  String pageTitle = "SISCON | Buscar Materia Por Atributo";
-%>
+<% String pageTitle = "SISCON | Buscar Materia Por Atributo";%>
 <%@ include file="includes/header_aplicacion.jsp" %>
 
 <div class="container">
@@ -17,19 +15,7 @@
                               <option>attr1</option>
                               <option>attr1</option>
                               <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
-                              <option>attr1</option>
+                              <option>attr1</option>                      
                               <option>attr1</option>
                               <option>attr1</option>
                               <option>attr1</option>
