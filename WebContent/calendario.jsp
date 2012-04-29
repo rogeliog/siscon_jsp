@@ -16,13 +16,13 @@
 		var view = divs[0];
 		var scroll = divs[16];
 		
-		view.style.height = "900px"
-		scroll.style.height = "900px"
+		view.style.height = "900px";
+		scroll.style.height = "900px";
 		scroll.style.overflowY = "hidden";
 		
-		regresa = document.getElementById("impr");
-		regresa.onclick = "window.location.reload()";
-		regresa.innerHTML = "Regresar";
+		/*regresa = document.getElementById("impr");
+		regresa.href = "/bienvenido.jsp";
+		regresa.innerHTML = "Regresar";*/
 	}
 </script>
 <div class="container">
