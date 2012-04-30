@@ -5,7 +5,7 @@
 	      name = "";
 	  }
  %>
- <%@ include file="usuario.jsp" %>
+<%@ include file="usuario.jsp" %>
 <jsp:include page="includes/header1.jsp" flush="true">
 	<jsp:param name="pageTitle" value="<%= pageTitle %>" />
 </jsp:include>
