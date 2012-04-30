@@ -38,7 +38,7 @@
 						<div class="control-group"> 
 			<%ResultSet rs = query.executeQuery(q);
 			while (rs.next()) {%>
-			
+				
 					<span> 
 					<span class="control-label"><%=rs.getString(2)%></span> 
 					<span class="control-label"><%=rs.getString(3)%></span> 
@@ -51,7 +51,7 @@
 					<span>Administrador</span> <input type="checkbox" name="Admin" value="ON" />
 						<div>
 						<button class="btn btn-inverse">Rechazar</button>
-						<button class="btn btn-inverse">Aceptar</button>
+						<button class="btn btn-inverse">Aceptar</button> <br/> <br/> <br/>
 						</div>
 					</span>
 				
