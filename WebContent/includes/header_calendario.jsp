@@ -4,4 +4,14 @@
 </jsp:include>
 <%@ include file="style_calendario.html" %>
 <%@ include file="header2.jsp" %>
-<%@ include file="navbar_aplicacion.jsp" %>
+<%
+	if(usuario.getRol() == 'D') { %>
+		<%@ include file="navbar_director.jsp" %>
+	<% } 
+	else if (usuario.getRol() == 'A') { %>
+		<%@ include file="navbar_admin.jsp" %>
+	<% } 
+	else { %>
+		<%@ include file="navbar_usuario.jsp" %>
+	<% } 
+%>

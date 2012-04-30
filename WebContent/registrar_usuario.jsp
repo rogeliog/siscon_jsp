@@ -3,11 +3,15 @@
 <% 
     String pageTitle = "SISCON | Registrar Usuario";
     //get attributes from the session
-    String msg = (String) session.getAttribute("msg");
+    String not = (String) session.getAttribute("not");
+    String error = (String) session.getAttribute("error");
 
     // handle null values
-    if (msg == null) {
-        msg = "";
+    if (not == null) {
+        not = "";
+    }
+    if (error == null) {
+        error = "";
     }
 %>
 <%@ include file="includes/header_principal.jsp" %>
@@ -36,6 +40,8 @@
                             <h1>Registro</h1>
                             <fieldset>
                                 <legend>Favor de llenar la informaci&oacute;n necesaria</legend>
+                                <span style="font-size: 13px; color:gold"><i><%= not %></i></span>
+                                <span style="font-size: 13px; color:red"><i><%= error %></i></span>
                                 <div class="control-group">
                                     <label class="control-label" for="matricula">Matr&iacute;cula</label>
                                     <div class="controls">
@@ -98,9 +104,6 @@
                                         <select id="departamento" name="departamento">
                                             <option value="0">Seleccione su departamento</option>
                                             <option value="1">Ciencias Computacionales</option>
-                                            <option value="otro">Otro</option>
-                                            <option value="otro">Otro</option>
-                                            <option value="otro">Otro</option>
                                         </select>
                                         <span class="help-inline"></span>
                                     </div>
@@ -129,4 +132,9 @@
             </div> <!-- /span -->
         </div><!-- /row -->
         </div> <!-- /container -->
-<%@ include file="includes/footer_principal.jsp" %>        
+<%@ include file="includes/footer_principal.jsp" %>
+<% 
+   session = request.getSession();
+   session.removeAttribute("not");
+   session.removeAttribute("error"); 
+%>

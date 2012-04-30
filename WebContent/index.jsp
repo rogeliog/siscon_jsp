@@ -50,3 +50,5 @@
             </div> <!-- /row -->
           </div> <!-- /container -->
 <%@ include file="includes/footer_principal.jsp" %>
+<% session = request.getSession();
+   session.removeAttribute("msg"); %>

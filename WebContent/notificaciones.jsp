@@ -37,22 +37,26 @@
 			<%ResultSet rs = query.executeQuery(q);
 			while (rs.next()) {%>
 				<div class="control-group">
+					<form action="ControladorNotificaciones" method="POST">
 					<span> 
 					<span class="control-label"><%=rs.getString(2)%></span> 
 					<span class="control-label"><%=rs.getString(3)%></span> 
-					<select class="span2" name="tipo">
-							<option value="0">Seleccione el rol</option>
+					<select class="span3" name="tipo">
 							<option value="P">Profesor</option>
 							<option value="C">Director de Carrera</option>
 							<option value="D">Director de Departamento</option>
 							<option value="O">Otro</option>
 					</select> 
 					<span>Administrador</span> <input type="checkbox" name="Admin" value="ON" />
+					<input type="hidden" name="id" value="<%=rs.getString(1)%>"/>
 <!-- 						<div> -->
-						<button class="btn btn-inverse">Rechazar</button>
-						<button class="btn btn-inverse">Aceptar</button>
+							<input id="rechaza" type="hidden" name="rechaza" value="false" />
+							<button id="rechazaBoton" class="btn btn-inverse">Rechazar</button>
+							<input id="acepta" type="hidden" name="acepta" value="false" />
+							<button id="aceptaBoton" class="btn btn-inverse">Aceptar</button>
 <!-- 						</div> -->
 					</span>
+					</form>
 				</div>
 				
 			<%}

@@ -23,9 +23,9 @@ botonImp.on('click', function(){
 	scroll.style.height = "900px";
 	scroll.style.overflowY = "hidden";
 	botonImp.hide();
+	$('form#agregarAct').hide();
 	back.show();
-	
-	
+		
 	/*regresa = document.getElementById("impr");
 	regresa.href = "/bienvenido.jsp";
 	regresa.innerHTML = "Regresar";*/

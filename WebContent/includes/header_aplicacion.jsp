@@ -12,4 +12,14 @@
 <%@ include file="style_bienvenido.html" %>
 <%@ include file="hero_unit.html" %>
 <%@ include file="header2.jsp" %>
-<%@ include file="navbar_aplicacion.jsp" %>
+<%
+	if(usuario.getRol() == 'D') { %>
+		<%@ include file="navbar_director.jsp" %>
+	<% } 
+	else if (usuario.getRol() == 'A') { %>
+		<%@ include file="navbar_admin.jsp" %>
+	<% } 
+	else { %>
+		<%@ include file="navbar_usuario.jsp" %>
+	<% } 
+%>

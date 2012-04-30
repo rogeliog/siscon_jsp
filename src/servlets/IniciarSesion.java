@@ -110,7 +110,7 @@ public class IniciarSesion extends HttpServlet {
 		            	
 	            }
 	            else {
-	            	msg = "Este usuario no esta dado de alta";
+	            	msg = "Porfavor espera a que confirmen tu solicitud";
 		            forward = "/index.jsp";
 	            }
 	            

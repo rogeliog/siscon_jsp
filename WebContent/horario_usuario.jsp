@@ -15,7 +15,7 @@
 
         <div class="row">
           <div class="span7 offset2">
-             <form class="form-horizontal" action="guardaAct">
+             <form id="agregarAct" class="form-horizontal" action="guardaAct">
               <h1>Agregar Actividades</h1>
               <fieldset>
                 <legend>Favor de llenar la informaci&oacute;n necesaria</legend>
@@ -83,6 +83,13 @@
             </form>
           </div>
         </div>
+        
+         <div class="row">
+			  <div class="span3 offset4">
+		    	<span class="btn btn-primary" id="impr" >Versi&oacute;n para Imprimir</span>
+		    	<span class="btn btn-primary" id="back">Regresar</span>
+			  </div>
+		  </div>
    
       </div> <!-- /container -->
 <%@ include file="includes/footer_calendario.html" %>
