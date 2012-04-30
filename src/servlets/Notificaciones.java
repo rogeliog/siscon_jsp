@@ -73,6 +73,7 @@ public class Notificaciones extends HttpServlet {
 		        	esAdmin = rs.getBoolean("administrador");
 		        	rol = rs.getString("rol").charAt(0);
 		        }
+	}
     /**
      * @see HttpServlet#HttpServlet()
      */
