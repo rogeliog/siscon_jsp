@@ -22,7 +22,7 @@
                 </li>
                 <li><a href="horario_usuario.jsp"><i class="icon-time icon-white"></i> Mi Horario</a></li>
                 <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cog icon-white"></i> Administraci&oacute;n  <b class="caret"></b></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cog icon-white"></i> Administraci&oacute;n <span class="badge">10</span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                       <li><a href="interfaz_admin_administraPermiso.jsp"><i class="icon-tags"></i> Administrar permisos</a></li>
                 	  <li><a href="interfaz_admin_administraUsuario.jsp"><i class="icon-th-list"></i> Administrar usuarios</a></li>
@@ -34,9 +34,6 @@
               <ul class="nav pull-right">
 				<li><a href="#"><i class="icon-user icon-white"></i> <%= usuario.getNombre() + " " + usuario.getApellido() %></a></li>
                 <li><a href="CerrarSesion"><i class="icon-off icon-white"></i> Cerrar Sesi&oacute;n</a></li>
-                <!-- <li><a href="iniciar_sesion.jsp"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
-                <li class="divider-vertical"></li>
-                <li><a href="registrar_usuario.jsp"><i class="icon-pencil icon-white"></i> Registrarse</a></li> -->
               </ul>
             </div><!--/.nav-collapse -->
           </div> <!-- /.container -->

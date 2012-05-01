@@ -30,16 +30,24 @@
 			String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE t.idDepartamento='"
 			+ usuariologgeado.IdD() + "' and t.indexUsuario=u.indexUsuario";
 			%>	<div class="row">
-					<div class="span7 offset2">
-<!-- 					<fieldset> -->
+					<div class="span8 offset2">
 						<legend>Centro de Notificaciones</legend>
-						 
 			<%ResultSet rs = query.executeQuery(q);
-			int p = 0;
-			while (rs.next()) {%>
+			if(!rs.next()){
+				%>
+				<div class="alert alert-success span4">
+				  	<a class="close" data-dismiss="alert" href="#">×</a>
+					<p><i class="icon-ok-circle"></i> No hay notificaciones pendientes por revisar</p>
+				</div>
+			<%
+			}
+			rs.beforeFirst(); 
+			while (rs.next()) {
+				String idUsuario = rs.getString(1);
+			%>
 				<div class="control-group">
-					<form class="well form-inline" action="ControladorNotificaciones" method="POST">
-						<label><b>Nombre:</b> <%=rs.getString(2)%> <%=rs.getString(3)%></label> 
+					<form class="well form-inline" id="forma-<%=idUsuario%>" action="ControladorNotificaciones" method="POST">
+						<label><b>Nombre:</b> <%=rs.getString(2)%> <%=rs.getString(3)%></label>&nbsp;&nbsp; 
 						<label><b>Rol:</b> </label>
 						<select class="span2" name="tipo">
 								<option value="P">Profesor</option>
@@ -49,18 +57,16 @@
 						</select> 
 						<label class="checkbox">
 							<input type="checkbox" name="Admin" value="ON" />Administrador
-						</label> 
-						<input type="hidden" name="id" value="<%=rs.getString(1)%>"/>
-						<input id="rechaza<%= p %>>" type="hidden" name="rechaza" value="false" />
-						<button class="btn btn-inverse">Rechazar</button>
-						<input id="acepta<%= p %>" type="hidden" name="acepta" value="false" />
-						<button class="btn btn-inverse">Aceptar</button>
+						</label>
+						<input type="hidden" name="id" value="<%=idUsuario%>"/>
+						<input id="rechaza-<%=idUsuario%>" type="hidden" name="rechaza" value="false" />
+						&nbsp;&nbsp;<button id="rechazaBoton-<%=idUsuario%>" class="btn btn-inverse" onclick="rechaza(<%=idUsuario%>)"><i class="icon-remove-sign icon-white"></i> Rechazar</button>
+						<input id="acepta-<%=idUsuario%>" type="hidden" name="acepta" value="true" />
+						&nbsp;&nbsp;<button id="aceptaBoton-<%=idUsuario%>" class="btn btn-inverse" onclick="acepta(<%=idUsuario%>)"><i class="icon-ok-sign icon-white"></i> Aceptar</button>
 					</form>
 				</div>
-				
-			<%
-			p++;
-			}
+
+			<%}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

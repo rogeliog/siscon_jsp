@@ -1,11 +1,9 @@
-function rechaza(p){
-	console.log(p);
-	document.getElementById("rechaza"+ p).value = "true";
-	document.getElementsByTagName("form")[0].submit();
+function rechaza(id){
+	document.getElementById("rechaza-"+id).value = "true";
+	document.getElementById("form-"+id).submit();
 }
 
-function acepta(p){
-	console.log(p);
-	document.getElementById("acepta"+ p).value = "true";
-	document.getElementsByTagName("form")[0].submit();
+function acepta (id){
+	document.getElementById("acepta-"+id).value = "true";
+	document.getElementById("form-"+id).submit();
 }
