@@ -1,3 +1,10 @@
 #SISCON
-##Paginas del proyecto de sexto
-Archivos JSP
+##Faltan:
+###Siendo Admin:
+####Administrar usuarios
+
+###Siendo Director de carrera:
+####Administrar permisos
+####Administrar usuarios
+####Centro de notificaciones
+
