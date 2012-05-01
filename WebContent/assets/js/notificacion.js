@@ -1,9 +1,11 @@
-$('button#rechazaBoton').on('click', function(){
-	document.getElementById("rechaza").value = "true";
+function rechaza(p){
+	console.log(p);
+	document.getElementById("rechaza"+ p).value = "true";
 	document.getElementsByTagName("form")[0].submit();
-});
+}
 
-$('button#aceptaBoton').on('click', function(){
-	document.getElementById("acepta").value = "true";
+function acepta(p){
+	console.log(p);
+	document.getElementById("acepta"+ p).value = "true";
 	document.getElementsByTagName("form")[0].submit();
-});
+}

@@ -26,13 +26,13 @@
                     <ul class="dropdown-menu">
                       <li><a href="interfaz_admin_administraPermiso.jsp"><i class="icon-tags"></i> Administrar permisos</a></li>
                 	  <li><a href="interfaz_admin_administraUsuario.jsp"><i class="icon-th-list"></i> Administrar usuarios</a></li>
-                      <li><a href="notificaciones.jsp"><i class="icon-exclamation-sign"></i> Centro de Notificaciones</a></li>
+                      <li><a href="notificaciones.jsp">Centro de Notificaciones <span class="badge badge-inverse">10</span></a></li>
                     </ul>
                 </li>
                 <li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
               </ul>
               <ul class="nav pull-right">
-				<li><a href="bienvenido.jsp"><i class="icon-user icon-white"></i> <%= usuario.getNombre() + " " + usuario.getApellido() %></a></li>
+				<li><a href="#"><i class="icon-user icon-white"></i> <%= usuario.getNombre() + " " + usuario.getApellido() %></a></li>
                 <li><a href="CerrarSesion"><i class="icon-off icon-white"></i> Cerrar Sesi&oacute;n</a></li>
                 <!-- <li><a href="iniciar_sesion.jsp"><i class="icon-user icon-white"></i> Iniciar Sesi&oacute;n</a></li>
                 <li class="divider-vertical"></li>

@@ -5,6 +5,6 @@
 
           // handle null values
           if (usuario == null) { %>
-          	<jsp:forward page="index.jsp"/>
+          	<jsp:forward page="index.jsp" />
         <%  }
       %>

@@ -36,12 +36,12 @@
 
         <div class="row">      
             <div class="span7 offset2">          
+                        <h1 style="color:gold"><i><%= not %></i></h1>
+                        <h1 style="color:red"><i><%= error %></i></h1>
                         <form class="form-horizontal well" action="Registro" method="post">
                             <h1>Registro</h1>
                             <fieldset>
                                 <legend>Favor de llenar la informaci&oacute;n necesaria</legend>
-                                <span style="font-size: 13px; color:gold"><i><%= not %></i></span>
-                                <span style="font-size: 13px; color:red"><i><%= error %></i></span>
                                 <div class="control-group">
                                     <label class="control-label" for="matricula">Matr&iacute;cula</label>
                                     <div class="controls">
