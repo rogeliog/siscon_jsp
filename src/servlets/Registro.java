@@ -23,18 +23,18 @@ import javax.servlet.RequestDispatcher;
 */
 @WebServlet("/Registro")
 public class Registro extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
+  
+  private static final long serialVersionUID = 1L;
    
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
            throws ServletException, IOException, SQLException {
        response.setContentType("text/html;charset=UTF-8");
        try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+      Class.forName("com.mysql.jdbc.Driver");
+    } catch (ClassNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
        String url = "jdbc:mysql://localhost/SISCON";
        Connection con = (Connection) DriverManager.getConnection(url, "root", "");
        Statement query = (Statement) con.createStatement();
@@ -48,103 +48,121 @@ public class Registro extends HttpServlet {
        String nombre = request.getParameter("nombre");
        String apellidos = request.getParameter("apellidoP") + " " + request.getParameter("apellidoM");
        char genero = request.getParameter("sexo").charAt(0);
+       char rol = request.getParameter("DT").charAt(0);
        int departamento = Integer.parseInt(request.getParameter("departamento"));
        String email = request.getParameter("email");
        String telefonos[] = request.getParameter("telefonos").split("\\n");
        
        int cont = 0;
        boolean alta = false;
-       String c = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";
-       String q;
-       ResultSet rs = query.executeQuery(c);
+       char dirD = 'P';
+       int dept = 0;
+       String q = "SELECT * FROM `Usuario` WHERE `rol` = 'D' AND `idDepartamento` = '" + departamento + "'";
+       ResultSet rs = query.executeQuery(q);
        while(rs.next()) {
          cont++;
-         alta = rs.getBoolean("alta");
+         dirD = rs.getString("rol").charAt(0);
+         dept = rs.getInt("idDepartamento");
        }
        
-       if(alta) {
-         error = "Ese usuario ya est&aacute; registrado.";
-           session.setAttribute("error", error);
+       if ((dirD == 'D') && (dept == departamento)) {
+         error = "El rol de Director de Departamento ya est&aacute; ocupado";
+         session.setAttribute("error", error);
        }
        else {
-         if (cont == 1) {
-             cont = 0;
-             c = "SELECT * FROM usuario, tablanotificacion WHERE usuario.idUsuario = '" + matricula + "'";
-             rs = query.executeQuery(c);
-               while(rs.next()) {
-                 cont++;
-               }
-               if (cont == 1) {
-                 q = "UPDATE usuario SET `genero` = '" + genero + "', `email` = '" + email + "', `password` = '" + 
-                     contrasenia + "', `administrador` = 0, `rol` = 'P' WHERE `usuario`.`idUsuario` = '" + matricula + "'";
-                 
-                 query.executeUpdate(q);
-                 
-                 String qe = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";
-                   int index = -1;
-                   rs = query.executeQuery(qe);
-                   while (rs.next()) {
-                      index = rs.getInt("indexUsuario");
-                   }
-                  
-                   for(int i = 0; i < telefonos.length; i++) {
-                    if (telefonos[i].indexOf('-') == -1) {
-                      query.executeUpdate("INSERT INTO Telefono (`indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES ('" + index + "', '" + 
-                         departamento + "', '" + telefonos[i] + "', ' ')");
-                      }
-                      else {
-                        query.executeUpdate("INSERT INTO Telefono (`indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES ('" + index + "', '" + 
-                         departamento + "', '" + telefonos[i].split("-")[0] + "', '" + telefonos[i].split("-")[1] + "')");
-                     }
-                   }
-                  
-                   String qr = "INSERT INTO tablaNotificacion (`indexUsuario`, `idDepartamento`) VALUES ('" + index + "', '" + departamento + "')";
-                   query.executeUpdate(qr);
-                  
-                   not = "Su solicitud de registro ha sido completada. ";
-                   session.setAttribute("not", not);
+         cont = 0;
+         String c = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";
+         rs = query.executeQuery(c);
+         while(rs.next()) {
+           cont++;
+           alta = rs.getBoolean("alta");
+         }
+        
+         if(alta) {
+           error = "Ese usuario ya est&aacute; registrado.";
+             session.setAttribute("error", error);
+         }
+         else {
+           if (cont == 1) {
+               cont = 0;
+               c = "SELECT * FROM Usuario, tablaNotificacion WHERE usuario.idUsuario = '" + matricula + "'";
+               rs = query.executeQuery(c);
+                 while(rs.next()) {
+                   cont++;
+                 }
+                 if (cont == 1) {
                    
-               }
-               else {
-                 error = "No puedes mandar otra solicitud mientras est&aacute;s en espera de confirmaci&oacute;n";
-                 session.setAttribute("error", error);
-               }
-               
-           }
-           
-           else if (cont == 0) {
-             q = "INSERT INTO Usuario (`idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, " +
-                "`password`, `administrador`, `rol`) VALUES ('" + departamento + "', '" + matricula + "', '" + nombre + "', '" + apellidos + "', '" + 
-                 genero + "', '" + email + "', 0, '" + contrasenia + "', 0, 'P')";
-              
-              query.executeUpdate(q);
-              
-              String qe = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";
-              int index = -1;
-              rs = query.executeQuery(qe);
-              while (rs.next()) {
-                  index = rs.getInt("indexUsuario");
-              }
+                   q = "UPDATE Usuario SET `genero` = '" + genero + "', `email` = '" + email + "', `password` = '" + 
+                       contrasenia + "', `administrador` = 0, `rol` = '" + rol + "' WHERE `Usuario`.`idUsuario` = '" + matricula + "'";
+                   
+                   query.executeUpdate(q);
+                   
+                   String qe = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";
+                     int index = -1;
+                     rs = query.executeQuery(qe);
+                     while (rs.next()) {
+                        index = rs.getInt("indexUsuario");
+                     }
+                    
+                     for(int i = 0; i < telefonos.length; i++) {
+                      if (telefonos[i].indexOf('-') == -1) {
+                        query.executeUpdate("INSERT INTO Telefono (`indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES ('" + index + "', '" + 
+                           departamento + "', '" + telefonos[i] + "', ' ')");
+                        }
+                        else {
+                          query.executeUpdate("INSERT INTO Telefono (`indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES ('" + index + "', '" + 
+                           departamento + "', '" + telefonos[i].split("-")[0] + "', '" + telefonos[i].split("-")[1] + "')");
+                       }
+                     }
+                    
+                     String qr = "INSERT INTO tablaNotificacion (`indexUsuario`, `idDepartamento`) VALUES ('" + index + "', '" + departamento + "')";
+                     query.executeUpdate(qr);
+                    
+                     not = "Su solicitud de registro ha sido completada. ";
+                     session.setAttribute("not", not);
+                     
+                 }
+                 else {
+                   error = "No puedes mandar otra solicitud mientras est&aacute;s en espera de confirmaci&oacute;n";
+                   session.setAttribute("error", error);
+                 }
+                 
+             }
              
-              for(int i = 0; i < telefonos.length; i++) {
-              if (telefonos[i].indexOf('-') == -1) {
-                query.executeUpdate("INSERT INTO Telefono (`indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES ('" + index + "', '" + 
-                   departamento + "', '" + telefonos[i] + "', ' ')");
+             else if (cont == 0) {
+               q = "INSERT INTO Usuario (`idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, " +
+                  "`password`, `administrador`, `rol`) VALUES ('" + departamento + "', '" + matricula + "', '" + nombre + "', '" + apellidos + "', '" + 
+                   genero + "', '" + email + "', 0, '" + contrasenia + "', 0, '" + rol + "')";
+                
+                query.executeUpdate(q);
+                
+                String qe = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";
+                int index = -1;
+                rs = query.executeQuery(qe);
+                while (rs.next()) {
+                    index = rs.getInt("indexUsuario");
                 }
-                else {
-                  query.executeUpdate("INSERT INTO Telefono (`indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES ('" + index + "', '" + 
-                   departamento + "', '" + telefonos[i].split("-")[0] + "', '" + telefonos[i].split("-")[1] + "')");
-               }
-              }
-             
-              String qr = "INSERT INTO tablaNotificacion (`indexUsuario`, `idDepartamento`) VALUES ('" + index + "', '" + departamento + "')";
-              query.executeUpdate(qr);
-             
-              not = "Su solicitud de registro ha sido completada. ";
-              session.setAttribute("not", not);
                
-           }
-         
+                for(int i = 0; i < telefonos.length; i++) {
+                if (telefonos[i].indexOf('-') == -1) {
+                  query.executeUpdate("INSERT INTO Telefono (`indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES ('" + index + "', '" + 
+                     departamento + "', '" + telefonos[i] + "', ' ')");
+                  }
+                  else {
+                    query.executeUpdate("INSERT INTO Telefono (`indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES ('" + index + "', '" + 
+                     departamento + "', '" + telefonos[i].split("-")[0] + "', '" + telefonos[i].split("-")[1] + "')");
+                 }
+                }
+               
+                String qr = "INSERT INTO tablaNotificacion (`indexUsuario`, `idDepartamento`) VALUES ('" + index + "', '" + departamento + "')";
+                query.executeUpdate(qr);
+               
+                not = "Su solicitud de registro ha sido completada. ";
+                session.setAttribute("not", not);
+                 
+             }
+           
+         }
        }
        
        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registrar_usuario.jsp");

@@ -14,7 +14,7 @@ $(function() {
 
   //empieza pagina de registrar
   $('#matricula').validate( {
-    expression: "if (!isNaN(VAL) && VAL) return true; else return false;",
+    expression: "if (VAL.match(/\\b^[A-Z][\\d]{8}\\b/)) return true; else return false;",
     message: "Formato inv\u00E1lido"
     //message: "Formato inválido"
   });
@@ -43,6 +43,11 @@ $(function() {
   $('#apellidoM').validate( {
     expression: "if (VAL) return true; else return false;",
     message: "No puede estar vacio"
+  });
+
+  $('#directorDept').validate( {
+    expression: "if (isChecked(SelfID)) return true; else return false;",
+    message: "Seleccione un radio boton"
   });
 
   $('#departamento').validate( {

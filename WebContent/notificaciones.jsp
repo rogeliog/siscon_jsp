@@ -16,7 +16,8 @@
 
 <div class="container">
 
-	<%try {
+	<%
+		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			String url = "jdbc:mysql://localhost/SISCON";
@@ -27,8 +28,8 @@
 			Usuario usuariologgeado = (Usuario) session.getAttribute("usuario");
 			//SELECT u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE t.idDepartamento=1 and t.indexUsuario=u.indexUsuario
 
-			String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE t.idDepartamento='"
-			+ usuariologgeado.IdD() + "' and t.indexUsuario=u.indexUsuario";
+			String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t WHERE t.idDepartamento='"
++ usuariologgeado.IdD() + "' and u.rol='P' and  t.indexUsuario=u.indexUsuario";
 			%>	<div class="row">
 					<div class="span8 offset2">
 						<legend>Centro de Notificaciones</legend>

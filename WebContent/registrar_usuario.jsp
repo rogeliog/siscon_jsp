@@ -15,6 +15,12 @@
     }
 %>
 <%@ include file="includes/header_principal.jsp" %>
+<%@ page language="java" import="java.sql.*" %>
+<%
+    String url = "jdbc:mysql://localhost/SISCON";
+    Connection con = (Connection) DriverManager.getConnection(url, "root", "");
+    Statement query = (Statement) con.createStatement();
+%>
 
         <div class="container">
       
@@ -36,16 +42,17 @@
 
         <div class="row">      
             <div class="span7 offset2">          
-                        <h1 style="color:gold"><i><%= not %></i></h1>
-                        <h1 style="color:red"><i><%= error %></i></h1>
                         <form class="form-horizontal well" action="Registro" method="post">
                             <h1>Registro</h1>
                             <fieldset>
                                 <legend>Favor de llenar la informaci&oacute;n necesaria</legend>
+                                <h1 style="color:gold"><i><%= not %></i></h1>
+                                <h1 style="color:red"><i><%= error %></i></h1>
                                 <div class="control-group">
                                     <label class="control-label" for="matricula">Matr&iacute;cula</label>
                                     <div class="controls">
                                         <input name="matricula" id="matricula" class="input-small" type="text">
+                                        <span>(Ej. L12345678)</span>	
                                         <span class="help-inline"></span>
                                     </div>
                                 </div>
@@ -61,7 +68,6 @@
                                     <div class="controls">
                                         <input name="contraseniaC" id="contraseniaC" class="input-medium" type="password">
                                         <span class="help-inline"></span>
-                                        <!-- <p class="help-block">Nota: Puede utilizar la contrase&ntilde;a de su cuenta del Tec para mayor facilidad</p> -->
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -99,11 +105,30 @@
                                   </div>
                                 </div>
                                 <div class="control-group">
+                                    <label class="control-label">&iquest;Eres Director de Departamento?</label>
+                                    <div id="directorDept" class="controls">
+                                        <label class="radio inline">
+                                        	<input id="dt1" type="radio" value="D" name="DT"> S&iacute;
+                                        </label>
+                                        <label class="radio inline">
+                                        	<input id="dt2" type="radio" value="P" name="DT"> No
+                                        </label>
+                                        <span class="help-inline"></span>                                        
+                                    </div>
+                                </div>
+                                <div class="control-group">
                                     <label class="control-label" for="departamento">Departamento</label>
                                     <div class="controls">
                                         <select id="departamento" name="departamento">
-                                            <option value="0">Seleccione su departamento</option>
-                                            <option value="1">Ciencias Computacionales</option>
+                                            <% 
+                                                String q = "SELECT * FROM `Departamento`";
+                                                ResultSet rs = query.executeQuery(q);
+                                                while(rs.next()) { 
+                                            %>
+                                            <option value='<%=rs.getInt("idDepartamento")%>'><%=rs.getString("departamento")%></option>
+                                            <%
+                                                } 
+                                            %>
                                         </select>
                                         <span class="help-inline"></span>
                                     </div>

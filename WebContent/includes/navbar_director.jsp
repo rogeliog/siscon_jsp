@@ -1,3 +1,44 @@
+<%@page import="java.io.IOException"%>
+
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.util.logging.Level"%>
+<%@page import="java.util.logging.Logger"%>
+
+<%-- <%@page import="clases.Usuario"%> --%>
+
+<%@page import="com.mysql.jdbc.Connection"%>
+<%@page import="com.mysql.jdbc.Statement"%>
+<%
+  int rowCount = 0;
+  try {
+    Class.forName("com.mysql.jdbc.Driver");
+    
+    String url = "jdbc:mysql://localhost/SISCON";
+    Connection con = (Connection) DriverManager.getConnection(url,"root", "");
+    Statement query = (Statement) con.createStatement();
+    
+    Usuario usuariologgeado = (Usuario) session.getAttribute("usuario");
+    
+    String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t WHERE t.idDepartamento='"
++ usuariologgeado.IdD() + "' and u.rol='P' and  t.indexUsuario=u.indexUsuario";
+    
+    
+    ResultSet rs = query.executeQuery(q);
+    while (rs.next()) {
+      
+    }
+    rs.last();
+    rowCount = rs.getRow();
+  }
+  catch (Exception e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+  }
+    
+%>
+
     <div id="wrap" class="wrapper">
       <!-- Barra de navegacion -->
       <div  id="nav" class="navbar navbar-fixed-top">
@@ -22,11 +63,11 @@
                 </li>
                 <li><a href="horario_usuario.jsp"><i class="icon-time icon-white"></i> Mi Horario</a></li>
                 <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cog icon-white"></i> Administraci&oacute;n <span class="badge">10</span> <b class="caret"></b></a>
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cog icon-white"></i> Administraci&oacute;n <span class="badge"><%= rowCount %></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                       <li><a href="interfaz_admin_administraPermiso.jsp"><i class="icon-tags"></i> Administrar permisos</a></li>
                 	  <li><a href="interfaz_admin_administraUsuario.jsp"><i class="icon-th-list"></i> Administrar usuarios</a></li>
-                      <li><a href="notificaciones.jsp">Centro de Notificaciones <span class="badge badge-inverse">10</span></a></li>
+                      <li><a href="notificaciones.jsp">Centro de Notificaciones <span class="badge badge-inverse"><%= rowCount %></span></a></li>
                     </ul>
                 </li>
                 <li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>

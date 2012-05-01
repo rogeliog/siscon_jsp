@@ -21,8 +21,7 @@
 		
 		Usuario usuariologgeado = (Usuario) session.getAttribute("usuario");
 		
-		String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE t.idDepartamento='"
-		+ usuariologgeado.IdD() + "' and t.indexUsuario=u.indexUsuario";
+		String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE u.rol='D' and t.indexUsuario=u.indexUsuario";
 		
 		
 		ResultSet rs = query.executeQuery(q);
@@ -30,7 +29,7 @@
 			
 		}
 		rs.last();
-	    rowCount = rs.getRow();
+	  rowCount = rs.getRow();
 	}
 	catch (Exception e) {
 		// TODO Auto-generated catch block
@@ -55,7 +54,7 @@
                 <li><a href="bienvenido.jsp"><i class="icon-home icon-white"></i> Inicio</a></li>
                 <li><a href="interfaz_admin_administraUsuario.jsp"><i class="icon-th-list icon-white"></i> Administrar usuarios</a></li>
                 <li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
-                <li><a href="notificaciones.jsp">Centro de Notificaciones <span class="badge"><%= rowCount %></span>
+                <li><a href="notificaciones_admin.jsp">Centro de Notificaciones <span class="badge"><%= rowCount %></span>
                 </a></li>
               </ul>
               <ul class="nav pull-right">
