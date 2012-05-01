@@ -1,9 +1,9 @@
-$('button#rechazaBoton').on('click', function(){
-	document.getElementById("rechaza").value = "true";
-	document.getElementsByTagName("form")[0].submit();
-});
+function rechaza(id){
+	document.getElementById("rechaza-"+id).value = "true";
+	document.getElementById("form-"+id).submit();
+}
 
-$('button#aceptaBoton').on('click', function(){
-	document.getElementById("acepta").value = "true";
-	document.getElementsByTagName("form")[0].submit();
-});
+function acepta (id){
+	document.getElementById("acepta-"+id).value = "true";
+	document.getElementById("form-"+id).submit();
+}

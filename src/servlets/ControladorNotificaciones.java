@@ -53,22 +53,20 @@ public class ControladorNotificaciones extends HttpServlet {
 	        } catch (SQLException ex) {
 //	            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
 	        }
-			
 		}else if(rechaza.equals("true")){
 			String url = "jdbc:mysql://localhost/SISCON";
 	        try {
 	            Connection con = (Connection) DriverManager.getConnection(url,"root","");
 	            Statement query = (Statement) con.createStatement();
-	            query.executeUpdate("delete from tablaNotificacion where indexUsuario ='"+ id +"'");
+	            query.executeUpdate("DELETE FROM tablaNotificacion WHERE indexUsuario ='"+ id +"'");
 	        } catch (SQLException ex) {
 //	            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
 	        }
 		}
-		String url = "/notificaciones.jsp";
+		String url = "notificaciones.jsp";
 		ServletContext sc = this.getServletContext();
         RequestDispatcher dispatcher = sc.getRequestDispatcher(url);
         dispatcher.forward(request, response);
 		
 	}
-
 }

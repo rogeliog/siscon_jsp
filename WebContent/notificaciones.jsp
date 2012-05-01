@@ -31,13 +31,17 @@
 			+ usuariologgeado.IdD() + "' and t.indexUsuario=u.indexUsuario";
 			%>	<div class="row">
 					<div class="span10 offset2">
-<!-- 					<fieldset> -->
 						<legend>Centro de Notificaciones</legend>
-						 
 			<%ResultSet rs = query.executeQuery(q);
-			while (rs.next()) {%>
+			if(!rs.next()){
+				%><p>No hay notificaciones pendientes por revisar</p><%
+			}
+			rs.beforeFirst(); 
+			while (rs.next()) {
+				String idUsuario = rs.getString(1);
+			%>
 				<div class="control-group">
-					<form action="ControladorNotificaciones" method="POST">
+					<form id="forma-<%=idUsuario%>" action="ControladorNotificaciones" method="POST">
 					<span> 
 					<span class="control-label"><%=rs.getString(2)%></span> 
 					<span class="control-label"><%=rs.getString(3)%></span> 
@@ -48,13 +52,11 @@
 							<option value="O">Otro</option>
 					</select> 
 					<span>Administrador</span> <input type="checkbox" name="Admin" value="ON" />
-					<input type="hidden" name="id" value="<%=rs.getString(1)%>"/>
-<!-- 						<div> -->
-							<input id="rechaza" type="hidden" name="rechaza" value="false" />
-							<button id="rechazaBoton" class="btn btn-inverse">Rechazar</button>
-							<input id="acepta" type="hidden" name="acepta" value="false" />
-							<button id="aceptaBoton" class="btn btn-inverse">Aceptar</button>
-<!-- 						</div> -->
+					<input type="hidden" name="id" value="<%=idUsuario%>"/>
+							<input id="rechaza-<%=idUsuario%>" type="hidden" name="rechaza" value="false" />
+							<button id="rechazaBoton-<%=idUsuario%>" class="btn btn-inverse" onclick="rechaza(<%=idUsuario%>)">Rechazar</button>
+							<input id="acepta-<%=idUsuario%>" type="hidden" name="acepta" value="true" />
+							<button id="aceptaBoton-<%=idUsuario%>" class="btn btn-inverse" onclick="acepta(<%=idUsuario%>)">Aceptar</button>
 					</span>
 					</form>
 				</div>
@@ -64,9 +66,6 @@
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}%>
-				
-
-<!-- 			</fieldset> -->
 
 		</div>
 		<!-- /span -->
