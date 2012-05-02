@@ -46,7 +46,7 @@ private static Connection connection;
         try {
             //Establecer la conexion a la base de datos
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/siscon?user=root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/SISCON?user=root");
             Statement statement = connection.createStatement();
             //Consulta para obtener el id del departamento de acuerdo a su nombre
             //ResultSet results = statement.executeQuery("SELECT idDepartamento FROM siscon.departamento WHERE departamento='" + departamento + "'");
@@ -54,14 +54,14 @@ private static Connection connection;
             //    Did = results.getInt(1);
             //}
             //Consulta para saber si ya existe un registro de un departamento de un mismo usuario          
-            ResultSet results2 = statement.executeQuery("SELECT * FROM siscon.registroexcel WHERE deptPlan='" + deptPlan + "' AND "
+            ResultSet results2 = statement.executeQuery("SELECT * FROM registroExcel WHERE deptPlan='" + deptPlan + "' AND "
                     + "indexUsuario=" + Uid);
             //Si existe, borra el registro
             if (results2.next()) {
-                statement.executeUpdate("DELETE FROM siscon.registroexcel WHERE idregistroExcel=" + results2.getString(1));
+                statement.executeUpdate("DELETE FROM registroExcel WHERE idregistroExcel=" + results2.getString(1));
             }
             //Registra la informacion en la base de datos.
-            statement.executeUpdate("INSERT INTO `siscon`.`registroexcel` ( `indexUsuario`,"
+            statement.executeUpdate("INSERT INTO `registroExcel` ( `indexUsuario`,"
                     + " `deptPlan`, `fecha`, `nombreArchivo`,`tipo`) VALUES (" + Uid + ",'" + deptPlan + "','" + fecha 
                     + " " + hora + "'," + "'" + nombreArchivo + "', "+ tipo +")");
 

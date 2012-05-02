@@ -61,7 +61,7 @@ public class PlanReader extends HttpServlet {
     }
     
         private static void insertIntoDb(ArrayList dataHolder) throws Exception{
-        String bd = "siscon";
+        String bd = "SISCON";
         String usuario = "root";
         String password = "";
         String url = "jdbc:mysql://localhost/"+bd;
@@ -125,30 +125,30 @@ public class PlanReader extends HttpServlet {
              
              try {
                   conexion = DriverManager.getConnection(url,usuario,password);
-                  String queryMateria = "insert into materia(materia, curso, nombreMateria, disciplina) values(?, ?, ?, ?)";
-                  String queryCarrera = "insert into carrera(nombreCarrera, siglasCarrera) values(?, ?)";
-                  String queryPlan = "insert into plandeestudios(idCarrera, anioPlan, descripcion) values(?, ?, ?)";
-                  String querySemestre = "insert into semestre(idPlan, idCarrera, semestre) values(?, ?, ?)";
-                  String querySemestreMat = "insert into semestremateria(materia, curso, idSemestre, idPlan, idCarrera) values(?, ?, ?, ?, ?)";  
+                  String queryMateria = "insert into Materia(materia, curso, nombreMateria, disciplina) values(?, ?, ?, ?)";
+                  String queryCarrera = "insert into Carrera(nombreCarrera, siglasCarrera) values(?, ?)";
+                  String queryPlan = "insert into PlanDeEstudios(idCarrera, anioPlan, descripcion) values(?, ?, ?)";
+                  String querySemestre = "insert into Semestre(idPlan, idCarrera, semestre) values(?, ?, ?)";
+                  String querySemestreMat = "insert into semestreMateria(materia, curso, idSemestre, idPlan, idCarrera) values(?, ?, ?, ?, ?)";  
                   
                   
                   ResultSet rs = null;
                   
-                  String checkMat = "SELECT m.materia, m.curso "
-                  + "FROM materia m "
-                  + "WHERE m.curso = ? AND m.materia = ?";
+                  String checkMat = "SELECT m.Materia, m.curso "
+                  + "FROM Materia m "
+                  + "WHERE m.curso = ? AND m.Materia = ?";
                   
                   String fkCarrera = "SELECT c.idCarrera "
-                  + "FROM carrera c "
+                  + "FROM Carrera c "
                   + "WHERE c.siglasCarrera = ?";
                   
                   String fkPlan = "SELECT p.idPlanDeEstudios "
-                  + "FROM plandeestudios p "
+                  + "FROM PlanDeEstudios p "
                   + "WHERE p.idCarrera = ?";
                   
                   String fkSemMat = "SELECT s.idSemestre "
-                  + "FROM semestre s "
-                  + "WHERE s.idPlan = ? AND s.idCarrera = ? AND s.semestre = ?";
+                  + "FROM Semestre s "
+                  + "WHERE s.idPlan = ? AND s.idCarrera = ? AND s.Semestre = ?";
                   
                   
                   

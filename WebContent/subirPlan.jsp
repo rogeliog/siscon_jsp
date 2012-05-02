@@ -30,7 +30,7 @@
     
     //Consulta de los exceles registrados    
     //Verificar idUsuario de session********************************************
-    ResultSet results = statement.executeQuery("SELECT * FROM registroExcel WHERE indexUsuario = " + Uid + ";");                     
+    ResultSet results = statement.executeQuery("SELECT * FROM registroExcel WHERE indexUsuario = " + Uid + " AND tipo=1;");                     
 %>
     
        

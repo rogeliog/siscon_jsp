@@ -98,7 +98,7 @@ public class FileUploadServlet extends HttpServlet implements Servlet {
         
         ServletContext context = getServletContext();
         String ruta = context.getRealPath(request.getContextPath());
-        
+        System.out.println("ruta"+ruta);
         //Se crea un objeto FileItemFactory y ServletFileUpload para la subida del archivo
         FileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
@@ -132,7 +132,7 @@ public class FileUploadServlet extends HttpServlet implements Servlet {
 
                         // Se ignora la ruta y se obtiene el nombre de archivo
                         myFileName = myFullFileName.substring(startIndex + 1, myFullFileName.length());
-
+                        System.out.println("file"+myFileName);
                         //Crear un nuevo objeto File
                         uploadedFile = new File(filePath, myFileName);
 

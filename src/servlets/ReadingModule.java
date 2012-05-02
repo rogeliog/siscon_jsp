@@ -76,7 +76,7 @@ public class ReadingModule extends HttpServlet {
    
           
     private static void insertIntoDb(ArrayList dataHolder) throws Exception{
-        String bd = "siscon";
+        String bd = "SISCON";
         String usuario = "root";
         String password = "";
         String url = "jdbc:mysql://localhost/"+bd;
@@ -145,8 +145,8 @@ public class ReadingModule extends HttpServlet {
              conexion = null;
              conexion = DriverManager.getConnection(url,usuario,password); 
              PreparedStatement pstmt = null;
-             String cleanTables = "delete from grupo; "
-                                     + " delete from horarios;";
+             String cleanTables = "delete from Grupo; "
+                                     + " delete from Horarios;";
                   pstmt = conexion.prepareStatement(cleanTables);
                   pstmt.clearParameters();
                   
@@ -237,43 +237,43 @@ public class ReadingModule extends HttpServlet {
              try {
                   
                   conexion = DriverManager.getConnection(url,usuario,password);                  
-                  String queryDepartamento = "insert into departamento(siglas, departamento) values(?, ?)";
-                  String queryGrupo = "insert into grupo(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, atributos, horasClase, horasLaboratorio, unidades, porcentajeClase, numeroProfesores, claseExclusiva, alumnosInscritos) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                  String queryHorarios = "insert into horarios(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, salon, diaSemana, horaInicio, horaFin) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                  String queryPeriodo = "insert into periodo(anio, periodoValue, periodo) values(?, ?, ?)";
-                  String queryUsuario = "insert into usuario(idDepartamento, idUsuario, nombreUsuario, apellidoUsuario, password) values(?, ?, ?, ?, ?)";     
+                  String queryDepartamento = "insert into Departamento(siglas, departamento) values(?, ?)";
+                  String queryGrupo = "insert into Grupo(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, atributos, horasClase, horasLaboratorio, unidades, porcentajeClase, numeroProfesores, claseExclusiva, alumnosInscritos) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                  String queryHorarios = "insert into Horarios(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, salon, diaSemana, horaInicio, horaFin) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                  String queryPeriodo = "insert into Periodo(anio, periodoValue, periodo) values(?, ?, ?)";
+                  String queryUsuario = "insert into Usuario(idDepartamento, idUsuario, nombreUsuario, apellidoUsuario, password) values(?, ?, ?, ?, ?)";     
                   
                   
                   ResultSet rs = null;
                   
                   String fkGrupo = "SELECT u.indexUsuario "
-                          + " FROM  usuario u "
+                          + " FROM  Usuario u "
                           + " WHERE u.idUsuario = ? ";
                  
                   String checkUser = "SELECT u.indexUsuario "
-                                    + "FROM usuario u "
+                                    + "FROM Usuario u "
                                     + "WHERE u.idUsuario = ? OR u.idUsuario = ? OR u.idUsuario = ?";
                   String checkPer = "SELECT p.periodo "
-                          + " FROM periodo p "
+                          + " FROM Periodo p "
                           + " WHERE p.idPeriodo = ?";
                   
                   String fkUsuario = "SELECT d.idDepartamento "
-                          + " FROM departamento d "
+                          + " FROM Departamento d "
                           + " WHERE d.siglas = ?";
                   
                   String checkDep = "SELECT d.idDepartamento "
-                          + " FROM departamento d "
+                          + " FROM Departamento d "
                           + " WHERE d.siglas = ? ";
                   
                   String checkGrupo = "SELECT g.crn "
-                          + "FROM grupo g "
+                          + "FROM Grupo g "
                           + "WHERE g.crn = ? AND g.materia = ? AND g.curso = ? AND g.indexUsuario = ? "
                           + "AND g.idDepartamento = ? AND g.idPeriodo = ?";
                    String checkMat = "SELECT m.materia, m.curso "
-                  + "FROM materia m "
+                  + "FROM Materia m "
                   + "WHERE m.curso = ? AND m.materia = ?";
                    
-                   String queryMateria = "insert into materia(materia, curso, nombreMateria, disciplina) values(?, ?, ?, ?)";
+                   String queryMateria = "insert into Materia(materia, curso, nombreMateria, disciplina) values(?, ?, ?, ?)";
                  
                   String disciplina ="prueba";
                   pstmt = conexion.prepareStatement(fkUsuario); // create a statement
@@ -457,7 +457,7 @@ public class ReadingModule extends HttpServlet {
         try {
     ServletContext context = getServletContext();
     String ruta = context.getRealPath(request.getContextPath());
-    String fileNameLocal = ruta + "\\" + request.getParameter("archivo");
+    String fileNameLocal = ruta + "/" + request.getParameter("archivo");
     ArrayList dataHolder0= readExcelFile(fileNameLocal);
     insertIntoDb(dataHolder0);    
     PrintWriter out = response.getWriter();

@@ -102,7 +102,7 @@ function processStateChange()
  */
 function comprueba_extension(formulario, archivo) { 
     //Arreglo de extensiones permitidas
-    extensiones_permitidas = new Array(".xls",".xlsx"); 
+    extensiones_permitidas = new Array(".xlsx"); 
     //Mensaje de error
     mierror = ""; 
     if (!archivo) { 
