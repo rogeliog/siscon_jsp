@@ -1,13 +1,11 @@
-<%
-  String pageTitle = "SISCON | Administrar Usuarios";
+<%String pageTitle = "SISCON | Administrar Usuarios";
   
   //get attributes from the session
   String cambios = (String) session.getAttribute("cambios");
   // handle null values
   if (cambios == null) {
       cambios = "";
-  }
-%>
+  }%>
       
 <%@include file="includes/header_aplicacion.jsp" %>
 

@@ -1,6 +1,4 @@
-<%
-  String pageTitle = "SISCON | Buscar Profesores Por Atributo";
-%>
+<%String pageTitle = "SISCON | Buscar Profesores Por Atributo";%>
 <%@ include file="includes/header_aplicacion.jsp" %>
 <div class="container">
     <div class="row">

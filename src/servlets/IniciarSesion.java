@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import clases.Usuario;
+import clases.Usuarios;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
@@ -89,7 +89,7 @@ public class IniciarSesion extends HttpServlet {
 //	            	i++;
 //	            }
 	        	msg = "";
-	            Usuario usuario = new Usuario();
+	            Usuarios usuario = new Usuarios();
 	            
 	            usuario.setMatricula(matricula);
 	            usuario.setContrasenia(contrasenia);

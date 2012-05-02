@@ -1,6 +1,4 @@
-<%
-  String pageTitle = "SISCON | Subir Archivo";
-%>
+<%String pageTitle = "SISCON | Subir Archivo";%>
 <%@ include file="includes/header_aplicacion.jsp" %>
 <div class="container">
 

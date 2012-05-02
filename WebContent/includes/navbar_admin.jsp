@@ -19,14 +19,14 @@
 		Connection con = (Connection) DriverManager.getConnection(url,"root", "");
 		Statement query = (Statement) con.createStatement();
 		
-		Usuario usuariologgeado = (Usuario) session.getAttribute("usuario");
+		Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
 		
 		String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE u.rol='D' and t.indexUsuario=u.indexUsuario";
 		
 		
 		ResultSet rs = query.executeQuery(q);
 		while (rs.next()) {
-			
+	
 		}
 		rs.last();
 	  rowCount = rs.getRow();
@@ -35,7 +35,6 @@
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-		
 %>
     
     <div id="wrap" class="wrapper">

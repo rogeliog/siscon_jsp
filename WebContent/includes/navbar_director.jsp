@@ -11,7 +11,7 @@
 <%@page import="com.mysql.jdbc.Connection"%>
 <%@page import="com.mysql.jdbc.Statement"%>
 <%
-  int rowCount = 0;
+	int rowCount = 0;
   try {
     Class.forName("com.mysql.jdbc.Driver");
     
@@ -19,7 +19,7 @@
     Connection con = (Connection) DriverManager.getConnection(url,"root", "");
     Statement query = (Statement) con.createStatement();
     
-    Usuario usuariologgeado = (Usuario) session.getAttribute("usuario");
+    Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
     
     String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t WHERE t.idDepartamento='"
 + usuariologgeado.IdD() + "' and u.rol='P' and  t.indexUsuario=u.indexUsuario";
@@ -36,7 +36,6 @@
     // TODO Auto-generated catch block
     e.printStackTrace();
   }
-    
 %>
 
     <div id="wrap" class="wrapper">

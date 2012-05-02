@@ -1,12 +1,10 @@
-<%
-  String pageTitle = "SISCON | Buscar Materia";
-%>
+<%String pageTitle = "SISCON | Buscar Materia";%>
 <%@ include file="includes/header_aplicacion.jsp" %>
 
 <div class="container">
     <div class="row">
       <div class="span7 offset2">
-          <form action="calendario.jsp" class="form-horizontal">
+          <form action="Busqueda" class="form-horizontal">
               <fieldset>
                   <legend>Buscar Materia</legend>
                   <div class="control-group">

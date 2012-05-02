@@ -1,15 +1,18 @@
 <%@ include file="usuario.jsp" %>
 <jsp:include page="includes/header1.jsp" flush="true">
-	<jsp:param name="pageTitle" value="<%= pageTitle %>" />
+	<jsp:param name="pageTitle" value="<%=pageTitle%>" />
 </jsp:include>
 <%@ include file="style_calendario.html" %>
 <%@ include file="header2.jsp" %>
 
 <%
-	if(usuario.getRol() == 'D') { %>
+	if(usuario.getRol() == 'D') {
+%>
 		<%@ include file="navbar_director.jsp" %>
-	<% } 
-	else if (usuario.getRol() == 'O') { %>
+	<%
+		} 
+		else if (usuario.getRol() == 'O') {
+	%>
 		<%@ include file="navbar_admin.jsp" %>
 	<% } 
 	else { %>

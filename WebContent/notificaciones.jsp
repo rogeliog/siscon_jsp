@@ -1,4 +1,4 @@
-<%	String pageTitle = "SISCON | Buscar Por Atributos Profesores"; %>
+<%String pageTitle = "SISCON | Buscar Por Atributos Profesores";%>
 <%@ include file="includes/header_aplicacion.jsp"%>
 
 <%@page import="java.io.IOException"%>
@@ -9,7 +9,7 @@
 <%@page import="java.util.logging.Level"%>
 <%@page import="java.util.logging.Logger"%>
 
-<%@page import="clases.Usuario"%>
+<%@page import="clases.Usuarios"%>
 
 <%@page import="com.mysql.jdbc.Connection"%>
 <%@page import="com.mysql.jdbc.Statement"%>
@@ -18,19 +18,19 @@
 
 	<%
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.jdbc.Driver");
 
-			String url = "jdbc:mysql://localhost/SISCON";
-			Connection con = (Connection) DriverManager.getConnection(url,
-					"root", "");
-			Statement query = (Statement) con.createStatement();
+		String url = "jdbc:mysql://localhost/SISCON";
+		Connection con = (Connection) DriverManager.getConnection(url,
+				"root", "");
+		Statement query = (Statement) con.createStatement();
 
-			Usuario usuariologgeado = (Usuario) session.getAttribute("usuario");
-			//SELECT u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE t.idDepartamento=1 and t.indexUsuario=u.indexUsuario
+		Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
+		//SELECT u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE t.idDepartamento=1 and t.indexUsuario=u.indexUsuario
 
-			String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t WHERE t.idDepartamento='"
-+ usuariologgeado.IdD() + "' and u.rol='P' and  t.indexUsuario=u.indexUsuario";
-			%>	<div class="row">
+		String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t WHERE t.idDepartamento='"
+	+ usuariologgeado.IdD() + "' and u.rol='P' and  t.indexUsuario=u.indexUsuario";
+	%>	<div class="row">
 					<div class="span9 offset2">
 						<legend>Centro de Notificaciones</legend>
 			<%

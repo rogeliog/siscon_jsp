@@ -1,6 +1,4 @@
-<%
-  String pageTitle = "SISCON | Mi Horario";
-%>
+<%String pageTitle = "SISCON | Mi Horario";%>
 
 <%@ include file="includes/header_calendario.jsp" %>
   
