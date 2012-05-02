@@ -16,7 +16,7 @@
 	if(usuario.getRol() == 'D') { %>
 		<%@ include file="navbar_director.jsp" %>
 	<% } 
-	else if (usuario.getRol() == 'A') { %>
+	else if (usuario.getRol() == 'O') { %>
 		<%@ include file="navbar_admin.jsp" %>
 	<% } 
 	else { %>

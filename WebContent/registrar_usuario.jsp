@@ -120,6 +120,7 @@
                                     <label class="control-label" for="departamento">Departamento</label>
                                     <div class="controls">
                                         <select id="departamento" name="departamento">
+                                        	<option value="0">Seleccione un departamento </option>
                                             <% 
                                                 String q = "SELECT * FROM `Departamento`";
                                                 ResultSet rs = query.executeQuery(q);

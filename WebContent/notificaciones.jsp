@@ -31,7 +31,7 @@
 			String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t WHERE t.idDepartamento='"
 + usuariologgeado.IdD() + "' and u.rol='P' and  t.indexUsuario=u.indexUsuario";
 			%>	<div class="row">
-					<div class="span8 offset2">
+					<div class="span9 offset2">
 						<legend>Centro de Notificaciones</legend>
 			<%ResultSet rs = query.executeQuery(q);
 			if(!rs.next()){
@@ -53,7 +53,6 @@
 						<select class="span2" name="tipo">
 								<option value="P">Profesor</option>
 								<option value="C">Director de Carrera</option>
-								<option value="D">Director de Departamento</option>
 								<option value="O">Otro</option>
 						</select> 
 						<label class="checkbox">

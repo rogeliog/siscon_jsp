@@ -55,17 +55,15 @@ public class Registro extends HttpServlet {
        
        int cont = 0;
        boolean alta = false;
-       char dirD = 'P';
        int dept = 0;
        String q = "SELECT * FROM `Usuario` WHERE `rol` = 'D' AND `idDepartamento` = '" + departamento + "'";
        ResultSet rs = query.executeQuery(q);
        while(rs.next()) {
          cont++;
-         dirD = rs.getString("rol").charAt(0);
          dept = rs.getInt("idDepartamento");
        }
        
-       if ((dirD == 'D') && (dept == departamento)) {
+       if ((rol == 'D') && (dept == departamento)) {
          error = "El rol de Director de Departamento ya est&aacute; ocupado";
          session.setAttribute("error", error);
        }

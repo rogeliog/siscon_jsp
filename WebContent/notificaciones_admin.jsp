@@ -30,7 +30,7 @@ Usuario usuariologgeado = (Usuario) session.getAttribute("usuario");
 String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE u.rol='D' and t.indexUsuario=u.indexUsuario";
 	
 %> <div class="row">
-<div class="span8 offset2">
+<div class="span6 offset2">
 <legend>Centro de Notificaciones</legend>
 <%ResultSet rs = query.executeQuery(q);
 if(!rs.next()){
@@ -46,15 +46,15 @@ while (rs.next()) {
 String idUsuario = rs.getString(1);
 %>
 <div class="control-group">
-<form class="well form-inline" id="forma-<%=idUsuario%>" action="ControladorNotificaciones" method="POST">
+<form class="well form-inline" id="forma-<%=idUsuario%>" action="ControladorNotificacionesAdmin" method="POST">
 <label><b>Nombre:</b> <%=rs.getString(2)%> <%=rs.getString(3)%></label>&nbsp;&nbsp;
-<label><b>Rol:</b> </label>
-<select class="span2" name="tipo">
-<option value="P">Profesor</option>
-<option value="C">Director de Carrera</option>
-<option value="D">Director de Departamento</option>
-<option value="O">Otro</option>
-</select>
+<!-- <label><b>Rol:</b> </label> -->
+<!-- <select class="span2" name="tipo"> -->
+<!-- <option value="P">Profesor</option> -->
+<!-- <option value="C">Director de Carrera</option> -->
+<!-- <option value="D">Director de Departamento</option> -->
+<!-- <option value="O">Otro</option> -->
+<!-- </select> -->
 <label class="checkbox">
 <input type="checkbox" name="Admin" value="ON" />Administrador
 </label>

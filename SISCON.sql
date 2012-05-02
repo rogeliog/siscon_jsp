@@ -417,14 +417,6 @@ INSERT INTO Departamento (`departamento`) VALUES ('Ingeniería Química');
 INSERT INTO Departamento (`departamento`) VALUES ('Matemáticas');
 INSERT INTO Departamento (`departamento`) VALUES ('Mecatrónica y Automatización');
 INSERT INTO Departamento (`departamento`) VALUES ('Sistemas de Información');
---INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (2, 'FI', 'Física');
--- INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (3, 'IC', 'Ingenieria Civil');
--- INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (4, 'IEC', 'Ingenieria Eléctrica y Computacional');
--- INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (5, 'IIS', 'Ingeniería Industrial y de Sistemas');
--- INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (6, 'IM', 'Ingeniería Mecánica');
--- INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (7, 'IQ', 'Ingeniería Química');
--- INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (8, 'CS', 'Matemáticas');
--- INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (9, 'CS', 'Mecatrónica y Automatización');
 
 COMMIT;
 
