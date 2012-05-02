@@ -13,7 +13,7 @@ var requestRegistro;            //Variable requestRegistro para actualizar la ba
  */
 function ajaxFunction()
 {
-    var url = "servlet/FileUploadServlet";
+    var url = "FileUploadServlet";
 	
     if (window.XMLHttpRequest) // Non-IE browsers
     { 

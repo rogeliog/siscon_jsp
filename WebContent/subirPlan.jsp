@@ -81,7 +81,7 @@
                <div class="span3">                   
                    <h3><i class="icon-upload"></i> Subir documento nuevo</h3> 
                    <form id="myForm" enctype="multipart/form-data" method="post" target="uploadFrame" 
-                         action="servlet/FileUploadServlet"  >
+                         action="FileUploadServlet"  >
                        <label class="control-label">Selecciona el documento:</label>
                        <input type="file" name="txtFile" id="txtFile" /><br />
                        <input type="submit" id="submitID" name="enviar" value="Subir" onclick="comprueba_extension(this.form, this.form.txtFile.value)"/>
