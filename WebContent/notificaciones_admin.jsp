@@ -30,12 +30,12 @@ Usuario usuariologgeado = (Usuario) session.getAttribute("usuario");
 String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE u.rol='D' and t.indexUsuario=u.indexUsuario";
 	
 %> <div class="row">
-<div class="span6 offset2">
+<div class="span4 offset2">
 <legend>Centro de Notificaciones</legend>
 <%ResultSet rs = query.executeQuery(q);
 if(!rs.next()){
 %>
-<div class="alert alert-success span4">
+<div class="alert alert-success">
 <a class="close" data-dismiss="alert" href="#">×</a>
 <p><i class="icon-ok-circle"></i> No hay notificaciones pendientes por revisar</p>
 </div>
