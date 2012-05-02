@@ -5,6 +5,7 @@
 package servlets;
 //Librerias necesarias
 import javax.servlet.Servlet;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 /**
  * Servlet FileUploadServlet
  */
+@WebServlet("/FileUploadServlet")
+
 public class FileUploadServlet extends HttpServlet implements Servlet {
 
     private static final long serialVersionUID = 2740693677625051632L;
