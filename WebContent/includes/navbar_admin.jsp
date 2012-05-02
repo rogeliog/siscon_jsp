@@ -52,7 +52,7 @@
             <div class="nav-collapse">
               <ul class="nav">
                 <li><a href="bienvenido.jsp"><i class="icon-home icon-white"></i> Inicio</a></li>
-                <li><a href="administrarUsuarios.jsp"><i class="icon-th-list icon-white"></i> Administrar usuarios</a></li>
+                <li><a href="administrarUsuarios_admin.jsp"><i class="icon-th-list icon-white"></i> Administrar usuarios</a></li>
                 <li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
                 <li><a href="notificaciones_admin.jsp">Centro de Notificaciones <span class="badge"><%= rowCount %></span>
                 </a></li>

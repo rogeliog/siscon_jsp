@@ -65,7 +65,6 @@
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cog icon-white"></i> Administraci&oacute;n <span class="badge"><%= rowCount %></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><a href="interfaz_admin_administraPermiso.jsp"><i class="icon-tags"></i> Administrar permisos</a></li>
                 	  <li><a href="administrarUsuarios.jsp"><i class="icon-th-list"></i> Administrar usuarios</a></li>
                       <li><a href="notificaciones.jsp">Centro de Notificaciones <span class="badge badge-inverse"><%= rowCount %></span></a></li>
                     </ul>

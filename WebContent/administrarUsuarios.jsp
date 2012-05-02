@@ -34,7 +34,7 @@
 					  	<th></th>
 					</tr>
 					<% 
-                        String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD();
+                        String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD() + " AND administrador = 0;";
 						int cont = 0;
 					    ResultSet rs = query.executeQuery(q);
 					    while(rs.next()) {
@@ -63,11 +63,11 @@
 									    <% } else { %>
 									    	<option value="C">Director de Carrera</option>
 									    <% } %>
-									    <% if(rs.getString("rol").charAt(0) == 'D') { %>
-											<option value="D" selected=selected>Director de Departamento</option>
-									    <% } else { %>
-									    	<option value="D">Director de Departamento</option>
-									    <% } %>
+<%-- 									    <% if(rs.getString("rol").charAt(0) == 'D') { %> --%>
+<!-- 											<option value="D" selected=selected>Director de Departamento</option> -->
+<%-- 									    <% } else { %> --%>
+<!-- 									    	<option value="D">Director de Departamento</option> -->
+<%-- 									    <% } %> --%>
 									    <% if(rs.getString("rol").charAt(0) == 'O') { %>
 											<option value="O" selected=selected>Otro</option>
 									    <% } else { %>
