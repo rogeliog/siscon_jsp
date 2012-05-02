@@ -1,3 +1,10 @@
+    <%
+		
+    	int id = 0;
+	    Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
+	    id = usuariologgeado.IdU();
+	%>
+    
     <div id="wrap" class="wrapper">
       <!-- Barra de navegacion -->
       <div id="nav" class="navbar navbar-fixed-top">
@@ -20,7 +27,7 @@
                       <li><a href="buscar_salon.jsp">B&uacute;squeda de sal&oacute;n</a></li>
                     </ul>
                 </li>
-                <li><a href="horario_usuario.jsp"><i class="icon-time icon-white"></i> Mi Horario</a></li>
+                <li><a href="horario_usuario.jsp?id=<%= id %>"><i class="icon-time icon-white"></i> Mi Horario</a></li>
                 <%
                 	if(usuario.getEsAdmin()) { %>
                 	<li class="dropdown">

@@ -52,7 +52,13 @@
               <ul class="nav">
                 <li><a href="bienvenido.jsp"><i class="icon-home icon-white"></i> Inicio</a></li>
                 <li><a href="administrarUsuarios_admin.jsp"><i class="icon-th-list icon-white"></i> Administrar usuarios</a></li>
-                <li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
+                <li class="dropdown">
+                	<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-search icon-white"></i> Subir Archivos <b class="caret"></b></a>
+                	<ul class="dropdown-menu">
+                		<li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
+                		<li><a href="subirPlan.jsp"><i class="icon-upload icon-white"></i> Subir plan de estudios</a></li>
+                	</ul>                	
+                </li>
                 <li><a href="notificaciones_admin.jsp">Centro de Notificaciones <span class="badge"><%= rowCount %></span>
                 </a></li>
               </ul>

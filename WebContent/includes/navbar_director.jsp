@@ -12,6 +12,7 @@
 <%@page import="com.mysql.jdbc.Statement"%>
 <%
 	int rowCount = 0;
+	int id = 0;
   try {
     Class.forName("com.mysql.jdbc.Driver");
     
@@ -20,6 +21,7 @@
     Statement query = (Statement) con.createStatement();
     
     Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
+    id = usuariologgeado.IdU();
     
     String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t WHERE t.idDepartamento='"
 + usuariologgeado.IdD() + "' and u.rol='P' and  t.indexUsuario=u.indexUsuario";
@@ -60,7 +62,7 @@
                       <li><a href="buscar_salon.jsp">B&uacute;squeda de sal&oacute;n</a></li>
                     </ul>
                 </li>
-                <li><a href="horario_usuario.jsp"><i class="icon-time icon-white"></i> Mi Horario</a></li>
+                <li><a href="horario_usuario.jsp?id=<%= id %>"><i class="icon-time icon-white"></i> Mi Horario</a></li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cog icon-white"></i> Administraci&oacute;n <span class="badge"><%= rowCount %></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -68,7 +70,13 @@
                       <li><a href="notificaciones.jsp">Centro de Notificaciones <span class="badge badge-inverse"><%= rowCount %></span></a></li>
                     </ul>
                 </li>
-                <li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
+                <li class="dropdown">
+                	<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-search icon-white"></i> Subir Archivos <b class="caret"></b></a>
+                	<ul class="dropdown-menu">
+                		<li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
+                		<li><a href="subirPlan.jsp"><i class="icon-upload icon-white"></i> Subir plan de estudios</a></li>
+                	</ul>                	
+                </li>
               </ul>
               <ul class="nav pull-right">
 				<li><a href="#"><i class="icon-user icon-white"></i> <%= usuario.getNombre() + " " + usuario.getApellido() %></a></li>
