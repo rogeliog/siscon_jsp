@@ -59,7 +59,7 @@ public class guardaAct extends HttpServlet {
             Statement statement = connection.createStatement();
             String query = "";
             for(int i=0; i<dias.length; i++){
-                query = "INSERT INTO actividadesExtra (`idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `actividad`) VALUES ("+idDepartamento+", "+indexUsuario + ", " + "201111" + ", '" + dias[i]+"', '"+horaInicio+"', '"+horaFin+"', '"+actividad+"');";
+                query = "INSERT INTO actividadesExtra (`idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `duracion`, `actividad`) VALUES ("+idDepartamento+", "+indexUsuario + ", " + "201111" + ", '" + dias[i]+"', '"+horaInicio+"', '"+horaFin+"', "+ 2.0 +", '"+actividad+"');";
                 statement.executeUpdate(query);
             }
             
