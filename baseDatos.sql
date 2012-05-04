@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `seb&b` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `seb&b`;
+CREATE DATABASE  IF NOT EXISTS `SISCON` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `SISCON`;
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
 -- Host: localhost    Database: seb&b
