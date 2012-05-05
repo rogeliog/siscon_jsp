@@ -30,7 +30,7 @@
     
     //Consulta de los exceles registrados    
     //Verificar idUsuario de session********************************************
-    ResultSet results = statement.executeQuery("SELECT * FROM registroExcel WHERE indexUsuario = " + Uid + " AND tipo=1;");                     
+    ResultSet results = statement.executeQuery("SELECT * FROM registroexcel WHERE indexUsuario = " + Uid + " AND tipo = 1");                     
 %>
     
        
@@ -81,7 +81,7 @@
                <div class="span3">                   
                    <h3><i class="icon-upload"></i> Subir documento nuevo</h3> 
                    <form id="myForm" enctype="multipart/form-data" method="post" target="uploadFrame" 
-                         action="FileUploadServlet"  >
+                         action="servlet/FileUploadServlet"  >
                        <label class="control-label">Selecciona el documento:</label>
                        <input type="file" name="txtFile" id="txtFile" /><br />
                        <input type="submit" id="submitID" name="enviar" value="Subir" onclick="comprueba_extension(this.form, this.form.txtFile.value)"/>
@@ -124,7 +124,7 @@
                    <span>Se ejecut&oacute; la lectura del documento de </span><span id="plan" class="control-label"></span> 
                    <span>satisfactoriamente el </span><span id="fecha" class="control-label"></span>
                    </br>  
-                   <a href="index.jsp"><button type="button" class="btn">Terminar</button> </a>              
+                   <a href="bienvenido.jsp"><button type="button" class="btn">Terminar</button> </a>              
                </div>
                 
         </div> <!-- /row -->

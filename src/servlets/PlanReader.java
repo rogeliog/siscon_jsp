@@ -114,11 +114,11 @@ public class PlanReader extends HttpServlet {
                  case "disciplina": disciplina = stringCellValue; break;
                  case "clave": materia = stringCellValue.substring(0,stringCellValue.length()-4);
                                curso = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-4)); break;
-                 case "semestrenum√©rico": semestre = Integer.parseInt(stringCellValue); break;
+                 case "semestrenumÈrico": semestre = Integer.parseInt(stringCellValue); break;
                  case "nombre": nombreMateria = stringCellValue; break;
-                 case "programaacad√©mico": anioPlan = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-2));
+                 case "programaacadÈmico": anioPlan = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-2));
                                            siglasCarrera = stringCellValue.substring(0,stringCellValue.length()-2); break;
-                 case "descripci√≥n√°rea": descripcionPlan = stringCellValue; break;  
+                 case "descripciÛn·rea": descripcionPlan = stringCellValue; break;  
              }
 
                  }
@@ -255,11 +255,9 @@ public class PlanReader extends HttpServlet {
     String fileNameLocal = ruta + "/" + request.getParameter("archivo");//aqui va el path
     ArrayList dataHolder0= readExcelFile(fileNameLocal);
     insertIntoDb(dataHolder0);
-       
     PrintWriter out = response.getWriter();
         out.println("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
-        out.println("<plan>\n"+plan+"</plan>\n");
-   
+        out.println("<plan>\n"+plan+"</plan>\n");   
         out.close();
     
 }       catch (Exception ex) {

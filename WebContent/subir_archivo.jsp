@@ -1,8 +1,18 @@
-<%String pageTitle = "SISCON | Subir Archivo fuente";%>
-<%@ include file="includes/header_aplicacion.jsp" %>
-<%@page import="clases.Usuarios"%>    
+
+<%-- 
+    Document   : subirFuente
+    Created on : 24/04/2012, 02:49:56 PM
+    Author     : Oziel
+--%>
+<%
+  String pageTitle = "SISCON | Subir archivo fuente";
+%>
+ <%@ include file="includes/header_aplicacion.jsp" %>
+ <%@page import="clases.Usuarios"%>    
  <%@page import="com.mysql.jdbc.Connection"%>
  <%@page import="com.mysql.jdbc.Statement"%>
+ 
+  <script src="assets/js/subir_archivo.js"></script> 
 
 <%
 
@@ -21,7 +31,7 @@
     Statement statement = (Statement) connection.createStatement();              
 
     //Consulta de los exceles registrados    
-    ResultSet results = statement.executeQuery("SELECT * FROM registroExcel WHERE indexUsuario = "+Uid+ " AND tipo=0;");                     
+    ResultSet results = statement.executeQuery("SELECT * FROM registroexcel WHERE indexUsuario = "+Uid+ " AND tipo = 0");                     
 %>                           
           
     <div class="container">        
@@ -29,7 +39,7 @@
             <h1>Lectura de archivo fuente</h1>
             <br />
             <!-- Tabla de los ultimos archivos de excel que se subieron y actualizaron la base de datos -->
-            <p>Ãšltimas actualizaciones</p>
+            <p>Últimas actualizaciones</p>
             <table id="tabla1" class="table table-striped table-bordered table-condensed">
                 <tr>
                     <td>Fecha</td>
@@ -65,13 +75,13 @@
             </table>
             <br />              
 
-               <!--Espacio para realizar la selecciÃ³n y subida del documento-->
+               <!--Espacio para realizar la selección y subida del documento-->
                <!--Se usa la funcion "comprueba_extension" para verificar el tipo de archivo a subir -->
                <!--Se usa la funcion ajax "ajaxFunction" para la subida del archivo -->
                <div class="span3">                   
                    <h3><i class="icon-upload"></i> Subir documento nuevo</h3> 
                    <form id="myForm" enctype="multipart/form-data" method="post" target="uploadFrame" 
-                         action="FileUploadServlet"  >
+                         action="servlet/FileUploadServlet"  >
                        <label class="control-label">Selecciona el documento:</label>
                        <input type="file" name="txtFile" id="txtFile" /><br />
                        <input type="submit" id="submitID" name="enviar" value="Subir" onclick="comprueba_extension(this.form, this.form.txtFile.value)"/>
@@ -94,7 +104,7 @@
                <!--Se usa la funcion ajax "lectura" para la lectura del archivo -->
                <div id="lectura" style="display: none" class="span3">
                    <h3><i class="icon-file"></i> Realizar lectura de archivo</h3>
-                   <p>Ejecutar la lectura del documento y actualizar la base de datos.  </p>                
+                   <p>Ejecutar la lectura del documento y actualizar la base de datos.	</p>        				
                    <button id="iniciarLectura" type="button" class="btn" onclick="lectura()" >Aceptar</button>                                                                             
                    <button id="cancelarLectura" type="button" class="btn" onclick="cancelaLectura()" >Cancelar</button> 
                    <label id="errorLectura" class="control-label"></label>
@@ -114,9 +124,9 @@
                    <span>Se ejecut&oacute; la lectura del documento de </span><span id="dept" class="control-label"></span> 
                    <span>satisfactoriamente el </span><span id="fecha" class="control-label"></span>
                    </br>  
-                   <a href="index.jsp"><button type="button" class="btn">Terminar</button> </a>              
+                   <a href="bienvenido.jsp"><button type="button" class="btn">Terminar</button> </a>              
                </div>
                 
         </div> <!-- /row -->
-    </div> <!-- /container -->    
-<%@ include file="/includes/footer_subir_archivo.html" %>
+    </div> <!-- /container -->        
+    <%@ include file="includes/footer_aplicacion_1.html" %>

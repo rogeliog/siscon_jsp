@@ -13,7 +13,7 @@ var requestRegistro;            //Variable requestRegistro para actualizar la ba
  */
 function ajaxFunction()
 {
-    var url = "FileUploadServlet";
+    var url = "servlet/FileUploadServlet";
 	
     if (window.XMLHttpRequest) // Non-IE browsers
     { 
@@ -55,6 +55,7 @@ function processStateChange()
         {
             var xml = req.responseXML;                        
             // Variables para determinar el porcentaje de progreso y la finalizacion de la subida
+            
             var isNotFinished = xml.getElementsByTagName("finished")[0];
             var myPercent = xml.getElementsByTagName("percent_complete")[0];
                                      
@@ -69,7 +70,7 @@ function processStateChange()
                 document.getElementById("estatus").style.visibility = "visible";
                 document.getElementById("progressbar").style.visibility = "visible";
 							
-                // Empezo la subida, se despliega el progreso y vuelve a llamar la funciÃ³n
+                // Empezo la subida, se despliega el progreso y vuelve a llamar la función
                 if (myPercent != null)
                 {
                     myPercent = myPercent.firstChild.nodeValue;							
@@ -79,6 +80,7 @@ function processStateChange()
                     window.setTimeout("ajaxFunction();", 100);
                 }
                 else {
+                   
                     //Finaliza la subida y despliega el mensaje exitoso y el espacio para realizar la lectura
                      document.getElementById("estatus").innerHTML = "Subida exitosa";
                      document.getElementById("estatus").className="alert alert-success";
@@ -102,16 +104,17 @@ function processStateChange()
  */
 function comprueba_extension(formulario, archivo) { 
     //Arreglo de extensiones permitidas
-    extensiones_permitidas = new Array(".xlsx"); 
+    extensiones_permitidas = new Array(".xls",".xlsx"); 
     //Mensaje de error
     mierror = ""; 
+    archivo=extractFilename(archivo);
     if (!archivo) { 
         //Si no tengo archivo, es que no se ha seleccionado un archivo en la forma 
-        mierror = "No has seleccionado ningÃºn archivo"; 
+        mierror = "No has seleccionado ningún archivo"; 
     }else{ 
-        //Se obtiene la extensiÃ³n de este nombre de archivo 
+        //Se obtiene la extensión de este nombre de archivo 
         extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase(); 
-        //Se comprueba si la extensiÃ³n estÃ¡ entre las permitidas 
+        //Se comprueba si la extensión está entre las permitidas 
         permitida = false; 
         for (var i = 0; i < extensiones_permitidas.length; i++) { 
             if (extensiones_permitidas[i] == extension) { 
@@ -121,7 +124,7 @@ function comprueba_extension(formulario, archivo) {
         } 
         //Si no es permitida, se despliega el mensaje de error.
         if (!permitida) { 
-            mierror = "Comprueba la extensiÃ³n de los archivos a subir. \nSÃ³lo se pueden subir archivos con extensiones: " + extensiones_permitidas.join(); 
+            mierror = "Comprueba la extensión de los archivos a subir. \nSólo se pueden subir archivos con extensiones: " + extensiones_permitidas.join(); 
         }else{ 
             //Si se permite, llamar a la funcion ajax encargada de invocar al servlet que sube el archivo
             ajaxFunction();    
@@ -135,6 +138,22 @@ function comprueba_extension(formulario, archivo) {
     return 0; 
 }
 
+/*
+ *Funcion para extraer el nombre del archivo en caso de que el navegador agregue
+ *en la ruta "C:\fakepath\"
+ */
+function extractFilename(path) {
+  if (path.substr(0, 12) == "C:\\fakepath\\")
+    return path.substr(12); // modern browser
+  var x;
+  x = path.lastIndexOf('/');
+  if (x >= 0) // Unix-based path
+    return path.substr(x+1);
+  x = path.lastIndexOf('\\');
+  if (x >= 0) // Windows-based path
+    return path.substr(x+1);
+  return path; // just the filename
+}
 /*
  *Funcion para desplegar el espacio que realiza la lectura 
  */
@@ -195,6 +214,7 @@ function addRow(hora, fecha, deptPlan, nombreArchivo){
  */
 function lectura(){             
     var  archivo =  document.getElementById("txtFile").value;
+    archivo=extractFilename(archivo);    
     document.getElementById("estatusLectura").style.visibility = "visible";
     document.getElementById("progressbarLectura").style.visibility = "visible";
     document.getElementById("iniciarLectura").disabled=true;
@@ -233,6 +253,7 @@ function procesarRespuesta(){
  */
 function lecturaPlan(){             
     var  archivo =  document.getElementById("txtFile").value;
+    archivo=extractFilename(archivo);
     document.getElementById("estatusLectura").style.visibility = "visible";
     document.getElementById("progressbarLectura").style.visibility = "visible";
     document.getElementById("iniciarLectura").disabled=true;
@@ -281,6 +302,7 @@ function actualizarRegistroExcel(deptPlan, tipo){
         currentTime.getMinutes()): currentTime.getMinutes()   ) ;
     //Variable para obtener el nombre del documento      
     var  nombreArchivo =  document.getElementById("txtFile").value;
+    nombreArchivo=extractFilename(nombreArchivo);
     //Variable para obtener el id del usuario        
     var usuario = document.getElementById("usuario").value;
             
