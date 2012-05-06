@@ -58,7 +58,7 @@ function processStateChange()
             
             var isNotFinished = xml.getElementsByTagName("finished")[0];
             var myPercent = xml.getElementsByTagName("percent_complete")[0];
-                                     
+                                
             //Verificar si aun no ha comenzado la subida
             if ((isNotFinished == null) && (myPercent == null))
             { 

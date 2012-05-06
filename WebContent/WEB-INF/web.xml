@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-    <display-name>AJAXFileUploadApp</display-name>
+    <display-name>siscon</display-name>
     <servlet>
         <description>Servlet for file uploads</description>
         <display-name>File Upload Servlet</display-name>
@@ -23,6 +23,46 @@
         <servlet-name>IniciarSesion</servlet-name>
         <servlet-class>servlets.IniciarSesion</servlet-class>
     </servlet>
+      <servlet>
+        <servlet-name>Busqueda</servlet-name>
+        <servlet-class>calendar.server.Busqueda</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>ServidorCalendario</servlet-name>
+        <servlet-class>calendar.server.ServidorCalendario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>borraAct</servlet-name>
+        <servlet-class>servlets.borraAct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>servlets.CerrarSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorNotificaciones</servlet-name>
+        <servlet-class>servlets.ControladorNotificaciones</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>ControladorNotificacionesAdmin</servlet-name>
+        <servlet-class>servlets.ControladorNotificacionesAdmin</servlet-class>
+    </servlet>
+       <servlet>
+        <servlet-name>guardaAct</servlet-name>
+        <servlet-class>servlets.guardaAct</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>GuardarUsuarios</servlet-name>
+        <servlet-class>servlets.GuardarUsuarios</servlet-class>
+    </servlet>
+      <servlet>
+        <servlet-name>Notificaciones</servlet-name>
+        <servlet-class>servlets.Notificaciones</servlet-class>
+    </servlet>
+      <servlet>
+        <servlet-name>Registro</servlet-name>
+        <servlet-class>servlets.Registro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FileUploadServlet</servlet-name>
         <url-pattern>/servlet/FileUploadServlet</url-pattern>
@@ -42,6 +82,46 @@
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Busqueda</servlet-name>
+        <url-pattern>/Busqueda</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>ServidorCalendario</servlet-name>
+        <url-pattern>/ServidorCalendario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>borraAct</servlet-name>
+        <url-pattern>/borraAct</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorNotificaciones</servlet-name>
+        <url-pattern>/ControladorNotificaciones</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>ControladorNotificacionesAdmin</servlet-name>
+        <url-pattern>/ControladorNotificacionesAdmin</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>guardaAct</servlet-name>
+        <url-pattern>/guardaAct</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>GuardarUsuarios</servlet-name>
+        <url-pattern>/GuardarUsuarios</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>Notificaciones</servlet-name>
+        <url-pattern>/Notificaciones</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>Registro</servlet-name>
+        <url-pattern>/Registro</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
