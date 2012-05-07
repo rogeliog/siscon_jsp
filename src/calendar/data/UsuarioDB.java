@@ -24,7 +24,7 @@ public class UsuarioDB
         ResultSet rs = null;
         
         String query = "SELECT * FROM Usuario WHERE indexUsuario='" +
-                indexUsuario + "'";
+                indexUsuario + "' AND  TRIM(nombreUsuario)<>''";
         
         try
         {
@@ -65,7 +65,7 @@ public class UsuarioDB
         ResultSet rs = null;
         
         String query = "SELECT * FROM Usuario WHERE " + atributo + " LIKE '%" + valor
-                + "%'";
+                + "%' AND TRIM(nombreUsuario)<>''";
         
         try
         {
