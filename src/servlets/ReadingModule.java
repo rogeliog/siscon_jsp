@@ -223,7 +223,7 @@ public class ReadingModule extends HttpServlet {
                      case "vi3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[18] = "Viernes";} break;
                      case "sa3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[19] = "Sabado";} break;
                      case "do3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[20] = "Domingo";} break;
-                     case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length());} break;
+                     case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length()-1);} break;
                      case "salón1": if(stringCellValue.indexOf(".") != -1){salon += stringCellValue.substring(0, stringCellValue.indexOf("."));
                                     } else {
                                         salon += stringCellValue;

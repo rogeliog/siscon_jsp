@@ -54,7 +54,7 @@ public class SalonDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "' AND idPeriodo='201112'";
+        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "' AND idPeriodo='201211'";
         
         try
         {
@@ -127,7 +127,9 @@ public class SalonDB {
         }
         catch (SQLException e)
         {
-            return null;
+        	e.printStackTrace();
+        	return null;
+        	
         }
         finally
         {
