@@ -287,7 +287,7 @@ public class ReadingModule extends HttpServlet {
                   + "FROM Materia m "
                   + "WHERE m.curso = ? AND m.materia = ?";
                    
-                   String queryMateria = "insert into materia(materia, curso, nombreMateria, disciplina) values(?, ?, ?, ?)";
+                   String queryMateria = "insert into Materia(materia, curso, nombreMateria, disciplina) values(?, ?, ?, ?)";
                  
                   String disciplina ="prueba";
                   pstmt = conexion.prepareStatement(fkUsuario); // create a statement
@@ -467,7 +467,7 @@ public class ReadingModule extends HttpServlet {
         try {
     ServletContext context = getServletContext();
     String ruta = context.getRealPath(request.getContextPath());
-    String fileNameLocal = ruta + "\\" + request.getParameter("archivo");
+    String fileNameLocal = ruta + "/" + request.getParameter("archivo");
     ArrayList dataHolder0= readExcelFile(fileNameLocal);
     insertIntoDb(dataHolder0);    
     PrintWriter out = response.getWriter();
