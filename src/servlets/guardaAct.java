@@ -48,24 +48,38 @@ public class guardaAct extends HttpServlet {
             }
             /* Lectura de archivos de la forma */
             Usuarios usuario = (Usuarios) session.getAttribute("usuario");
-            int idDepartamento = usuario.IdD(); //el 1 es TC, Cambiarlo por el de la session
-            int indexUsuario = usuario.IdU(); //el 1 es elda, cambiarlo por session.get(idUsuario)
+            int idDepartamento = usuario.IdD();
+            int indexUsuario = usuario.IdU(); 
             String horaInicio = request.getParameter("horaInicio");
             String horaFin = request.getParameter("horaFin");
             String actividad = request.getParameter("actividad");
             String[] dias = request.getParameterValues("dias");
+            String[] arr1 = horaInicio.split(":");
+        	String[] arr2 = horaFin.split(":");
+        	
+        	Double diferencia = Integer.parseInt(arr2[0]) - Integer.parseInt(arr1[0]) + 0.0;
+        	
+        	if(Integer.parseInt(arr2[1]) > 0){
+            diferencia = diferencia + 0.5;
+        	}
+        	if(Integer.parseInt(arr1[1]) > 0){
+            diferencia = diferencia - 0.5;
+        	}
             
             /* Guarda actividad en la base de datos */
             Statement statement = connection.createStatement();
             String query = "";
             for(int i=0; i<dias.length; i++){
-                query = "INSERT INTO actividadesExtra (`idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `duracion`, `actividad`) VALUES ("+idDepartamento+", "+indexUsuario + ", " + "201111" + ", '" + dias[i]+"', '"+horaInicio+"', '"+horaFin+"', "+ 2.0 +", '"+actividad+"');";
+                query = "INSERT INTO actividadesExtra (`idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `duracion`, `actividad`) VALUES ("+idDepartamento+", "+indexUsuario + ", " + "201111" + ", '" + dias[i]+"', '"+horaInicio+"', '"+horaFin+"', "+ diferencia +", '"+actividad+"');";
                 statement.executeUpdate(query);
             }
+            connection.close();
+            Usuarios usuario2 = (Usuarios) session.getAttribute("usuario");
+            int indexUsuario2 = usuario2.IdU();
             
-             ServletContext sc = getServletContext();
-             RequestDispatcher rd = sc.getRequestDispatcher("/horario_usuario.jsp?id="+indexUsuario);
-             rd.forward(request, response);
+            ServletContext sc = getServletContext();
+            RequestDispatcher rd = sc.getRequestDispatcher("/horario_usuario.jsp?id="+indexUsuario2);
+            rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
