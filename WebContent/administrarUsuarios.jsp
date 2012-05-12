@@ -35,6 +35,7 @@
 					</tr>
 					<% 
                         String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD();
+// 						String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD() + "AND rol != 'O'";
 						int cont = 0;
 					    ResultSet rs = query.executeQuery(q);
 					    while(rs.next()) {
