@@ -1,11 +1,13 @@
-<%String pageTitle = "SISCON | Administrar Usuarios";
+<%
+  String pageTitle = "SISCON | Administrar Usuarios";
   
   //get attributes from the session
   String cambios = (String) session.getAttribute("cambios");
   // handle null values
   if (cambios == null) {
       cambios = "";
-  }%>
+  }
+%>
       
 <%@include file="includes/header_aplicacion.jsp" %>
 
@@ -21,18 +23,18 @@
 		<div class="span8 offset2">
 		  <form class="form-horizontal" action="GuardarUsuarios" method="post">
 		      <fieldset>
-		        <legend>Administrar cuenta de usuario</legend>
+		        <legend>Administrar cuentas de usuario</legend>
 		        <p style="font-size: 13px; color:gold"><i><%= cambios %></i></p>
-		        <table>
+		        <table class="table table-striped table-bordered table-condensed">
 		        	<tr>
-						<th style='text-align:left; width:100px; padding:5px;'>Matr&iacute;cula</th>
-					  	<th style='text-align:left; width:270px; padding:5px;'>Nombre</th>
-					  	<th style='text-align:left; width:150px; padding:5px;'>Permisos</th>
-					  	<th style='text-align:left; width:300px; padding:5px;'>Rol</th>
+						<th>N&oacute;mina</th>
+					  	<th>Nombre</th>
+					  	<th>Permisos</th>
+					  	<th>Rol</th>
 					  	<th></th>
 					</tr>
 					<% 
-                        String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD() + " AND administrador = 0;";
+                        String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD();
 						int cont = 0;
 					    ResultSet rs = query.executeQuery(q);
 					    while(rs.next()) {
@@ -50,7 +52,7 @@
 								  		<% } %>
 							  		</td>
 							  		<td>
-								  		<select class="span2" name='tipo_<%=rs.getInt("indexUsuario")%>'>
+								  		<select class="span3" name='tipo_<%=rs.getInt("indexUsuario")%>'>
 								  		<% if(rs.getString("rol").charAt(0) == 'P') { %>
 											<option value="P" selected=selected>Profesor</option>
 									    <% } else { %>
@@ -61,11 +63,6 @@
 									    <% } else { %>
 									    	<option value="C">Director de Carrera</option>
 									    <% } %>
-<%-- 									    <% if(rs.getString("rol").charAt(0) == 'D') { %> --%>
-<!-- 											<option value="D" selected=selected>Director de Departamento</option> -->
-<%-- 									    <% } else { %> --%>
-<!-- 									    	<option value="D">Director de Departamento</option> -->
-<%-- 									    <% } %> --%>
 									    <% if(rs.getString("rol").charAt(0) == 'O') { %>
 											<option value="O" selected=selected>Otro</option>
 									    <% } else { %>
@@ -87,8 +84,12 @@
 		        </div>
 		      </fieldset>
 			</form>
+			
+			<div id="bleh"></div>
+			
 		</div>
 	</div>
+
 	
 <%@ include file="includes/footer_principal.jsp" %>
 <% session = request.getSession();

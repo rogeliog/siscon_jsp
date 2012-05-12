@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+
+import clases.Usuarios;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
@@ -39,21 +42,38 @@ public class ControladorNotificaciones extends HttpServlet {
 		String id = (String)request.getParameter("id");
 		String esAdmin = (String)request.getParameter("Admin");
 		
-		if(acepta.equals("true")){
+		Usuarios usuariologgeado = (Usuarios) request.getSession().getAttribute("usuario");
+		
+		if(acepta.equals("true") && rechaza.equals("false")){
 			String url = "jdbc:mysql://localhost/SISCON";
 	        try {
-	            Connection con = (Connection) DriverManager.getConnection(url,"root","");
+	        	Connection con = (Connection) DriverManager.getConnection(url,"root","");
 	            Statement query = (Statement) con.createStatement();
+	        	
+	            String q = "SELECT * FROM `Usuario` WHERE alta = 1 AND rol = '" + tipo + "' AND `idDepartamento` = " + usuariologgeado.IdD()+"";
+	            ResultSet rs = query.executeQuery(q);
+	            int prof, materia, salon;
+	            prof = materia = salon = 0;
+	            if(tipo.charAt(0) != 'O') {
+	            	while(rs.next()) {
+	            		prof = rs.getBoolean("buscarHorarioProfesores") ? 1 : 0;
+	            		materia = rs.getBoolean("buscarHorarioMateria") ? 1 : 0;
+	            		salon = rs.getBoolean("buscarHorarioSalon") ? 1 : 0;
+	            	}
+	        	}
+	            
 	            if(esAdmin != null){
-	            	query.executeUpdate("UPDATE Usuario SET alta = 1,rol ='"+tipo+"',administrador = 1 WHERE indexUsuario='"+ id +"'");
+	            	query.executeUpdate("UPDATE Usuario SET alta = 1,rol ='"+tipo+"',administrador = 1, buscarHorarioProfesores = "+prof+",buscarHorarioMateria ="
+	            			+materia+", buscarHorarioSalon="+salon+" WHERE indexUsuario='"+ id +"'");
 	            }else{
-	            	query.executeUpdate("UPDATE Usuario SET alta = 1,rol ='"+tipo+"' WHERE indexUsuario='"+ id +"'");
+	            	query.executeUpdate("UPDATE Usuario SET alta = 1,rol ='"+tipo+"',buscarHorarioProfesores = "+prof+",buscarHorarioMateria ="
+	            			+materia+", buscarHorarioSalon="+salon+" WHERE indexUsuario='"+ id +"'");
 	            }
 	            query.executeUpdate("delete from tablaNotificacion where indexUsuario ='"+ id +"'");
 	        } catch (SQLException ex) {
 //	            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
 	        }
-		}else if(rechaza.equals("true")){
+		}else if(rechaza.equals("true") && acepta.equals("false")){
 			String url = "jdbc:mysql://localhost/SISCON";
 	        try {
 	            Connection con = (Connection) DriverManager.getConnection(url,"root","");
