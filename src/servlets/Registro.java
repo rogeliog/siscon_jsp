@@ -176,8 +176,9 @@ public class Registro extends HttpServlet {
          }
        }
        
-       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registrar_usuario.jsp");
-       dispatcher.forward(request, response);
+////       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registrar_usuario.jsp");
+////       dispatcher.forward(request, response);
+//       response.sendRedirect("registrar_usuario.jsp");
      
    }
 
