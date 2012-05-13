@@ -252,7 +252,8 @@ public class PlanReader extends HttpServlet {
         try {
     ServletContext context = getServletContext();
     String ruta = context.getRealPath(request.getContextPath());
-    String fileNameLocal = ruta + "/" + request.getParameter("archivo");//aqui va el path
+    String slashType = (ruta.lastIndexOf("\\") > 0) ? "\\" : "/"; // Windows o UNIX    
+    String fileNameLocal = ruta + slashType + request.getParameter("archivo");
     ArrayList dataHolder0= readExcelFile(fileNameLocal);
     insertIntoDb(dataHolder0);
     PrintWriter out = response.getWriter();
