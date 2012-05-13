@@ -77,7 +77,12 @@
                 </li>
               </ul>
               <ul class="nav pull-right">
-				<li><a href="#"><i class="icon-user icon-white"></i> <%= usuario.getNombre() + " " + usuario.getApellido() %></a></li>
+				<li class="dropdown">
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-user icon-white"></i> <%= usuario.getNombre() + " " + usuario.getApellido() %> <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#"><i class="icon-pencil"></i> Cambiar contrase&ntilde;a</a></li>
+					</ul>
+				</li>
                 <li><a href="CerrarSesion"><i class="icon-off icon-white"></i> Cerrar Sesi&oacute;n</a></li>
               </ul>
             </div><!--/.nav-collapse -->
