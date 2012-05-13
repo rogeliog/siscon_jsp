@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row">
     <div class="span7 offset2">
-      <table width="100%" cellpadding="0" cellspacing="0" width="100%">
+      <table class="table table-striped table-bordered table-condensed">
             <thead>
                 <tr>
                     <th>Nombre</th>

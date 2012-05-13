@@ -24,7 +24,17 @@
 		  <form class="form-horizontal" action="GuardarUsuarios" method="post">
 		      <fieldset>
 		        <legend>Administrar cuentas de usuario</legend>
-		        <p style="font-size: 13px; color:gold"><i><%= cambios %></i></p>
+<%-- 		        <p style="font-size: 13px; color:gold"><i><%= cambios %></i></p> --%>
+		        <%
+		        	if(!cambios.equals("")) {
+		        %>
+		        	<div class="alert alert-success">
+		        		<a href="#" class="close" data-dismiss="alert">×</a>
+		        		<%= cambios %>
+		        	</div>
+		        <%
+		        	}
+		        %>
 		        <table class="table table-striped table-bordered table-condensed">
 		        	<tr>
 						<th>N&oacute;mina</th>
@@ -34,7 +44,7 @@
 					  	<th></th>
 					</tr>
 					<% 
-                        String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD();
+                        String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD() + " AND alta = 1"; // solo los que han sido dados de alta
 // 						String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD() + "AND rol != 'O'";
 						int cont = 0;
 					    ResultSet rs = query.executeQuery(q);

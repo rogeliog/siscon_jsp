@@ -52,9 +52,19 @@
 		  <form class="form-horizontal" action="GuardarPermisos" method="post">
 		      <fieldset>
 		        <legend>Administrar permisos</legend>
-		        <p style="font-size: 13px; color:gold"><i><%= cambios %></i></p>
+		        <%
+		        	if(!cambios.equals("")) {
+		        %>
+		        	<div class="alert alert-success">
+		        		<a href="#" class="close" data-dismiss="alert">×</a>
+		        		<%= cambios %>
+		        	</div>
+		        <%
+		        	}
+		        %>
 		        <div style="margin-left:15px;">
-		        	<legend style="font-size:17px;">Permisos de Profesores</legend>
+<!-- 		        	<legend style="font-size:17px;">Permisos de Profesores</legend> -->
+					<h3>Permisos de Profesores</h3>
 		        	<table style="margin-left:15px;">
 		        		<tr>
 		        			<td>
