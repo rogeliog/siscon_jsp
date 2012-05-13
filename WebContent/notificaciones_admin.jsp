@@ -9,7 +9,7 @@
 <%@page import="java.util.logging.Level"%>
 <%@page import="java.util.logging.Logger"%>
 
-<%@page import="clases.Usuarios"%>
+<%@page import="clases.Usuarios" import="clases.Conexion" %>
 
 <%@page import="com.mysql.jdbc.Connection"%>
 <%@page import="com.mysql.jdbc.Statement"%>
@@ -18,11 +18,8 @@
 
 	<%
 		try {
-	Class.forName("com.mysql.jdbc.Driver");
-	
-	String url = "jdbc:mysql://localhost/SISCON";
-	Connection con = (Connection) DriverManager.getConnection(url,
-	"root", "");
+	Connection con = null;
+	con = Conexion.con();
 	Statement query = (Statement) con.createStatement();
 	
 	Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");

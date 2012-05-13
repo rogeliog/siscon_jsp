@@ -8,10 +8,9 @@
   String pageTitle = "SISCON | Subir archivo fuente";
 %>
  <%@ include file="includes/header_aplicacion.jsp" %>
- <%@page import="clases.Usuarios"%>    
+ <%@page import="clases.Usuarios" import="clases.Conexion" %>    
  <%@page import="com.mysql.jdbc.Connection"%>
  <%@page import="com.mysql.jdbc.Statement"%>
- <%@page import="clases.Conexion"%>
  
   <script src="assets/js/subir_archivo.js"></script> 
 

@@ -11,11 +11,11 @@
       
 <%@include file="includes/header_aplicacion.jsp" %>
 
-<%@ page language="java" import="java.sql.*" %>
+<%@ page language="java" import="java.sql.*" import="clases.Conexion" %>
 
 <%
-	String url = "jdbc:mysql://localhost/SISCON";
-	Connection con = (Connection) DriverManager.getConnection(url, "root", "");
+	Connection con = null;
+	con = Conexion.con();
 	Statement query = (Statement) con.createStatement();
 	
 	String queries[] = 

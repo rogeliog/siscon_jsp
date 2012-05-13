@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 
+import clases.Conexion;
 import clases.Usuarios;
 
 import com.mysql.jdbc.Connection;
@@ -29,14 +29,8 @@ public class ControladorNotificaciones extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException, SQLException {
 		        response.setContentType("text/html;charset=UTF-8");
-		        try {
-					Class.forName("com.mysql.jdbc.Driver");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		        String url = "jdbc:mysql://localhost/SISCON";
-		        Connection con = (Connection) DriverManager.getConnection(url, "root", "");
+		        Connection con = null;
+		        con = Conexion.con();
 		        Statement query = (Statement) con.createStatement();
 		        
 		        String acepta = (String) request.getParameter("acepta");

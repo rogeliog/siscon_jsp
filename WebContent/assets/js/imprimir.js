@@ -35,6 +35,7 @@ botonImp.on('click', function(){
 	bod.removeChild(foot);
 
 	botonImp.hide();
+	$('a#agregarBoton').hide();
 	$('form#forma2').hide();
 	$('table#tablaAct').hide();
 	$('#banner').hide();
