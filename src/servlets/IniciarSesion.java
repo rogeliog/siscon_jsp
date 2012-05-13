@@ -60,6 +60,9 @@ public class IniciarSesion extends HttpServlet {
 	    	boolean esAdmin = false;
 	    	char rol = ' ';
 //	    	String telefonos[] = {"0", "0", "0", "0", "0"};
+	    	boolean buscarProfesores = false;
+	    	boolean buscarMateria = false;
+	    	boolean buscarSalon = false;
 	    	
 	    	
 	        String q = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "' and password ='" + contrasenia + "'";
@@ -75,6 +78,9 @@ public class IniciarSesion extends HttpServlet {
 	        	alta = rs.getBoolean("alta");
 	        	esAdmin = rs.getBoolean("administrador");
 	        	rol = rs.getString("rol").charAt(0);
+	        	buscarProfesores = rs.getBoolean("buscarHorarioProfesores");
+	        	buscarMateria = rs.getBoolean("buscarHorarioMateria");
+	        	buscarSalon = rs.getBoolean("buscarHorarioSalon");
 	        }
 
 	        if (cont == 1) {
@@ -103,26 +109,33 @@ public class IniciarSesion extends HttpServlet {
 	            usuario.setEsAdmin(esAdmin);
 	            usuario.setRol(rol);
 //	            usuario.setTelefonos(telefonos);
+	            usuario.setBuscarProfesores(buscarProfesores);
+	            usuario.setBuscarMateria(buscarMateria);
+	            usuario.setBuscarSalon(buscarSalon);
 	            
 	            if (alta) {
 	            	session.setAttribute("usuario", usuario);
-		            forward = "/bienvenido.jsp";
+		            // forward = "/bienvenido.jsp";
+		            forward = "bienvenido.jsp";
 		            	
 	            }
 	            else {
 	            	msg = "Porfavor espera a que confirmen tu solicitud";
-		            forward = "/index.jsp";
+		            // forward = "/index.jsp";
+		            forward = "index.jsp";
 	            }
 	            
 	        } else {
 	            msg = "Usuario o contrase&ntilde;a incorrecta";
-	            forward = "/index.jsp";
+	            // forward = "/index.jsp";
+	            forward = "index.jsp";
 	        }
 	        
 	        session.setAttribute("msg", msg);
 
-	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(forward);
-	        dispatcher.forward(request, response);
+	        // RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(forward);
+	        // dispatcher.forward(request, response);
+           response.sendRedirect(forward);
 	     
 	}
 

@@ -1,9 +1,11 @@
-function rechaza(id){
+function rechazar(id){
 	document.getElementById("rechaza-"+id).value = "true";
-	document.getElementById("form-"+id).submit();
+	document.getElementById("acepta-"+id).value = "false";
+	document.getElementById("forma-"+id).submit();
 }
 
-function acepta (id){
+function aceptar(id){
 	document.getElementById("acepta-"+id).value = "true";
-	document.getElementById("form-"+id).submit();
+	document.getElementById("rechaza-"+id).value = "false";
+	document.getElementById("forma-"+id).submit();
 }

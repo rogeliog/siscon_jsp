@@ -10,10 +10,10 @@
                             ${usuario.nombreUsuario}
                         </li>
                         <li class="active">
-                            <a href="Busqueda?objeto=usuario&id=${usuario.indexUsuario}&accion=informacion">Informaci&oacute;n</a>
+                            <a href="Busqueda?objeto=usuario&id=${usuario.indexUsuario}&accion=informacion"><i class="icon icon-book"></i> Informaci&oacute;n</a>
                         </li>
                         <li>
-                            <a href="Busqueda?objeto=usuario&id=${usuario.indexUsuario}&accion=horario">Consultar Horario</a>
+                            <a href="Busqueda?objeto=usuario&id=${usuario.indexUsuario}&accion=horario"><i class="icon icon-time"></i> Consultar Horario</a>
                         </li>
                     </ul>
                 </div>

@@ -63,6 +63,14 @@
         <servlet-name>Registro</servlet-name>
         <servlet-class>servlets.Registro</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GuardarPermisos</servlet-name>
+        <servlet-class>servlets.GuardarPermisos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GuardarPermisos</servlet-name>
+        <url-pattern>/GuardarPermisos</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FileUploadServlet</servlet-name>
         <url-pattern>/servlet/FileUploadServlet</url-pattern>

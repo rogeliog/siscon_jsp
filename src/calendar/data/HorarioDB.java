@@ -143,7 +143,8 @@ public class HorarioDB
                 String horaInicio = rs.getString("horaInicio");
                 String temp[] = horaInicio.split(":");
                 
-                int horaDeInicio = Integer.parseInt(temp[0]) - 1;
+                int horaDeInicio = Integer.parseInt(temp[0]);
+//                int horaDeInicio = Integer.parseInt(temp[0]) - 1;
                 int minutoDeInicio = Integer.parseInt(temp[1]);
                 
                 cal.setTime(utilDate);

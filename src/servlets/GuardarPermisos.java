@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import clases.Usuarios;
+
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
@@ -21,8 +23,8 @@ import com.mysql.jdbc.Statement;
 *
 * @author Ana
 */
-@WebServlet("/GuardarUsuarios")
-public class GuardarUsuarios extends HttpServlet {
+@WebServlet("/GuardarPermisos")
+public class GuardarPermisos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
@@ -42,40 +44,77 @@ public class GuardarUsuarios extends HttpServlet {
 	       
 	        String cambios = "";
 	        
-	        int usuarios = Integer.parseInt(request.getParameter("usuarios"));
-	        int users[] = new int[usuarios];
+	        String parametros[] = 
+	        	{
+	        		"buscarProfesores_profesores",
+	        		"buscarMaterias_profesores",
+	        		"buscarSalones_profesores",
+	        		"buscarProfesores_carrera",
+	        		"buscarMaterias_carrera",
+	        		"buscarSalones_carrera"
+	        	};
 	        
-	        for(int i = 0; i < users.length; i++) {
-	        	users[i] = Integer.parseInt(request.getParameter("idUsers_" + i));
-	        }
+	        String permisos[] = new String[6];
 	        
-	        String permisos[][] = new String[usuarios][2];
-	       	        
 	        for(int i = 0; i < permisos.length; i++) {
-	        	permisos[i][0] = request.getParameter("tipo_" + users[i]);
-	        	if(request.getParameterValues("Admin_" + users[i]) != null) {
-	        		permisos[i][1] = "1";
+	        	if(request.getParameterValues(parametros[i]) != null) {
+	        		permisos[i] = "1";
 	        	}
 	        	else {
-	        		permisos[i][1] = "0";
+	        		permisos[i] = "0";
 	        	}
 	        }
 	        
-	        String q;
+	        String q[] =
+	        	{
+	        		"UPDATE Usuario SET `buscarHorarioProfesores` = " + permisos[0] + " WHERE rol = 'P'",
+	        		"UPDATE Usuario SET `buscarHorarioMateria` = " + permisos[1] + " WHERE rol = 'P'",
+	        		"UPDATE Usuario SET `buscarHorarioSalon` = " + permisos[2] + " WHERE rol = 'P'",
+	        		"UPDATE Usuario SET `buscarHorarioProfesores` = " + permisos[3] + " WHERE rol = 'C'",
+	        		"UPDATE Usuario SET `buscarHorarioMateria` = " + permisos[4] + " WHERE rol = 'C'",
+	        		"UPDATE Usuario SET `buscarHorarioSalon` = " + permisos[5] + " WHERE rol = 'C'",
+	        	};
 	        
-	        for(int i = 0; i < permisos.length; i++) {
-	        	q = "UPDATE Usuario SET `administrador` = " + Integer.parseInt(permisos[i][1]) + ", `rol` = '" + permisos[i][0].charAt(0) + 
-	        			"' WHERE `Usuario`.`indexUsuario` = '" + users[i] + "'";
-	        	query.executeUpdate(q);
+	        for(int i = 0; i < q.length; i++) {
+	        	query.executeUpdate(q[i]);
 	        }
-	        
+	             
 	        cambios = "Se han realizado los cambios";
 	        session.setAttribute("cambios", cambios);
 	        
+	        Usuarios usuarioLoggeado = (Usuarios) session.getAttribute("usuario");
+	        if(usuarioLoggeado.getRol() == 'P') {
+	        	if(permisos[0].equals("1"))
+	        		usuarioLoggeado.setBuscarProfesores(true);
+	        	else
+	        		usuarioLoggeado.setBuscarProfesores(false);
+	        	if(permisos[1].equals("1"))
+	        		usuarioLoggeado.setBuscarMateria(true);
+	        	else
+	        		usuarioLoggeado.setBuscarMateria(false);
+	        	if(permisos[2].equals("1"))
+	        		usuarioLoggeado.setBuscarSalon(true);
+	        	else
+	        		usuarioLoggeado.setBuscarSalon(false);
+	        }
+	        else if(usuarioLoggeado.getRol() == 'C') {
+	        	if(permisos[3].equals("1"))
+	        		usuarioLoggeado.setBuscarProfesores(true);
+	        	else
+	        		usuarioLoggeado.setBuscarProfesores(false);
+	        	if(permisos[4].equals("1"))
+	        		usuarioLoggeado.setBuscarMateria(true);
+	        	else
+	        		usuarioLoggeado.setBuscarMateria(false);
+	        	if(permisos[5].equals("1"))
+	        		usuarioLoggeado.setBuscarSalon(true);
+	        	else
+	        		usuarioLoggeado.setBuscarSalon(false);
+	        }
 
-	        // RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/administrarUsuarios.jsp");
+	        // RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/administrarPermisos.jsp");
 	        // dispatcher.forward(request, response);
-           response.sendRedirect("administrarUsuarios.jsp");
+           response.sendRedirect("administrarPermisos.jsp");
 	}
 
 	/**

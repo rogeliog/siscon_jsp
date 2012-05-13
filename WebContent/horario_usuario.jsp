@@ -15,6 +15,15 @@
 
         <div class="row">
           <div class="span7 offset2">
+          	<table id="tablaAct" class="table table-striped table-bordered table-condensed">
+          		<tr>
+          			<th>Actividad</th>
+          			<th>D&iacute;a</th>
+          			<th>Hora Inicio</th>
+          			<th>Hora Fin</th>
+          			<th>Borrar Actividad</th>
+          		</tr>
+          	
  <%
         Connection connection = null;
         ResultSet resultados = null;
@@ -30,15 +39,15 @@
             
                 while(resultados.next()){
                 %>
-                <table border="1" method="post" cellpadding="10">
+                
                 <tr>
                     <td><%= resultados.getString(1) %></td>
                     <td><%= resultados.getString(2) %></td>
                     <td><%= resultados.getString(3) %></td>
                     <td><%= resultados.getString(4) %></td>
-                    <td><a href="borraAct?borra=<%= resultados.getString(5) %>&id=<%= usuario.IdU() %>"><input type="button" value="Borrar"/></a></td>
+                    <td><a href="borraAct?borra=<%= resultados.getString(5) %>&id=<%= usuario.IdU() %>"><input class="btn btn-primary" type="button" value="Borrar"/></a></td>
                 </tr>
-                </table>
+                
             <%
                 }
             statement.close();
@@ -47,7 +56,16 @@
                 e.printStackTrace();
             }
         %>
-
+			</table>
+			<div id="banner" class="alert alert-warning alert-block">
+				<a href="" class="close" data-dismiss="alert">×</a>
+				<h4><i class="icon-ok-circle"></i> Nota: </h4>
+				<p>
+					Las horas de actividades extra se consideran como horas de clase,
+					es decir que solo pueden empezar en HH:00 o en HH:30 y terminar de la misma manera.
+					El formato utilizado es HH:MM de 24 horas.
+				</p>
+			</div>
              <form id="forma2" name="forma2" class="form-horizontal" action="guardaAct" method="post">
               <h1>Agregar Actividades</h1>
               <fieldset>
@@ -68,7 +86,7 @@
                 
                 <div class="control-group">
                 	<label for="inlineCheckboxes" class="control-label">D&iacute;as:</label>
-                	<div class="controls">
+                	<div id="checkboxDias" class="controls">
 	                  	<label for="" class="checkbox inline">
 	                  		<input type="checkbox" name="dias" value="Lunes" />Lunes
 	                  	</label>
@@ -87,7 +105,6 @@
 	                    <label for="" class="checkbox inline">
 	                      <input type="checkbox" name="dias" value="Sabado" />Sabado
 	                    </label>
-	                    <br /><br />
 	                    <span class="help-inline"></span>
                 	</div>
                 </div>
@@ -96,7 +113,7 @@
                 	<label for="inicio" class="control-label">Hora de inicio:</label>
                 	<div class="controls">
                 		<input type="text" id="inicio" name="horaInicio" class="input-medium" />
-                		<span class="help-inline"></span>
+                		<span class="help-inline">Teclear en formato de 24 horas (HH:MM)</span>
                 	</div>
                 </div>
                 
@@ -104,7 +121,7 @@
                 	<label for="fin" class="control-label">Hora de fin:</label>
                 	<div class="controls">
                 		<input type="text" class="input-medium" id="horaFin" name="horaFin" />
-                		<span class="help-inline"></span>
+                		<span class="help-inline">Teclear en formato de 24 horas (HH:MM)</span>
                 	</div>
                 </div>
                 

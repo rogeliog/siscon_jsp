@@ -51,9 +51,10 @@ public class borraAct extends HttpServlet {
             Usuarios usuario = (Usuarios) session.getAttribute("usuario");
             int indexUsuario = usuario.IdU();
             
-            ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher("/horario_usuario.jsp?id="+indexUsuario);
-            rd.forward(request, response);
+            // ServletContext sc = getServletContext();
+            // RequestDispatcher rd = sc.getRequestDispatcher("/horario_usuario.jsp?id="+indexUsuario);
+            // rd.forward(request, response);
+            response.sendRedirect("horario_usuario.jsp?id="+indexUsuario);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

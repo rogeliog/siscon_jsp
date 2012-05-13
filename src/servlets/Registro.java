@@ -53,11 +53,23 @@ public class Registro extends HttpServlet {
        String email = request.getParameter("email");
        String telefonos[] = request.getParameter("telefonos").split("\\n");
        
+       //Para determinar los permisos default de busqueda
+       String q = "SELECT * FROM `Usuario` WHERE alta = 1 AND rol = '" + rol + "' AND `idDepartamento` = '" + departamento + "'";
+       ResultSet rs = query.executeQuery(q);
+       int prof, materia, salon;
+       prof = materia = salon = 1;
+       while(rs.next()) {
+    	   prof = rs.getBoolean("buscarHorarioProfesores") ? 1 : 0;
+    	   materia = rs.getBoolean("buscarHorarioMateria") ? 1 : 0;
+    	   salon = rs.getBoolean("buscarHorarioSalon") ? 1 : 0;
+       }
+       //Aqui termina la determinacion del default
+       
        int cont = 0;
        boolean alta = false;
        int dept = 0;
-       String q = "SELECT * FROM `Usuario` WHERE `rol` = 'D' AND `idDepartamento` = '" + departamento + "'";
-       ResultSet rs = query.executeQuery(q);
+       q = "SELECT * FROM `Usuario` WHERE `rol` = 'D' AND `idDepartamento` = '" + departamento + "'";
+       rs = query.executeQuery(q);
        while(rs.next()) {
          cont++;
          dept = rs.getInt("idDepartamento");
@@ -83,7 +95,7 @@ public class Registro extends HttpServlet {
          else {
            if (cont == 1) {
                cont = 0;
-               c = "SELECT * FROM Usuario, tablaNotificacion WHERE usuario.idUsuario = '" + matricula + "'";
+               c = "SELECT * FROM Usuario, tablaNotificacion WHERE Usuario.idUsuario = '" + matricula + "'";
                rs = query.executeQuery(c);
                  while(rs.next()) {
                    cont++;
@@ -91,8 +103,8 @@ public class Registro extends HttpServlet {
                  if (cont == 1) {
                    
                    q = "UPDATE Usuario SET `genero` = '" + genero + "', `email` = '" + email + "', `password` = '" + 
-                       contrasenia + "', `administrador` = 0, `rol` = '" + rol + "' WHERE `Usuario`.`idUsuario` = '" + matricula + "'";
-                   
+                       contrasenia + "', `administrador` = 0, `rol` = '" + rol + "', `buscarHorarioProfesores` = " + prof + ", `buscarHorarioMateria` = " + materia + ", " +
+                       		"`buscarHorarioSalon` = " + salon + " WHERE `Usuario`.`idUsuario` = '" + matricula + "'";
                    query.executeUpdate(q);
                    
                    String qe = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";
@@ -129,8 +141,9 @@ public class Registro extends HttpServlet {
              
              else if (cont == 0) {
                q = "INSERT INTO Usuario (`idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, " +
-                  "`password`, `administrador`, `rol`) VALUES ('" + departamento + "', '" + matricula + "', '" + nombre + "', '" + apellidos + "', '" + 
-                   genero + "', '" + email + "', 0, '" + contrasenia + "', 0, '" + rol + "')";
+                  "`password`, `administrador`, `rol`, `buscarHorarioProfesores`, `buscarHorarioMateria`, `buscarHorarioSalon`) VALUES ('" + departamento + 
+                  "', '" + matricula + "', '" + nombre + "', '" + apellidos + "', '" + genero + "', '" + email + "', 0, '" + contrasenia + "', 0, '" + rol + "', " 
+                  + prof + ", " + materia + ", " + salon + ")";
                 
                 query.executeUpdate(q);
                 
@@ -163,8 +176,9 @@ public class Registro extends HttpServlet {
          }
        }
        
-       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registrar_usuario.jsp");
-       dispatcher.forward(request, response);
+////       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registrar_usuario.jsp");
+////       dispatcher.forward(request, response);
+       response.sendRedirect("registrar_usuario.jsp");
      
    }
 

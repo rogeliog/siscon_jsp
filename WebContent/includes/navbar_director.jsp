@@ -6,8 +6,6 @@
 <%@page import="java.util.logging.Level"%>
 <%@page import="java.util.logging.Logger"%>
 
-<%-- <%@page import="clases.Usuario"%> --%>
-
 <%@page import="com.mysql.jdbc.Connection"%>
 <%@page import="com.mysql.jdbc.Statement"%>
 <%
@@ -29,7 +27,6 @@
     
     ResultSet rs = query.executeQuery(q);
     while (rs.next()) {
-      
     }
     rs.last();
     rowCount = rs.getRow();
@@ -66,15 +63,16 @@
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cog icon-white"></i> Administraci&oacute;n <span class="badge"><%= rowCount %></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                	  <li><a href="administrarUsuarios.jsp"><i class="icon-th-list"></i> Administrar usuarios</a></li>
+                      <li><a href="administrarPermisos.jsp">Administrar permisos</a></li>
+                	  <li><a href="administrarUsuarios.jsp">Administrar usuarios</a></li>
                       <li><a href="notificaciones.jsp">Centro de Notificaciones <span class="badge badge-inverse"><%= rowCount %></span></a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                	<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-search icon-white"></i> Subir Archivos <b class="caret"></b></a>
+                	<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-upload icon-white"></i> Subir Archivos <b class="caret"></b></a>
                 	<ul class="dropdown-menu">
-                		<li><a href="subir_archivo.jsp"><i class="icon-upload icon-white"></i> Subir archivo fuente</a></li>
-                		<li><a href="subirPlan.jsp"><i class="icon-upload icon-white"></i> Subir plan de estudios</a></li>
+                		<li><a href="subir_archivo.jsp">Subir archivo fuente</a></li>
+                		<li><a href="subirPlan.jsp">Subir plan de estudios</a></li>
                 	</ul>                	
                 </li>
               </ul>

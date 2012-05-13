@@ -419,10 +419,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SISCON`;
-INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (1, 1, 'L00215087', 'Elda Guadalupe', 'Quiroga Gonzalez', 'F', 'x@itesm.mx', 0, '\'\'', 0, 'P');
-INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (2, 1, 'L00276543', 'Ramon Felipe', 'Brena Pinero', 'M', 'y@itesm.mx', 0, '\'\'', 0, 'P');
-INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (3, 1, 'L00265355', 'Hugo', 'Terashima Marin', 'M', 'w@itesm.mx', 0, '\'\'', 0, 'P');
-INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (4, 1, 'L00234153', 'Juan Arturo', 'Nolazco Flores', 'M', 'z@itesm.mx', 1, '12345', 1, 'P');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (1, 1, 'admin', 'Admin', 'Ad Min', 'M', 'admin@itesm.mx', 1, 'admin', 1, 'O');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (2, 1, 'L00234153', 'Juan Arturo', 'Nolazco Flores', 'M', 'z@itesm.mx', 1, '12345', 1, 'P');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (3, 1, 'L00215087', 'Elda Guadalupe', 'Quiroga Gonzalez', 'F', 'x@itesm.mx', 0, 'elda', 0, 'P');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (4, 1, 'L00276543', 'Ramon Felipe', 'Brena Pinero', 'M', 'y@itesm.mx', 0, 'felipe', 0, 'P');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (5, 1, 'L00265355', 'Hugo', 'Terashima Marin', 'M', 'w@itesm.mx', 0, 'hugo', 0, 'P');
 
 COMMIT;
 
@@ -599,7 +600,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SISCON`;
-INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (1, 1, 1);
+INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (1, 3, 1);
+INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (2, 4, 1);
+INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (3, 5, 1);
 
 COMMIT;
 

@@ -55,7 +55,7 @@ $(function() {
     message: "Seleccione un departamento"
   });
 
-  jQuery("#email").validate({
+  $("#email").validate({
     expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
     message: "Formato de email no v\u00E1lido"
     //message: "Formato de email no válido"
