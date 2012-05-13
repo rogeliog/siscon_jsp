@@ -8,7 +8,7 @@
   String pageTitle = "SISCON | Subir archivo fuente";
 %>
  <%@ include file="includes/header_aplicacion.jsp" %>
- <%@page import="clases.Usuarios"%>    
+ <%@page import="clases.Usuarios" import="clases.Conexion" %>    
  <%@page import="com.mysql.jdbc.Connection"%>
  <%@page import="com.mysql.jdbc.Statement"%>
  
@@ -24,10 +24,8 @@
     String[] temp; //String temporal para la fecha y hora que regresa la consulta tipo DATETIME de la base de datos.
     
     //Establecer la conexion a la base de datos y sentencias para realizar las consultas.
-    Connection connection=null;
-    Class.forName("com.mysql.jdbc.Driver");
-    String url = "jdbc:mysql://localhost/SISCON";
-    connection = (Connection) DriverManager.getConnection(url,"root", "");         
+    Connection connection=null;       
+    connection = Conexion.con();   
     Statement statement = (Statement) connection.createStatement();              
 
     //Consulta de los exceles registrados    
