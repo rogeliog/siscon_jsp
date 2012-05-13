@@ -115,23 +115,27 @@ public class IniciarSesion extends HttpServlet {
 	            
 	            if (alta) {
 	            	session.setAttribute("usuario", usuario);
-		            forward = "/bienvenido.jsp";
+		            // forward = "/bienvenido.jsp";
+		            forward = "bienvenido.jsp";
 		            	
 	            }
 	            else {
 	            	msg = "Porfavor espera a que confirmen tu solicitud";
-		            forward = "/index.jsp";
+		            // forward = "/index.jsp";
+		            forward = "index.jsp";
 	            }
 	            
 	        } else {
 	            msg = "Usuario o contrase&ntilde;a incorrecta";
-	            forward = "/index.jsp";
+	            // forward = "/index.jsp";
+	            forward = "index.jsp";
 	        }
 	        
 	        session.setAttribute("msg", msg);
 
-	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(forward);
-	        dispatcher.forward(request, response);
+	        // RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(forward);
+	        // dispatcher.forward(request, response);
+           response.sendRedirect(forward);
 	     
 	}
 

@@ -59,7 +59,8 @@
 			</table>
 			<div id="banner" class="alert alert-warning alert-block">
 				<a href="" class="close" data-dismiss="alert">×</a>
-				<p><i class="icon-ok-circle"></i>
+				<h4><i class="icon-ok-circle"></i> Nota: </h4>
+				<p>
 					Las horas de actividades extra se consideran como horas de clase,
 					es decir que solo pueden empezar en HH:00 o en HH:30 y terminar de la misma manera.
 					El formato utilizado es HH:MM de 24 horas.

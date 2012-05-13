@@ -95,7 +95,7 @@ public class Registro extends HttpServlet {
          else {
            if (cont == 1) {
                cont = 0;
-               c = "SELECT * FROM Usuario, tablaNotificacion WHERE usuario.idUsuario = '" + matricula + "'";
+               c = "SELECT * FROM Usuario, tablaNotificacion WHERE Usuario.idUsuario = '" + matricula + "'";
                rs = query.executeQuery(c);
                  while(rs.next()) {
                    cont++;
@@ -104,7 +104,7 @@ public class Registro extends HttpServlet {
                    
                    q = "UPDATE Usuario SET `genero` = '" + genero + "', `email` = '" + email + "', `password` = '" + 
                        contrasenia + "', `administrador` = 0, `rol` = '" + rol + "', `buscarHorarioProfesores` = " + prof + ", `buscarHorarioMateria` = " + materia + ", " +
-                       		"`buscarHorarioSalon` = " + salon + " WHERE `usuario`.`idUsuario` = '" + matricula + "'";
+                       		"`buscarHorarioSalon` = " + salon + " WHERE `Usuario`.`idUsuario` = '" + matricula + "'";
                    query.executeUpdate(q);
                    
                    String qe = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";

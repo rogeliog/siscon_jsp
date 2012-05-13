@@ -41,13 +41,29 @@
           </div> -->
 
         <div class="row">      
-            <div class="span7 offset2">          
+            <div class="span7 offset2">
+                       <%
+                       		if(!not.equals("")) {
+                       %>
+		                   <div class="alert alert-success">
+						       <a href="#" class="close" data-dismiss="alert">×</a>
+						       <%= not %>
+				           </div>
+                       <%
+                       		} else if(!error.equals("")) {
+                       %>
+	                       <div class="alert alert-error">
+						       <a href="#" class="close" data-dismiss="alert">×</a>
+						       <h4><i class="icon icon-remove-sign"></i> ¡ERROR!</h4>
+						       <%= error %>
+				        	</div>
+                        <%
+                        	}
+                        %>          
                         <form class="form-horizontal well" action="Registro" method="post">
                             <h1>Registro</h1>
                             <fieldset>
                                 <legend>Favor de llenar la informaci&oacute;n necesaria</legend>
-                                <h1 style="color:gold"><i><%= not %></i></h1>
-                                <h1 style="color:red"><i><%= error %></i></h1>
                                 <div class="control-group">
                                     <label class="control-label" for="matricula">Matr&iacute;cula</label>
                                     <div class="controls">
@@ -95,11 +111,11 @@
                                   <label class="control-label">Sexo</label>
                                   <div class="controls">
                                     <label class="radio inline">
-                                      <input id="sexo1" type="radio" value="masculino" name="sexo">
+                                      <input id="sexo1" type="radio" value="Masculino" name="sexo">
                                       Masculino
                                     </label>
                                     <label class="radio inline">
-                                      <input id="sexo2" type="radio" value="femenino" name="sexo">
+                                      <input id="sexo2" type="radio" value="Femenino" name="sexo">
                                       Femenino
                                     </label>
                                   </div>

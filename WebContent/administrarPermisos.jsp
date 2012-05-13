@@ -49,19 +49,19 @@
 
 	<div class="row">
 		<div class="span8 offset2">
+			<%
+				if(!cambios.equals("")) {
+			%>
+				<div class="alert alert-success">
+					<a href="#" class="close" data-dismiss="alert">×</a>
+					<i class="icon icon-ok"></i> <%= cambios %>
+				</div>
+			<%
+				}
+			%>
 		  <form class="form-horizontal" action="GuardarPermisos" method="post">
 		      <fieldset>
 		        <legend>Administrar permisos</legend>
-		        <%
-		        	if(!cambios.equals("")) {
-		        %>
-		        	<div class="alert alert-success">
-		        		<a href="#" class="close" data-dismiss="alert">×</a>
-		        		<%= cambios %>
-		        	</div>
-		        <%
-		        	}
-		        %>
 		        <div style="margin-left:15px;">
 <!-- 		        	<legend style="font-size:17px;">Permisos de Profesores</legend> -->
 					<h3>Permisos de Profesores</h3>

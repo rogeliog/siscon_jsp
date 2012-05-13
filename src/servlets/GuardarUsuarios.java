@@ -73,8 +73,9 @@ public class GuardarUsuarios extends HttpServlet {
 	        session.setAttribute("cambios", cambios);
 	        
 
-	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/administrarUsuarios.jsp");
-	        dispatcher.forward(request, response);
+	        // RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/administrarUsuarios.jsp");
+	        // dispatcher.forward(request, response);
+           response.sendRedirect("administrarUsuarios.jsp");
 	}
 
 	/**

@@ -21,20 +21,20 @@
 
 	<div class="row">
 		<div class="span8 offset2">
+	        <%
+	        	if(!cambios.equals("")) {
+	        %>
+	        	<div class="alert alert-success">
+	        		<a href="#" class="close" data-dismiss="alert">×</a>
+	        		<i class="icon icon-ok"></i> <%= cambios %>
+	        	</div>
+	        <%
+	        	}
+	        %>
 		  <form class="form-horizontal" action="GuardarUsuarios" method="post">
 		      <fieldset>
 		        <legend>Administrar cuentas de usuario</legend>
 <%-- 		        <p style="font-size: 13px; color:gold"><i><%= cambios %></i></p> --%>
-		        <%
-		        	if(!cambios.equals("")) {
-		        %>
-		        	<div class="alert alert-success">
-		        		<a href="#" class="close" data-dismiss="alert">×</a>
-		        		<%= cambios %>
-		        	</div>
-		        <%
-		        	}
-		        %>
 		        <table class="table table-striped table-bordered table-condensed">
 		        	<tr>
 						<th>N&oacute;mina</th>

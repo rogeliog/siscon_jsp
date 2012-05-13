@@ -1,4 +1,4 @@
-<%String pageTitle = "SISCON | Buscar Por Atributos Profesores";%>
+<%String pageTitle = "SISCON | Centro de Notificaciones";%>
 <%@ include file="includes/header_aplicacion.jsp"%>
 
 <%@page import="java.io.IOException"%>
@@ -26,8 +26,6 @@
 		Statement query = (Statement) con.createStatement();
 
 		Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
-		//SELECT u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t  WHERE t.idDepartamento=1 and t.indexUsuario=u.indexUsuario
-
 		String q = "SELECT u.indexUsuario, u.nombreUsuario, u.apellidoUsuario FROM Usuario u, tablaNotificacion t WHERE t.idDepartamento='"
 	+ usuariologgeado.IdD() + "' and u.rol='P' and  t.indexUsuario=u.indexUsuario";
 	%>	<div class="row">
@@ -60,10 +58,10 @@
 							<input type="checkbox" name="Admin" value="ON" />Administrador
 						</label>
 						<input type="hidden" name="id" value="<%=idUsuario%>"/>
-						<input id="rechaza-<%=idUsuario%>" type="hidden" name="rechaza" value="false" />
-						&nbsp;&nbsp;<button id="rechazaBoton-<%=idUsuario%>" class="btn btn-inverse" onclick="rechaza(<%=idUsuario%>)"><i class="icon-remove-sign icon-white"></i> Rechazar</button>
-						<input id="acepta-<%=idUsuario%>" type="hidden" name="acepta" value="true" />
-						&nbsp;&nbsp;<button id="aceptaBoton-<%=idUsuario%>" class="btn btn-inverse" onclick="acepta(<%=idUsuario%>)"><i class="icon-ok-sign icon-white"></i> Aceptar</button>
+						<input id="rechaza-<%=idUsuario%>" type="hidden" name="rechaza"/>
+						&nbsp;&nbsp;<button id="rechazaBoton-<%=idUsuario%>" class="btn btn-inverse" onclick="rechazar(<%=idUsuario%>)"><i class="icon-remove-sign icon-white"></i> Rechazar</button>
+						<input id="acepta-<%=idUsuario%>" type="hidden" name="acepta"/>
+						&nbsp;&nbsp;<button id="aceptaBoton-<%=idUsuario%>" class="btn btn-inverse" onclick="aceptar(<%=idUsuario%>)"><i class="icon-ok-sign icon-white"></i> Aceptar</button>
 					</form>
 				</div>
 

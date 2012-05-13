@@ -112,8 +112,9 @@ public class GuardarPermisos extends HttpServlet {
 	        		usuarioLoggeado.setBuscarSalon(false);
 	        }
 
-	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/administrarPermisos.jsp");
-	        dispatcher.forward(request, response);
+	        // RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/administrarPermisos.jsp");
+	        // dispatcher.forward(request, response);
+           response.sendRedirect("administrarPermisos.jsp");
 	}
 
 	/**
