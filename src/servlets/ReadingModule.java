@@ -32,6 +32,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+
+import clases.Conexion;
 /**
  *
  * @author Ruben
@@ -78,11 +80,7 @@ public class ReadingModule extends HttpServlet {
    
           
     private static void insertIntoDb(ArrayList dataHolder) throws Exception{
-        String bd = "SISCON";
-        String usuario = "root";
-        String password = "";
-        String url = "jdbc:mysql://localhost/"+bd;
-        
+      
         Connection conexion = null;
         
          try{
@@ -145,16 +143,12 @@ public class ReadingModule extends HttpServlet {
              String[] nombreUsuario = new String [3];
              String[] apellidoUsuario = new String [3];;
              int[] indexUsuario = new int [3];
-
-             
-             Class.forName("com.mysql.jdbc.Driver").newInstance();
-             conexion = null;
-             conexion = DriverManager.getConnection(url,usuario,password); 
+                                               
              PreparedStatement pstmt = null;
              String cleanTables1 = "delete from Grupo; ";
              String cleanTables2 = "delete from Horarios;";
-             Statement statement = conexion.createStatement();
-                 
+             
+             Statement statement = Conexion.con().createStatement();   
                   statement.executeUpdate(cleanTables1);
                   statement.executeUpdate(cleanTables2);
                  
@@ -250,7 +244,7 @@ public class ReadingModule extends HttpServlet {
              
              try {
                   
-                  conexion = DriverManager.getConnection(url,usuario,password);                  
+                  conexion = Conexion.con();                  
                   String queryDepartamento = "insert into Departamento(siglas, departamento) values(?, ?)";
                   String queryGrupo = "insert into Grupo(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, atributos, horasClase, horasLaboratorio, unidades, porcentajeClase, numeroProfesores, claseExclusiva, alumnosInscritos) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                   String queryHorarios = "insert into Horarios(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, salon, diaSemana, horaInicio, horaFin) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -413,12 +407,7 @@ public class ReadingModule extends HttpServlet {
                       cont++;
                   }while(cont < numeroProfesores);
                   
-                    nombreDept=departamento;
-                                    
-
-                  
-                  
-                  
+                    nombreDept=departamento;                                                                                       
                   
                   } catch (Exception e) {
                       e.printStackTrace();
@@ -429,14 +418,8 @@ public class ReadingModule extends HttpServlet {
                  
                  }      
              } catch (SQLException ex){ 
-             System.out.println("Hubo un problema al intentar conectarse con la base de datos "+url); 
-                    }
-            catch(ClassNotFoundException ex) { 
-                System.out.println(ex); 
-                }
-        
- 
-
+             System.out.println("Hubo un problema al intentar conectarse con la base de datos"); 
+                    }        
     }
     
     private static void printCellDataToConsole(ArrayList dataHolder) {
