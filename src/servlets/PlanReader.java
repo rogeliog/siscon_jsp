@@ -112,11 +112,11 @@ public class PlanReader extends HttpServlet {
                  case "disciplina": disciplina = stringCellValue; break;
                  case "clave": materia = stringCellValue.substring(0,stringCellValue.length()-4);
                                curso = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-4)); break;
-                 case "semestrenumÈrico": semestre = Integer.parseInt(stringCellValue); break;
+                 case "semestrenum√©rico": semestre = Integer.parseInt(stringCellValue); break;
                  case "nombre": nombreMateria = stringCellValue; break;
-                 case "programaacadÈmico": anioPlan = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-2));
+                 case "programaacad√©mico": anioPlan = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-2));
                                            siglasCarrera = stringCellValue.substring(0,stringCellValue.length()-2); break;
-                 case "descripciÛn·rea": descripcionPlan = stringCellValue; break;  
+                 case "descripci√≥n√°rea": descripcionPlan = stringCellValue; break;  
              }
 
                  }

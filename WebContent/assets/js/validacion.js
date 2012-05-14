@@ -3,12 +3,12 @@ $(function() {
   //pagina de login
   $('#usuario').validate( {
     expression: "if(VAL) return true; else return false;",
-    message: "No puede estar vac&iacute;o"
+    message: "No puede estar vac\u00EDo"
   });
 
   $('#pwd').validate( {
     expression: "if(VAL) return true; else return false;",
-    message: "No puede estar vac&iacute;o"
+    message: "No puede estar vac\u00EDo"
   });
   //termina pagina de login
 
@@ -21,7 +21,7 @@ $(function() {
 
   $('#contrasenia').validate( {
     expression: "if (VAL) return true; else return false;",
-    message: "No puede estar vac&iacute;o"
+    message: "No puede estar va\u00EDo"
   });
 
   $('#contraseniaC').validate( {
@@ -32,17 +32,17 @@ $(function() {
 
   $('#nombre').validate( {
     expression: "if (VAL) return true; else return false;",
-    message: "No puede estar vac&iacute;o"
+    message: "No puede estar va\u00EDo"
   });
 
   $('#apellidoP').validate( {
     expression: "if (VAL) return true; else return false;",
-    message: "No puede estar vac&iacute;o"
+    message: "No puede estar vac\u00EDo"
   });
 
   $('#apellidoM').validate( {
     expression: "if (VAL) return true; else return false;",
-    message: "No puede estar vac&iacute;o"
+    message: "No puede estar vac\u00EDo"
   });
 
   $('#directorDept').validate( {
@@ -65,12 +65,19 @@ $(function() {
   //validacion en cambio de contrasenia
   $('#pswd').validate( {
 	  expression: "if (VAL) return true; else return false",
-	  message: 	"No puede estar vac&iacuteo"
+	  message: 	"No puede estar vac\u00EDo"
   });
   
   $('#pswdC').validate( {
 	  expression: "if(VAL == $('#pswd').val() && VAL) return true; else return false;",
 	  message: "Las contrase\u00F1as deben ser iguales"
   });
+
+//  validacion salon
+  
+//  $('#nombreSalon').validate( {
+//	  expression: "if(VAL.match(/\\b[A]\\d\\-\\d{3}\\b/) && VAL) return true; else return false;",
+//	  message: "Formato inv\u00E1lido"
+//  });
 
 });

@@ -12,6 +12,7 @@
                     <div class="controls">
                     <input name="id" type="text" class="input-xlarge" id="nombreSalon">
                     <input type="hidden" value="salon" name="objeto" />
+                    <span class="help-inline">Ejemplo A3-101</span>
                     </div>
                 </div>
                 <div class="form-actions">
