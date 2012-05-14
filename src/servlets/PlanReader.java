@@ -19,6 +19,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import clases.Conexion;
+
 /**
  *
  * @author Ruben
@@ -61,11 +63,7 @@ public class PlanReader extends HttpServlet {
     }
     
         private static void insertIntoDb(ArrayList dataHolder) throws Exception{
-        String bd = "SISCON";
-        String usuario = "root";
-        String password = "";
-        String url = "jdbc:mysql://localhost/"+bd;
-        
+              
         Connection conexion = null;
         
          try{
@@ -94,8 +92,8 @@ public class PlanReader extends HttpServlet {
              
 
              
-             Class.forName("com.mysql.jdbc.Driver").newInstance();
-             conexion = null;
+           
+           
              PreparedStatement pstmt = null;
              
              for (int i=1;i<dataHolder.size(); i++){
@@ -124,7 +122,7 @@ public class PlanReader extends HttpServlet {
                  }
              
              try {
-                  conexion = DriverManager.getConnection(url,usuario,password);
+            	  conexion = Conexion.con();   
                   String queryMateria = "insert into Materia(materia, curso, nombreMateria, disciplina) values(?, ?, ?, ?)";
                   String queryCarrera = "insert into Carrera(nombreCarrera, siglasCarrera) values(?, ?)";
                   String queryPlan = "insert into PlanDeEstudios(idCarrera, anioPlan, descripcion) values(?, ?, ?)";
@@ -227,11 +225,8 @@ public class PlanReader extends HttpServlet {
                  
                  }      
              } catch (SQLException ex){ 
-             System.out.println("Hubo un problema al intentar conectarse con la base de datos "+url); 
+             System.out.println("Hubo un problema al intentar conectarse con la base de datos "); 
                     }
-            catch(ClassNotFoundException ex) { 
-                System.out.println(ex); 
-                }
         
  
 
@@ -252,7 +247,8 @@ public class PlanReader extends HttpServlet {
         try {
     ServletContext context = getServletContext();
     String ruta = context.getRealPath(request.getContextPath());
-    String fileNameLocal = ruta + "/" + request.getParameter("archivo");//aqui va el path
+    String slashType = (ruta.lastIndexOf("\\") > 0) ? "\\" : "/"; // Windows o UNIX    
+    String fileNameLocal = ruta + slashType + request.getParameter("archivo");
     ArrayList dataHolder0= readExcelFile(fileNameLocal);
     insertIntoDb(dataHolder0);
     PrintWriter out = response.getWriter();

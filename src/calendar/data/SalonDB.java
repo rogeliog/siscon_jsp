@@ -54,7 +54,7 @@ public class SalonDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "' AND idPeriodo='201112'";
+        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "' AND idPeriodo='201211'";
         
         try
         {
@@ -127,40 +127,9 @@ public class SalonDB {
         }
         catch (SQLException e)
         {
-            return null;
-        }
-        finally
-        {
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static String seleccionaSalonPorCrn(int crn)
-    {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        String query = "SELECT DISTINCT salon FROM Horarios WHERE crn='" + crn + "'";
-        
-        try
-        {
-            ps = connection.prepareStatement(query);
-            rs = ps.executeQuery();
-            
-            String salon = "";
-            
-            while (rs.next())
-            {
-                 salon = rs.getString("salon");
-            }
-            
-            return salon;
-        }
-        catch (SQLException e)
-        {
-            return null;
+        	e.printStackTrace();
+        	return null;
+        	
         }
         finally
         {

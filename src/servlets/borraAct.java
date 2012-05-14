@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import clases.Conexion;
 import clases.Usuarios;
 
 /**
@@ -37,23 +36,17 @@ public class borraAct extends HttpServlet {
             throws ServletException, IOException, SQLException {
             Connection connection = null;
 	        HttpSession session = request.getSession();
-            try
-            {   
-                /* Conexión a la base de datos */
-	        Class.forName( "com.mysql.jdbc.Driver" );
-		connection = DriverManager.getConnection("jdbc:mysql://localhost/SISCON","root","");
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+            connection = Conexion.con();
             String id = request.getParameter("borra");
             Statement statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM actividadesExtra WHERE `idActividadesExtra`= "+id+";");
             Usuarios usuario = (Usuarios) session.getAttribute("usuario");
             int indexUsuario = usuario.IdU();
             
-            ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher("/horario_usuario.jsp?id="+indexUsuario);
-            rd.forward(request, response);
+            // ServletContext sc = getServletContext();
+            // RequestDispatcher rd = sc.getRequestDispatcher("/horario_usuario.jsp?id="+indexUsuario);
+            // rd.forward(request, response);
+            response.sendRedirect("horario_usuario.jsp?id="+indexUsuario);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

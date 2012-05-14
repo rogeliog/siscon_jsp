@@ -20,8 +20,6 @@ public class Grupo {
     
     private int indexUsuario;
     
-    private String nombreUsuario;
-    
     private int idPeriodo;
     
     private String atributos;
@@ -37,14 +35,6 @@ public class Grupo {
     private int claseExclusiva;
     
     private int alumnosInscritos;
-    
-    private String salon;
-    
-    private long fechaInicio;
-    
-    private long fechaFin;
-    
-    private String horario;
     
     public int getCrn()
     {
@@ -111,21 +101,6 @@ public class Grupo {
         return this.alumnosInscritos;
     }
     
-    public String getNombreUsuario()
-    {
-        return this.nombreUsuario;
-    }
-    
-    public String getSalon()
-    {
-        return this.salon;
-    }
-    
-    public String getHorario()
-    {
-        return this.horario;
-    }
-    
     public void setCrn(int crn)
     {
         this.crn = crn;
@@ -189,21 +164,6 @@ public class Grupo {
     public void setAlumnosInscritos(int inscritos)
     {
         this.alumnosInscritos = inscritos;
-    }
-    
-    public void setNombreUsuario(String nombre)
-    {
-        this.nombreUsuario = nombre;
-    }
-    
-    public void setSalon(String salon)
-    {
-        this.salon = salon;
-    }
-    
-    public void setHorario(String horario)
-    {
-        this.horario = horario;
     }
     
 }

@@ -70,7 +70,7 @@ function processStateChange()
                 document.getElementById("estatus").style.visibility = "visible";
                 document.getElementById("progressbar").style.visibility = "visible";
 							
-                // Empezo la subida, se despliega el progreso y vuelve a llamar la funciï¿½n
+                // Empezo la subida, se despliega el progreso y vuelve a llamar la función
                 if (myPercent != null)
                 {
                     myPercent = myPercent.firstChild.nodeValue;							
@@ -110,11 +110,11 @@ function comprueba_extension(formulario, archivo) {
     archivo=extractFilename(archivo);
     if (!archivo) { 
         //Si no tengo archivo, es que no se ha seleccionado un archivo en la forma 
-        mierror = "No has seleccionado ningï¿½n archivo"; 
+        mierror = "No has seleccionado ningún archivo"; 
     }else{ 
-        //Se obtiene la extensiï¿½n de este nombre de archivo 
+        //Se obtiene la extensión de este nombre de archivo 
         extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase(); 
-        //Se comprueba si la extensiï¿½n estï¿½ entre las permitidas 
+        //Se comprueba si la extensión está entre las permitidas 
         permitida = false; 
         for (var i = 0; i < extensiones_permitidas.length; i++) { 
             if (extensiones_permitidas[i] == extension) { 
@@ -124,7 +124,7 @@ function comprueba_extension(formulario, archivo) {
         } 
         //Si no es permitida, se despliega el mensaje de error.
         if (!permitida) { 
-            mierror = "Comprueba la extensiï¿½n de los archivos a subir. \nSï¿½lo se pueden subir archivos con extensiones: " + extensiones_permitidas.join(); 
+            mierror = "Comprueba la extensión de los archivos a subir. \nSólo se pueden subir archivos con extensiones: " + extensiones_permitidas.join(); 
         }else{ 
             //Si se permite, llamar a la funcion ajax encargada de invocar al servlet que sube el archivo
             ajaxFunction();    
@@ -179,7 +179,7 @@ function cancelaLectura(){
  * Funcion para desplegar el mensaje de respuesta de la lectura
  */
 function errorLectura()	{
-    var msg="La lectura fue exitosa";
+    var msg="La lectura fue exitosa"
     document.getElementById("errorLectura").innerHTML=""+msg;
     muestraResultado();
 }

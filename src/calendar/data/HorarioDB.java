@@ -84,7 +84,7 @@ public class HorarioDB
                 String horaInicio = rs.getString("horaInicio");
                 String temp[] = horaInicio.split(":");
                 
-                int horaDeInicio = Integer.parseInt(temp[0]);
+                int horaDeInicio = Integer.parseInt(temp[0]) - 1;
                 int minutoDeInicio = Integer.parseInt(temp[1]);
                 
                 cal.setTime(utilDate);
@@ -100,18 +100,13 @@ public class HorarioDB
                 String horaFin = rs.getString("horaFin");
                 String tempFin[] = horaFin.split(":");
                 
-                int horaDeFin = Integer.parseInt(tempFin[0]);
-                int minutoDeFin = Integer.parseInt(tempFin[1]);
+                int horaDeFin = Integer.parseInt(temp[0]);
+                int minutoDeFin = Integer.parseInt(temp[1]);
                 
-                
-                double duracion = (horaDeFin - horaDeInicio) - (double) minutoDeInicio / 60;
-                duracion *= 60 * 60 * 1000;
-                System.out.println(duracion);
-                long millisfin = iniciomillis + (long) duracion;
-                //millisfin += minutoDeFin * 60 * 1000;
+                int millisfin = ((horaDeFin - horaDeInicio) * 60 * 60 * 1000) + (30 * 60 * 1000);
                 
                 actividad.setFechaInicio(iniciomillis);
-                actividad.setFechaFin(millisfin);
+                actividad.setFechaFin(iniciomillis + millisfin);
                 actividad.setSalon(rs.getString("salon"));
                 actividad.setNombreUsuario(rs.getString("nombreUsuario"));
                 actividad.setApellidoUsuario(rs.getString("apellidoUsuario"));
@@ -148,7 +143,8 @@ public class HorarioDB
                 String horaInicio = rs.getString("horaInicio");
                 String temp[] = horaInicio.split(":");
                 
-                int horaDeInicio = Integer.parseInt(temp[0]) - 1;
+                int horaDeInicio = Integer.parseInt(temp[0]);
+//                int horaDeInicio = Integer.parseInt(temp[0]) - 1;
                 int minutoDeInicio = Integer.parseInt(temp[1]);
                 
                 cal.setTime(utilDate);
@@ -167,6 +163,7 @@ public class HorarioDB
                 int horaDeFin = Integer.parseInt(temp[0]);
                 int minutoDeFin = Integer.parseInt(temp[1]);
                 
+//                long millisfin = iniciomillis + rs.getInt("duracion") * 60 * 60 * 1000;
                 double duracionmillis = rs.getDouble("duracion") * 60 * 60 * 1000;
                 long millisfin = iniciomillis + (long)duracionmillis;
                 
@@ -178,49 +175,6 @@ public class HorarioDB
                 
                 horario.agregaActividad(actividad);
             }
-            
-            return horario;
-        }
-        catch (SQLException e)
-        {
-            return null;
-        }
-        finally
-        {
-            pool.freeConnection(connection);
-        }
-    }
-    
-    public static String getHorarioGrupo(int crn)
-    {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        
-        String query = "Select Distinct diaSemana, horaInicio, horaFin From Horarios WHERE crn = '" + crn + "'";
-        String horario = "";
-        String horas   = "";
-        
-        try
-        {
-            ps = connection.prepareStatement(query);
-            rs = ps.executeQuery();
-            
-            while (rs.next())
-            {
-                if (horario.isEmpty())
-                    horario = rs.getString("diaSemana");
-                else
-                    horario += " y " + rs.getString("diaSemana") + " de ";
-                
-                if (horas.isEmpty())
-                {
-                    horas = rs.getString("horaInicio") + " a " + rs.getString("horaFin");
-                }
-            }
-            
-            horario = horario + horas;
             
             return horario;
         }

@@ -1,5 +1,6 @@
 <%String pageTitle = "SISCON | Buscar Materia Por Atributo";%>
 <%@ include file="includes/header_aplicacion.jsp" %>
+
 <div class="container">
     <div class="row">
       <div class="span7 offset2">
@@ -14,10 +15,8 @@
                               <option value="nombreMateria">Nombre Materia</option>
                               <option value="siglasCarrera">Siglas Carrera</option>
                           </select>
-                          
-                        <input name="atributo2" type="text" class="input-xlarge" id="atributo">
-                        <br />
-                        <div id="showAnioPlan" name="showAnioPlan" style="display:none;"><select name="anioPlan" id="anioPlan"><option>2011</option><option>2012</option></select></div>
+                             
+                        <input name="atributo2" type="text" class="input-xlarge" id="atributo"><article></article>
                       <script src="http://code.jquery.com/jquery-latest.js"></script>
                       <script>
                       
@@ -25,12 +24,12 @@
           var str = "";
           $("select option:selected").each(function () {
             if ($(this).val()=='Siglas Carrera')
-            {
-                $('#showAnioPlan').show();    
-            }
-          });
-                
-    });
+              $('<span>A&ntilde;o : </span>&nbsp; &nbsp; &nbsp;<select name="anioPlan"> <option>2011</option></select>').appendTo('article');    
+       
+            
+              });
+        })
+        .change();
 </script>
                       
                         

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_ID" version="2.4">
+  <javaee:display-name>siscon</javaee:display-name>
   <servlet>
+    <javaee:description>Servlet for file uploads</javaee:description>
+    <javaee:display-name>File Upload Servlet</javaee:display-name>
     <servlet-name>FileUploadServlet</servlet-name>
     <servlet-class>servlets.FileUploadServlet</servlet-class>
   </servlet>
@@ -82,7 +85,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>FileUploadServlet</servlet-name>
-    <url-pattern>/FileUploadServlet</url-pattern>
+    <url-pattern>/servlet/FileUploadServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>registroExcel</servlet-name>

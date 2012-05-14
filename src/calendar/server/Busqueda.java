@@ -36,7 +36,7 @@ public class Busqueda extends HttpServlet {
         
         String tipoDeConsulta = request.getParameter("tipoDeConsulta");
         String objeto = request.getParameter("objeto");
-        
+       
         String url = "/verProfesores.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         
@@ -62,7 +62,7 @@ public class Busqueda extends HttpServlet {
             int indexUsuario = Integer.parseInt(request.getParameter("id"));
             Usuario usuario =  UsuarioDB.seleccionaUsuarioPorId(indexUsuario);
             request.setAttribute("usuario", usuario);
-
+            
             dispatcher = getServletContext().getRequestDispatcher(url);
             dispatcher.forward(request, response);
 
@@ -80,13 +80,10 @@ public class Busqueda extends HttpServlet {
        }
        else if (objeto.equals("materia"))
        {
-           url = "/desplegar_materia.jsp";
+           url = "/verMateria.jsp";
            
            String atributo1 = request.getParameter("atributo1");
            String valor1    = request.getParameter("valor1");
-           
-           if (valor1 == null)
-               valor1 = "";
            
            String atributo2 = request.getParameter("anioPlan");
            
@@ -103,9 +100,6 @@ public class Busqueda extends HttpServlet {
                
                materias = MateriaDB.seleccionaMateria(attr2, val2);
            }
-           
-           
-           request.setAttribute("materias", materias);
            
            dispatcher = getServletContext().getRequestDispatcher(url);
            dispatcher.forward(request, response);
