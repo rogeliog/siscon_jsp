@@ -212,7 +212,7 @@ CREATE  TABLE IF NOT EXISTS `SISCON`.`Telefono` (
   `indexUsuario` INT(11) NOT NULL DEFAULT '0' ,
   `idDepartamento` INT(11) NOT NULL DEFAULT '0' ,
   `telefono` VARCHAR(20) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL ,
-  `extension` VARCHAR(10) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NULL DEFAULT NULL ,
+  `extension` VARCHAR(10) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NULL DEFAULT '' ,
   PRIMARY KEY (`idTelefono`, `indexUsuario`, `idDepartamento`) ,
   INDEX `TelefonoUsuario` (`indexUsuario` ASC, `idDepartamento` ASC) ,
   CONSTRAINT `TelefonoUsuario`
@@ -369,7 +369,7 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY D
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `SISCON`.`VhorariosProfesores`;
 USE `SISCON`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `SISCON`.`VhorariosProfesores` AS select `u`.`idUsuario` AS `idUsuario`,`u`.`nombreUsuario` AS `nombreUsuario`,`u`.`apellidoUsuario` AS `apellidoUsuario`,`g`.`CRN` AS `CRN`,`g`.`horasClase` AS `horasClase`,`g`.`horasLaboratorio` AS `horasLaboratorio`,`g`.`unidades` AS `unidades`,`g`.`porcentajeClase` AS `porcentajeClase`,`g`.`numeroProfesores` AS `numeroProfesores`,`g`.`claseExclusiva` AS `claseExclusiva`,`g`.`alumnosInscritos` AS `alumnosInscritos`,`m`.`materia` AS `materia`,`m`.`curso` AS `curso`,`m`.`nombreMateria` AS `nombreMateria`,`p`.`idPeriodo` AS `idPeriodo`,`p`.`anio` AS `anio`,`p`.`periodo` AS `periodo`,`h`.`salon` AS `salon`,`h`.`diaSemana` AS `diaSemana`,`h`.`horaInicio` AS `horaInicio`,`h`.`horaFin` AS `horaFin` from ((((`SISCON`.`Usuario` `u` join `SISCON`.`Grupo` `g` on(((`u`.`indexUsuario` = `g`.`indexUsuario`) and (`u`.`idDepartamento` = `g`.`idDepartamento`)))) join `SISCON`.`Materia` `m` on(((`g`.`materia` = `m`.`materia`) and (`g`.`curso` = `m`.`curso`)))) join `SISCON`.`Periodo` `p` on((`g`.`idPeriodo` = `p`.`idPeriodo`))) join `SISCON`.`Horarios` `h` on(((`h`.`CRN` = `g`.`CRN`) and (`h`.`indexUsuario` = `g`.`indexUsuario`)))) WHERE `u`.`nombreUsuario` IS NOT NULL order by `u`.`idUsuario`,`g`.`CRN`,`p`.`idPeriodo`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `SISCON`.`VhorariosProfesores` AS select `u`.`idUsuario` AS `idUsuario`,`u`.`nombreUsuario` AS `nombreUsuario`,`u`.`apellidoUsuario` AS `apellidoUsuario`,`g`.`CRN` AS `CRN`,`g`.`horasClase` AS `horasClase`,`g`.`horasLaboratorio` AS `horasLaboratorio`,`g`.`unidades` AS `unidades`,`g`.`porcentajeClase` AS `porcentajeClase`,`g`.`numeroProfesores` AS `numeroProfesores`,`g`.`claseExclusiva` AS `claseExclusiva`,`g`.`alumnosInscritos` AS `alumnosInscritos`,`m`.`materia` AS `materia`,`m`.`curso` AS `curso`,`m`.`nombreMateria` AS `nombreMateria`,`p`.`idPeriodo` AS `idPeriodo`,`p`.`anio` AS `anio`,`p`.`periodo` AS `periodo`,`h`.`salon` AS `salon`,`h`.`diaSemana` AS `diaSemana`,`h`.`horaInicio` AS `horaInicio`,`h`.`horaFin` AS `horaFin` from ((((`SISCON`.`Usuario` `u` join `SISCON`.`Grupo` `g` on(((`u`.`indexUsuario` = `g`.`indexUsuario`) and (`u`.`idDepartamento` = `g`.`idDepartamento`)))) join `SISCON`.`Materia` `m` on(((`g`.`materia` = `m`.`materia`) and (`g`.`curso` = `m`.`curso`)))) join `SISCON`.`Periodo` `p` on((`g`.`idPeriodo` = `p`.`idPeriodo`))) join `SISCON`.`Horarios` `h` on(((`h`.`CRN` = `g`.`CRN`) and (`h`.`indexUsuario` = `g`.`indexUsuario`)))) order by `u`.`idUsuario`,`g`.`CRN`,`p`.`idPeriodo`;
 
 -- -----------------------------------------------------
 -- View `SISCON`.`VplanesCarreras`
@@ -403,3 +403,214 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY D
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Departamento`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Departamento` (`idDepartamento`, `siglas`, `departamento`) VALUES (1, 'CS', 'Ciencias Computacionales');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (1, 1, 'L00215087', 'Elda Guadalupe', 'Quiroga Gonzalez', 'F', 'x@itesm.mx', 0, '\'\'', 0, 'P');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (2, 1, 'L00276543', 'Ramon Felipe', 'Brena Pinero', 'M', 'y@itesm.mx', 0, '\'\'', 0, 'P');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (3, 1, 'L00265355', 'Hugo', 'Terashima Marin', 'M', 'w@itesm.mx', 0, '2012b50d721667cc8c83a045a770d9e6', 0, 'P');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (4, 1, 'L00234153', 'Juan Arturo', 'Nolazco Flores', 'M', 'z@itesm.mx', 1, '12345', 1, 'P');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Telefono`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Telefono` (`idTelefono`, `indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES (1, 1, 1, '83284488', NULL);
+INSERT INTO `SISCON`.`Telefono` (`idTelefono`, `indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES (2, 1, 1, '83582000', '4592');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Carrera`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Carrera` (`idCarrera`, `nombreCarrera`, `siglasCarrera`) VALUES (1, 'Ingeniero en Tecnologias de la Computacion', 'ITC');
+INSERT INTO `SISCON`.`Carrera` (`idCarrera`, `nombreCarrera`, `siglasCarrera`) VALUES (2, 'Ingeniero en Tecnologias de la Informacion y la Comunicacion', 'ITIC');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`PlanDeEstudios`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`PlanDeEstudios` (`idPlanDeEstudios`, `idCarrera`, `anioPlan`, `descripcion`) VALUES (1, 1, '2009', 'Plan de Estudios 2009');
+INSERT INTO `SISCON`.`PlanDeEstudios` (`idPlanDeEstudios`, `idCarrera`, `anioPlan`, `descripcion`) VALUES (2, 1, '2011', 'Plan de Estudios 2011');
+INSERT INTO `SISCON`.`PlanDeEstudios` (`idPlanDeEstudios`, `idCarrera`, `anioPlan`, `descripcion`) VALUES (3, 2, '2011', 'Plan de Estudios 2011');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Semestre`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (1, 1, 1, '0');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (2, 1, 1, '1');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (3, 1, 1, '2');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (4, 1, 1, '3');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (5, 1, 1, '4');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (6, 1, 1, '5');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (7, 1, 1, '6');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (8, 1, 1, '7');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (9, 1, 1, '8');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (10, 1, 1, '9');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (11, 2, 1, '0');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (12, 2, 1, '1');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (13, 2, 1, '2');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (14, 2, 1, '3');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (15, 2, 1, '4');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (16, 2, 1, '5');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (17, 2, 1, '6');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (18, 2, 1, '7');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (19, 2, 1, '8');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (20, 2, 1, '9');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (21, 3, 2, '0');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (22, 3, 2, '1');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (23, 3, 2, '2');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (24, 3, 2, '3');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (25, 3, 2, '4');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (26, 3, 2, '5');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (27, 3, 2, '6');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (28, 3, 2, '7');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (29, 3, 2, '8');
+INSERT INTO `SISCON`.`Semestre` (`idSemestre`, `idPlan`, `idCarrera`, `semestre`) VALUES (30, 3, 2, '9');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Materia`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Materia` (`materia`, `curso`, `nombreMateria`, `disciplina`) VALUES ('TC', '1014', 'Fundamentos de Programacion', 'Ciencias Computacionales');
+INSERT INTO `SISCON`.`Materia` (`materia`, `curso`, `nombreMateria`, `disciplina`) VALUES ('F', '1001', 'Introduccion a la Fisica', 'Fisica');
+INSERT INTO `SISCON`.`Materia` (`materia`, `curso`, `nombreMateria`, `disciplina`) VALUES ('H', '1001', 'Ingles Remedial I', 'Humanidades');
+INSERT INTO `SISCON`.`Materia` (`materia`, `curso`, `nombreMateria`, `disciplina`) VALUES ('TC', '1003', 'Matematicas Discretas', 'Matematicas');
+INSERT INTO `SISCON`.`Materia` (`materia`, `curso`, `nombreMateria`, `disciplina`) VALUES ('TC', '1022', 'Introduccion a la Ingenieria en Tecnologias Computacionales', 'Ciencias Computacionales');
+INSERT INTO `SISCON`.`Materia` (`materia`, `curso`, `nombreMateria`, `disciplina`) VALUES ('MA', '2009', 'Matematicas III', 'Matematicas');
+INSERT INTO `SISCON`.`Materia` (`materia`, `curso`, `nombreMateria`, `disciplina`) VALUES ('TC', '1021', 'Proyecto de Desarrollo de Videojuegos', 'Ciencias Computacionales');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Periodo`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Periodo` (`idPeriodo`, `anio`, `periodoValue`, `periodo`) VALUES (201111, '2011', '11', 'Enero-Mayo');
+INSERT INTO `SISCON`.`Periodo` (`idPeriodo`, `anio`, `periodoValue`, `periodo`) VALUES (201112, '2011', '12', 'Verano');
+INSERT INTO `SISCON`.`Periodo` (`idPeriodo`, `anio`, `periodoValue`, `periodo`) VALUES (201113, '2011', '13', 'Agosto-Diciembre');
+INSERT INTO `SISCON`.`Periodo` (`idPeriodo`, `anio`, `periodoValue`, `periodo`) VALUES (201211, '2012', '11', 'Enero-Mayo');
+INSERT INTO `SISCON`.`Periodo` (`idPeriodo`, `anio`, `periodoValue`, `periodo`) VALUES (201212, '2012', '12', 'Verano');
+INSERT INTO `SISCON`.`Periodo` (`idPeriodo`, `anio`, `periodoValue`, `periodo`) VALUES (201213, '2012', '13', 'Agosto-Diciembre');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Grupo`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (1, 'TC', '1014', 1, 1, 201111, NULL, '3', '3', '8', '50%', 2, 0, 20);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (1, 'TC', '1014', 1, 2, 201111, NULL, '3', '3', '8', '50%', 2, 0, 20);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (2, 'F', '1001', 1, 3, 201112, NULL, '3', '0', '8', '100%', 1, 0, 10);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (3, 'H', '1001', 1, 4, 201112, NULL, '3', '0', '8', '100%', 1, 0, 20);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (4, 'TC', '1003', 1, 1, 201112, NULL, '3', '0', '8', '100%', 1, 0, 30);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (5, 'TC', '1022', 1, 2, 201112, NULL, '3', '0', '8', '100%', 1, 0, 30);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (6, 'MA', '2009', 1, 3, 201112, NULL, '3', '0', '8', '100%', 1, 0, 30);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (7, 'TC', '1021', 1, 4, 201113, NULL, '6', '0', '12', '25%', 4, 0, 50);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (7, 'TC', '1021', 1, 1, 201113, NULL, '6', '0', '12', '25%', 4, 0, 50);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (7, 'TC', '1021', 1, 2, 201113, NULL, '6', '0', '12', '25%', 4, 0, 50);
+INSERT INTO `SISCON`.`Grupo` (`CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `atributos`, `horasClase`, `horasLaboratorio`, `unidades`, `porcentajeClase`, `numeroProfesores`, `claseExclusiva`, `alumnosInscritos`) VALUES (7, 'TC', '1021', 1, 3, 201113, NULL, '6', '0', '12', '25%', 4, 0, 50);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`semestreMateria`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1014', 12, 2, 1);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1014', 22, 3, 2);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('F', '1001', 11, 2, 1);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('F', '1001', 21, 3, 2);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('H', '1001', 11, 2, 1);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1003', 21, 3, 2);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1003', 12, 2, 1);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1022', 22, 3, 2);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1022', 12, 2, 1);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1022', 14, 2, 1);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('MA', '2009', 24, 3, 2);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1021', 15, 2, 1);
+INSERT INTO `SISCON`.`semestreMateria` (`materia`, `curso`, `idSemestre`, `idPlan`, `idCarrera`) VALUES ('TC', '1021', 25, 3, 2);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`Horarios`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (1, 1, 'TC', '1014', 1, 1, 201111, 'A5205', 'Lunes', '10:30', '12:00');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (2, 1, 'TC', '1014', 1, 1, 201111, 'A5205', 'Miercoles', '10:30', '12:00');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (3, 1, 'TC', '1014', 1, 2, 201111, 'A5205', 'Lunes', '10:30', '12:00');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (4, 1, 'TC', '1014', 1, 2, 201111, 'A5205', 'Miercoles', '10:30', '12:00');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (5, 2, 'F', '1001', 1, 3, 201112, 'A5205', 'Martes', '10:30', '12:00');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (6, 2, 'F', '1001', 1, 3, 201112, 'A5205', 'Jueves', '10:30', '12:00');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (7, 3, 'H', '1001', 1, 4, 201112, 'A5205', 'Lunes', '10:30', '12:00');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (8, 3, 'H', '1001', 1, 4, 201112, 'A5205', 'Miercoles', '10:30', '12:00');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (9, 4, 'TC', '1003', 1, 1, 201112, 'A5205', 'Lunes', '12:00', '13:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (10, 4, 'TC', '1003', 1, 1, 201112, 'A5205', 'Miercoles', '12:00', '13:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (11, 5, 'TC', '1022', 1, 2, 201112, 'A5205', 'Martes', '12:00', '13:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (12, 5, 'TC', '1022', 1, 2, 201112, 'A5205', 'Jueves', '12:00', '13:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (13, 6, 'MA', '2009', 1, 3, 201112, 'A5205', 'Lunes', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (14, 6, 'MA', '2009', 1, 3, 201112, 'A5205', 'Miercoles', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (15, 7, 'TC', '1021', 1, 4, 201113, 'A5206', 'Lunes', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (16, 7, 'TC', '1021', 1, 4, 201113, 'A5206', 'Miercoles', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (17, 7, 'TC', '1021', 1, 1, 201113, 'A5206', 'Lunes', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (18, 7, 'TC', '1021', 1, 1, 201113, 'A5206', 'Miercoles', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (19, 7, 'TC', '1021', 1, 2, 201113, 'A5206', 'Lunes', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (20, 7, 'TC', '1021', 1, 2, 201113, 'A5206', 'Miercoles', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (21, 7, 'TC', '1021', 1, 3, 201113, 'A5206', 'Lunes', '18:00', '19:30');
+INSERT INTO `SISCON`.`Horarios` (`idHorarios`, `CRN`, `materia`, `curso`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `salon`, `diaSemana`, `horaInicio`, `horaFin`) VALUES (22, 7, 'TC', '1021', 1, 3, 201113, 'A5206', 'Miercoles', '18:00', '19:30');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`tablaNotificacion`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (1, 1, 1);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SISCON`.`actividadesExtra`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SISCON`;
+INSERT INTO `SISCON`.`actividadesExtra` (`idActividadesExtra`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `duracion`, `actividad`) VALUES (1, 1, 1, 201111, 'Lunes', '10:00', '12:30', '2.5', 'Comida');
+INSERT INTO `SISCON`.`actividadesExtra` (`idActividadesExtra`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `duracion`, `actividad`) VALUES (1, 1, 2, 201111, 'Martes', '08:00', '09:30', '1.5', 'Asesoria');
+
+COMMIT;
+
+
