@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.math.BigInteger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
 *
@@ -28,14 +34,10 @@ public class Registro extends HttpServlet {
   private static final long serialVersionUID = 1L;
    
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-           throws ServletException, IOException, SQLException {
+           throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
        response.setContentType("text/html;charset=UTF-8");
-<<<<<<< HEAD
-        Connection con = Conexion.con();
-=======
-       Connection con = null;
-       con = Conexion.con();
->>>>>>> cfebd3bdf2b56a79e6af6a03f4e1978fc41a9a22
+       
+       Connection con = Conexion.con();
        Statement query = (Statement) con.createStatement();
        
        HttpSession session = request.getSession();
@@ -44,6 +46,12 @@ public class Registro extends HttpServlet {
        
        String matricula = request.getParameter("matricula");
        String contrasenia = request.getParameter("contraseniaC");
+       
+	       //usando MD5 para proteger la contraseniaMD5
+	       MessageDigest m = MessageDigest.getInstance("MD5");
+	       m.update(contrasenia.getBytes(), 0, contrasenia.length());
+	       String contraseniaMD5 = new BigInteger(1, m.digest()).toString(16);
+       
        String nombre = request.getParameter("nombre");
        String apellidos = request.getParameter("apellidoP") + " " + request.getParameter("apellidoM");
        char genero = request.getParameter("sexo").charAt(0);
@@ -94,7 +102,7 @@ public class Registro extends HttpServlet {
          else {
            if (cont == 1) {
                cont = 0;
-               c = "SELECT * FROM Usuario, tablaNotificacion WHERE Usuario.idUsuario = '" + matricula + "'";
+               c = "SELECT * FROM Usuario, tablaNotificacion WHERE usuario.idUsuario = '" + matricula + "'";
                rs = query.executeQuery(c);
                  while(rs.next()) {
                    cont++;
@@ -102,8 +110,8 @@ public class Registro extends HttpServlet {
                  if (cont == 1) {
                    
                    q = "UPDATE Usuario SET `genero` = '" + genero + "', `email` = '" + email + "', `password` = '" + 
-                       contrasenia + "', `administrador` = 0, `rol` = '" + rol + "', `buscarHorarioProfesores` = " + prof + ", `buscarHorarioMateria` = " + materia + ", " +
-                       		"`buscarHorarioSalon` = " + salon + " WHERE `Usuario`.`idUsuario` = '" + matricula + "'";
+                       contraseniaMD5 + "', `administrador` = 0, `rol` = '" + rol + "', `buscarHorarioProfesores` = " + prof + ", `buscarHorarioMateria` = " + materia + ", " +
+                       		"`buscarHorarioSalon` = " + salon + " WHERE `usuario`.`idUsuario` = '" + matricula + "'";
                    query.executeUpdate(q);
                    
                    String qe = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "'";
@@ -141,7 +149,7 @@ public class Registro extends HttpServlet {
              else if (cont == 0) {
                q = "INSERT INTO Usuario (`idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, " +
                   "`password`, `administrador`, `rol`, `buscarHorarioProfesores`, `buscarHorarioMateria`, `buscarHorarioSalon`) VALUES ('" + departamento + 
-                  "', '" + matricula + "', '" + nombre + "', '" + apellidos + "', '" + genero + "', '" + email + "', 0, '" + contrasenia + "', 0, '" + rol + "', " 
+                  "', '" + matricula + "', '" + nombre + "', '" + apellidos + "', '" + genero + "', '" + email + "', 0, '" + contraseniaMD5 + "', 0, '" + rol + "', " 
                   + prof + ", " + materia + ", " + salon + ")";
                 
                 query.executeUpdate(q);
@@ -174,9 +182,6 @@ public class Registro extends HttpServlet {
            
          }
        }
-       
-////       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registrar_usuario.jsp");
-////       dispatcher.forward(request, response);
        response.sendRedirect("registrar_usuario.jsp");
      
    }
@@ -194,7 +199,7 @@ public class Registro extends HttpServlet {
            throws ServletException, IOException {
        try {
            processRequest(request, response);
-       } catch (SQLException ex) {
+       } catch (SQLException | NoSuchAlgorithmException ex) {
            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
        }
    }
@@ -211,7 +216,7 @@ public class Registro extends HttpServlet {
            throws ServletException, IOException {
        try {
            processRequest(request, response);
-       } catch (SQLException ex) {
+       } catch (SQLException | NoSuchAlgorithmException ex) {
            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
        }
    }

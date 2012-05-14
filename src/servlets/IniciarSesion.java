@@ -1,16 +1,23 @@
 package servlets;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import clases.Conexion;
 import clases.Usuarios;
@@ -27,16 +34,9 @@ public class IniciarSesion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
-		throws ServletException, IOException, SQLException {
+		throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
 	        response.setContentType("text/html;charset=UTF-8");
-<<<<<<< HEAD
 	        Connection con = Conexion.con();
-=======
-	        
-	        Connection con = null;
-	        con = Conexion.con();
-	        
->>>>>>> cfebd3bdf2b56a79e6af6a03f4e1978fc41a9a22
 	        Statement query = (Statement) con.createStatement();
 	        
 	        HttpSession session = request.getSession();
@@ -57,13 +57,17 @@ public class IniciarSesion extends HttpServlet {
 	    	boolean alta = false;
 	    	boolean esAdmin = false;
 	    	char rol = ' ';
-//	    	String telefonos[] = {"0", "0", "0", "0", "0"};
+	    	String telefonos[] = {"0", "0", "0", "0", "0"};
 	    	boolean buscarProfesores = false;
 	    	boolean buscarMateria = false;
 	    	boolean buscarSalon = false;
 	    	
+	    		//convertir contrasenia a MD5
+	    		MessageDigest m = MessageDigest.getInstance("MD5");
+	    		m.update(contrasenia.getBytes(), 0, contrasenia.length());
+	    		String contraseniaMD5 = new BigInteger(1, m.digest()).toString(16);
 	    	
-	        String q = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "' and password ='" + contrasenia + "'";
+	        String q = "SELECT * FROM Usuario WHERE idUsuario='" + matricula + "' and password ='" + contraseniaMD5 + "'";
 	        ResultSet rs = query.executeQuery(q);
 	        while (rs.next()) {
 	        	cont++;
@@ -79,19 +83,21 @@ public class IniciarSesion extends HttpServlet {
 	        	buscarProfesores = rs.getBoolean("buscarHorarioProfesores");
 	        	buscarMateria = rs.getBoolean("buscarHorarioMateria");
 	        	buscarSalon = rs.getBoolean("buscarHorarioSalon");
+	        	
 	        }
 
 	        if (cont == 1) {
-//	        	q = "SELECT telefono, extension FROM Telefono, Usuario WHERE Telefono.indexUsuario = Usuario.indexUsuario AND Usuario.idUsuario = '" + matricula + "'";
-//	            rs = query.executeQuery(q);
-//	            int i = 0;
-//	            while (rs.next()) {
-//	            	telefonos[i] = rs.getString("telefono");
-//	            	if(!rs.getString("extension").equals("")) {
-//	            		telefonos[i] += "-" + rs.getString("extension");
-//	            	}
-//	            	i++;
-//	            }
+	        	q = "SELECT Telefono, extension FROM Telefono, Usuario WHERE Telefono.indexUsuario = Usuario.indexUsuario AND Usuario.idUsuario = '" + matricula + "'";
+	            rs = query.executeQuery(q);
+	            int i = 0;
+	            while (rs.next()) {
+	            	telefonos[i] = rs.getString("telefono");
+	            	if(rs.getString("extension").length() > 1) {
+	            		telefonos[i] += "-" + rs.getString("extension");
+	            	}
+	            	i++;	            	
+	            }
+	            
 	        	msg = "";
 	            Usuarios usuario = new Usuarios();
 	            
@@ -106,35 +112,28 @@ public class IniciarSesion extends HttpServlet {
 	            usuario.setAlta(alta);
 	            usuario.setEsAdmin(esAdmin);
 	            usuario.setRol(rol);
-//	            usuario.setTelefonos(telefonos);
+	            usuario.setTelefonos(telefonos);
 	            usuario.setBuscarProfesores(buscarProfesores);
 	            usuario.setBuscarMateria(buscarMateria);
 	            usuario.setBuscarSalon(buscarSalon);
 	            
 	            if (alta) {
 	            	session.setAttribute("usuario", usuario);
-		            // forward = "/bienvenido.jsp";
 		            forward = "bienvenido.jsp";
 		            	
 	            }
 	            else {
 	            	msg = "Porfavor espera a que confirmen tu solicitud";
-		            // forward = "/index.jsp";
 		            forward = "index.jsp";
 	            }
 	            
 	        } else {
 	            msg = "Usuario o contrase&ntilde;a incorrecta";
-	            // forward = "/index.jsp";
 	            forward = "index.jsp";
 	        }
 	        
 	        session.setAttribute("msg", msg);
-
-	        // RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(forward);
-	        // dispatcher.forward(request, response);
-           response.sendRedirect(forward);
-	     
+	        response.sendRedirect(forward);
 	}
 
 	/**
@@ -154,7 +153,7 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
+        } catch (SQLException | NoSuchAlgorithmException ex) {
             Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -167,7 +166,7 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
+        } catch (SQLException | NoSuchAlgorithmException ex) {
             Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
