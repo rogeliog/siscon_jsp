@@ -83,7 +83,8 @@
                                 <div class="control-group">
                                   <label class="control-label" for="telefonos">Tel&eacute;fonos</label>
                                   <div class="controls">
-                                    <textarea id="telefonos" name="telefonos" rows="3"><% String tel[] = usuario.getTelefonos(); for(int i = 0; i < tel.length; i++) { if(!tel[i].equals("0")) %><%= tel[i] %><% } %></textarea>
+                                    <textarea id="telefonos" name="telefonos" rows="3"><% String tel[] = usuario.getTelefonos(); for(int i = 0; i < tel.length; i++) { if(!tel[i].equals("0")) %><%= tel[i] %>
+<% } %></textarea>
                                     <p class="help-block">Escriba su(s) tel&eacute;fono(s) y su extensi&oacute;n separadas por saltos de l&iacute;nea.</p>
                                     <p class="help-block">Ejemplo:<br />83582000-4592<br />83284488</p>
                                   </div>

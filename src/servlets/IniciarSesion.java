@@ -87,13 +87,14 @@ public class IniciarSesion extends HttpServlet {
 	        }
 
 	        if (cont == 1) {
-	        	q = "SELECT Telefono, extension FROM Telefono, Usuario WHERE Telefono.indexUsuario = Usuario.indexUsuario AND Usuario.idUsuario = '" + matricula + "'";
+	        	q = "SELECT telefono,extension FROM VtelefonosUsuarios WHERE idUsuario = '" + matricula + "'";
 	            rs = query.executeQuery(q);
 	            int i = 0;
 	            while (rs.next()) {
 	            	telefonos[i] = rs.getString("telefono");
-	            	if(rs.getString("extension").length() > 1) {
-	            		telefonos[i] += "-" + rs.getString("extension");
+	            	if(rs.getString("extension") != null) {
+	            		if(rs.getString("extension").length() > 1)
+	            			telefonos[i] += "-" + rs.getString("extension");
 	            	}
 	            	i++;	            	
 	            }
