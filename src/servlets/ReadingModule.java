@@ -105,6 +105,7 @@ public class ReadingModule extends HttpServlet {
              int numeroProfesores = 0;
              int claseExclusiva = 0;
              int alumnosInscritos = 0;
+             String estado ="";
              
              //Plan de estudios
              int idPlanDeEstudios = 0;
@@ -170,7 +171,7 @@ public class ReadingModule extends HttpServlet {
            
              // Leer por nombre de columna 
              switch(columnName){
-                     case "per铆odo": idPeriodo = Integer.parseInt(stringCellValue.substring(0, 6));    //Lee el periodo    
+                     case "per韔do": idPeriodo = Integer.parseInt(stringCellValue.substring(0, 6));    //Lee el periodo    
                             anio = stringCellValue.substring(0, 4);
                             periodoValue = Integer.parseInt(stringCellValue.substring(4, 6));
                             switch(periodoValue){
@@ -185,6 +186,7 @@ public class ReadingModule extends HttpServlet {
                      case "materia": materia = stringCellValue; break;
                      case "curso": curso = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
                      case "nombredelamateria": nombreMateria = stringCellValue; break;
+                     case "estado": estado = stringCellValue; break;                     
                      case "hc": horasClase = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
                      case "hl": horasLabo = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
                      case "un": unidades = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
@@ -217,7 +219,7 @@ public class ReadingModule extends HttpServlet {
                      case "sa3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[19] = "Sabado";} break;
                      case "do3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[20] = "Domingo";} break;
                      case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length()-1);} break;
-                     case "sal贸n1": if(stringCellValue.indexOf(".") != -1){salon += stringCellValue.substring(0, stringCellValue.indexOf("."));
+                     case "sal髇1": if(stringCellValue.indexOf(".") != -1){salon += stringCellValue.substring(0, stringCellValue.indexOf("."));
                                     } else {
                                         salon += stringCellValue;
                                     }break;
@@ -225,15 +227,15 @@ public class ReadingModule extends HttpServlet {
                      case "porcentaje1": porcentaje[0] = stringCellValue; break;
                      case "porcentaje2": porcentaje[1] = stringCellValue; break;
                      case "porcentaje3": porcentaje[2] = stringCellValue; break;
-                     case "n贸mina1": idUsuario[0] = stringCellValue; break;
+                     case "n髆ina1": idUsuario[0] = stringCellValue; break;
                      case "nombre1": nombreUsuario[0] = stringCellValue; break;
                      case "apaterno1": apellidoUsuario[0] = stringCellValue; break;
                      case "amaterno1": apellidoUsuario[0].concat(stringCellValue); break;
-                     case "n贸mina2": idUsuario[1] = stringCellValue; break;
+                     case "n髆ina2": idUsuario[1] = stringCellValue; break;
                      case "nombre2": nombreUsuario[1] = stringCellValue; break;
                      case "apaterno2": apellidoUsuario[1] = stringCellValue; break;
                      case "amaterno2": apellidoUsuario[1].concat(stringCellValue); break;
-                     case "n贸mina3": idUsuario[2] = stringCellValue; break;
+                     case "n髆ina3": idUsuario[2] = stringCellValue; break;
                      case "nombre3": nombreUsuario[2] = stringCellValue; break;
                      case "apaterno3": apellidoUsuario[2] = stringCellValue; break;
                      case "amaterno3": apellidoUsuario[2].concat(stringCellValue); break;            
@@ -363,7 +365,7 @@ public class ReadingModule extends HttpServlet {
                       pstmt.setInt(5, idDepartamento);
                       pstmt.setInt(6, idPeriodo);
                       rs = pstmt.executeQuery();
-                      if (!rs.next()){
+                      if (!rs.next() && estado.equals("Activo")){
                           pstmt = conexion.prepareStatement(queryGrupo); // create a statement
                           pstmt.setInt(1, crn); // set input parameter 1
                           pstmt.setString(2, materia); // set input parameter 2
