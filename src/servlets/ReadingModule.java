@@ -121,13 +121,27 @@ public class ReadingModule extends HttpServlet {
              
              // Horarios
              int idHorarios = 0;
-             String salon = "";
+             String numeroHorarios = "";
+             String salon1 = "";
+             String salon2 = "";
+             String salon3 = "";
              String [] diaSemana = new String [21];
-             Date hora = null;
-             int horaInicio = 0;
-             int horaFin = 0;
-             int minutosInicio = 0;
-             int minutosFin = 0;
+             Date hora1 = null;
+             int horaInicio1 = 0;
+             int horaFin1 = 0;
+             int minutosInicio1 = 0;
+             int minutosFin1 = 0;
+             Date hora2 = null;
+             int horaInicio2 = 0;
+             int horaFin2 = 0;
+             int minutosInicio2 = 0;
+             int minutosFin2 = 0;
+             Date hora3 = null;
+             int horaInicio3 = 0;
+             int horaFin3 = 0;
+             int minutosInicio3 = 0;
+             int minutosFin3 = 0;
+            
              
              
              // Telefono
@@ -193,10 +207,19 @@ public class ReadingModule extends HttpServlet {
                      case "inscritos": alumnosInscritos = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
                      case "atributos": atributos = stringCellValue; break;
                      case "#excint": claseExclusiva = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
-                     case "horainicio1": if(!stringCellValue.equals("") ) {hora = myCell.getDateCellValue(); horaInicio=hora.getHours(); 
-                                        minutosInicio=hora.getMinutes(); }break;
-                     case "horafin1": if(!stringCellValue.equals("")) {hora = myCell.getDateCellValue(); horaFin = hora.getHours();
-                                      minutosFin = hora.getMinutes();} break;
+                     case "#horarios": numeroHorarios =  stringCellValue; break;
+                     case "horainicio1": if(!stringCellValue.equals("") ) {hora1 = myCell.getDateCellValue(); horaInicio1=hora1.getHours(); 
+                                        minutosInicio1=hora1.getMinutes(); }break;
+                     case "horafin1": if(!stringCellValue.equals("")) {hora1 = myCell.getDateCellValue(); horaFin1 = hora1.getHours();
+                                      minutosFin1 = hora1.getMinutes();} break;
+                     case "horainicio2": if(!stringCellValue.equals("") ) {hora2 = myCell.getDateCellValue(); horaInicio2=hora2.getHours(); 
+                     minutosInicio2=hora2.getMinutes(); }break;
+                     case "horafin2": if(!stringCellValue.equals("")) {hora2 = myCell.getDateCellValue(); horaFin2 = hora2.getHours();
+                     minutosFin2 = hora2.getMinutes();} break;
+                     case "horainicio3": if(!stringCellValue.equals("") ) {hora3 = myCell.getDateCellValue(); horaInicio3=hora3.getHours(); 
+                     minutosInicio3=hora3.getMinutes(); }break;
+                     case "horafin3": if(!stringCellValue.equals("")) {hora3 = myCell.getDateCellValue(); horaFin3 = hora3.getHours();
+                     minutosFin3 = hora3.getMinutes();} break;
                      case "lu1": if(stringCellValue != null && !stringCellValue.equals("")  ){ diaSemana[0] = "Lunes";} break;
                      case "ma1": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[1] = "Martes";} break;
                      case "mi1": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[2] = "Miercoles";} break;
@@ -218,10 +241,20 @@ public class ReadingModule extends HttpServlet {
                      case "vi3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[18] = "Viernes";} break;
                      case "sa3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[19] = "Sabado";} break;
                      case "do3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[20] = "Domingo";} break;
-                     case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length()-1);} break;
-                     case "salón1": if(stringCellValue.indexOf(".") != -1){salon += stringCellValue.substring(0, stringCellValue.indexOf("."));
+                     case "edificio1": if(!stringCellValue.equals("")) {salon1 = stringCellValue.substring(2, stringCellValue.length()-1);} break;
+                     case "salón1": if(stringCellValue.indexOf(".") != -1){salon1 += stringCellValue.substring(0, stringCellValue.indexOf("."));
                                     } else {
-                                        salon += stringCellValue;
+                                        salon1 += stringCellValue;
+                                    }break;
+                     case "edificio2": if(!stringCellValue.equals("")) {salon2 = stringCellValue.substring(2, stringCellValue.length()-1);} break;
+                     case "salón2": if(stringCellValue.indexOf(".") != -1){salon2 += stringCellValue.substring(0, stringCellValue.indexOf("."));
+                                    } else {
+                                        salon2 += stringCellValue;
+                                    }break;
+                     case "edificio3": if(!stringCellValue.equals("")) {salon3 = stringCellValue.substring(2, stringCellValue.length()-1);} break;
+                     case "salón3": if(stringCellValue.indexOf(".") != -1){salon3 += stringCellValue.substring(0, stringCellValue.indexOf("."));
+                                    } else {
+                                        salon3 += stringCellValue;
                                     }break;
                      case "#profesores": numeroProfesores = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
                      case "porcentaje1": porcentaje[0] = stringCellValue; break;
@@ -356,7 +389,7 @@ public class ReadingModule extends HttpServlet {
                           pstmt.clearParameters();
                       }           
                   
-                      
+                      //GRUPOS
                       pstmt = conexion.prepareStatement(checkGrupo); // create a statement
                       pstmt.setInt(1, crn); // set input parameter 1
                       pstmt.setString(2, materia);
@@ -384,10 +417,12 @@ public class ReadingModule extends HttpServlet {
                           pstmt.executeUpdate();
                           pstmt.clearParameters();
                       }pstmt.clearParameters(); 
-                      
+                   double numero = Double.parseDouble(numeroHorarios);
+                   System.out.println("numeroHorarios="+numero);
                    for(int k=0; k < 20; k++){
                        if(diaSemana[k] != null){
-                       if(!diaSemana[k].equals("")){                           
+                       if(!diaSemana[k].equals("")){                    	   
+                    	   if(k >= 0 && k <= 6 && numero > 0){
                               pstmt = conexion.prepareStatement(queryHorarios);
                               pstmt.setInt(1, crn); // set input parameter 1
                               pstmt.setString(2, materia); // set input parameter 2
@@ -395,12 +430,43 @@ public class ReadingModule extends HttpServlet {
                               pstmt.setInt(4, idDepartamento);
                               pstmt.setInt(5, indexUsuario[cont]);//
                               pstmt.setInt(6, idPeriodo);
-                              pstmt.setString(7, salon);
+                              pstmt.setString(7, salon1);
                               pstmt.setString(8, diaSemana[k]);
-                              pstmt.setString(9, horaInicio+":"+minutosInicio);
-                              pstmt.setString(10, horaFin+":"+minutosFin);                               
+                              pstmt.setString(9, horaInicio1+":"+minutosInicio1);
+                              pstmt.setString(10, horaFin1+":"+minutosFin1);                               
                               pstmt.executeUpdate(); // execute insert statement
                               pstmt.clearParameters();
+                    	   } 
+                    	   if(k >= 7 && k <= 13 && numero > 1){
+                    		   pstmt = conexion.prepareStatement(queryHorarios);
+                    		   pstmt.setInt(1, crn); // set input parameter 1
+	                           pstmt.setString(2, materia); // set input parameter 2
+	                           pstmt.setInt(3, curso);
+	                           pstmt.setInt(4, idDepartamento);
+	                           pstmt.setInt(5, indexUsuario[cont]);//
+	                           pstmt.setInt(6, idPeriodo);
+	                           pstmt.setString(7, salon2);
+	                           pstmt.setString(8, diaSemana[k]);
+	                           pstmt.setString(9, horaInicio2+":"+minutosInicio2);
+	                           pstmt.setString(10, horaFin2+":"+minutosFin2);                               
+	                           pstmt.executeUpdate(); // execute insert statement
+	                           pstmt.clearParameters();
+                 	   }
+                    	  if(k >= 14 && k <= 21 && numero > 2){
+                 		  pstmt = conexion.prepareStatement(queryHorarios);
+                 		   pstmt.setInt(1, crn); // set input parameter 1
+                           pstmt.setString(2, materia); // set input parameter 2
+                           pstmt.setInt(3, curso);
+                           pstmt.setInt(4, idDepartamento);
+                           pstmt.setInt(5, indexUsuario[cont]);//
+                           pstmt.setInt(6, idPeriodo);
+                           pstmt.setString(7, salon3);
+                           pstmt.setString(8, diaSemana[k]);
+                           pstmt.setString(9, horaInicio3+":"+minutosInicio3);
+                           pstmt.setString(10, horaFin3+":"+minutosFin3);                               
+                           pstmt.executeUpdate(); // execute insert statement
+                           pstmt.clearParameters();
+             	   }
                           }                          
                        }
                    }
