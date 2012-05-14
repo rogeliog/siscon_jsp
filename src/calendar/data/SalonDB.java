@@ -54,7 +54,7 @@ public class SalonDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "' AND idPeriodo='201211'";
+        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "' AND idPeriodo='201112'";
         
         try
         {
@@ -91,7 +91,7 @@ public class SalonDB {
                 String horaInicio = rs.getString("horaInicio");
                 String temp[] = horaInicio.split(":");
                 
-                int horaDeInicio = Integer.parseInt(temp[0]) - 1;
+                int horaDeInicio = Integer.parseInt(temp[0]);
                 int minutoDeInicio = Integer.parseInt(temp[1]);
                 
                 cal.setTime(utilDate);
@@ -110,7 +110,9 @@ public class SalonDB {
                 int horaDeFin = Integer.parseInt(temp[0]);
                 int minutoDeFin = Integer.parseInt(temp[1]);
                 
-                int millisfin = ((horaDeFin - horaDeInicio) * 60 * 60 * 1000) + (30 * 60 * 1000);
+                double duracion = (horaDeFin - horaDeInicio) - (double) minutoDeInicio / 60;
+                duracion *= 60 * 60 * 1000;
+                long millisfin = iniciomillis + (long) duracion;
                 
                 actividad.setFechaInicio(iniciomillis);
                 actividad.setFechaFin(iniciomillis + millisfin);
@@ -127,9 +129,40 @@ public class SalonDB {
         }
         catch (SQLException e)
         {
-        	e.printStackTrace();
-        	return null;
-        	
+            return null;
+        }
+        finally
+        {
+            pool.freeConnection(connection);
+        }
+    }
+    
+    public static String seleccionaSalonPorCrn(int crn)
+    {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "SELECT DISTINCT salon FROM Horarios WHERE crn='" + crn + "'";
+        
+        try
+        {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            String salon = "";
+            
+            while (rs.next())
+            {
+                 salon = rs.getString("salon");
+            }
+            
+            return salon;
+        }
+        catch (SQLException e)
+        {
+            return null;
         }
         finally
         {
