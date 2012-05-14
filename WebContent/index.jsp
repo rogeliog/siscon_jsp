@@ -25,7 +25,7 @@
                     %>
                     	<div class="alert alert-error">
 			        		<a href="#" class="close" data-dismiss="alert">�</a>
-			        		<h4><i class="icon icon-remove-sign"></i> �ERROR!</h4>
+			        		<h4><i class="icon icon-remove-sign"></i>&iexcl;ERROR!</h4>
 			        		<%= msg %>
 		        		</div>
                     <%
