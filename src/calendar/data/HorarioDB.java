@@ -49,7 +49,7 @@ public class HorarioDB
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM VhorariosProfesores WHERE idUsuario='" + idUsuario + "'";
+        String query = "SELECT * FROM VhorariosProfesores WHERE idUsuario='" + idUsuario + "' AND idPeriodo = '201112'"; //
         
         try
         {
@@ -147,7 +147,7 @@ public class HorarioDB
                 String horaInicio = rs.getString("horaInicio");
                 String temp[] = horaInicio.split(":");
                 
-                int horaDeInicio = Integer.parseInt(temp[0]) - 1;
+                int horaDeInicio = Integer.parseInt(temp[0]);
                 int minutoDeInicio = Integer.parseInt(temp[1]);
                 
                 cal.setTime(utilDate);
