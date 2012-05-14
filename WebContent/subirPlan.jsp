@@ -23,13 +23,9 @@
     String[] temp; //String temporal para la fecha y hora que regresa la consulta tipo DATETIME de la base de datos.
     
     //Establecer la conexion a la base de datos y sentencias para realizar las consultas.
-<<<<<<< HEAD
-   Connection connection=null;       
-    connection = Conexion.con();           
-=======
+
     Connection connection=null;
     connection = Conexion.con();         
->>>>>>> cfebd3bdf2b56a79e6af6a03f4e1978fc41a9a22
     Statement statement = (Statement) connection.createStatement(); 
     
     //Consulta de los exceles registrados    

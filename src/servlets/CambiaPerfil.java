@@ -28,8 +28,8 @@ import com.mysql.jdbc.Statement;
 *
 * @author Ana
 */
-@WebServlet("/CambiarPerfil")
-public class CambiarPerfil extends HttpServlet {
+@WebServlet("/CambiaPerfil")
+public class CambiaPerfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 

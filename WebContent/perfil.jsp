@@ -35,7 +35,7 @@
         </div> <!-- /row -->
         <div class="row">      
             <div class="span7 offset2">          
-                        <form class="form-horizontal" action="CambiarPerfil" method="post">
+                        <form class="form-horizontal" action="CambiaPerfil" method="post">
                             <fieldset>
                             <legend>Cambiar mi informaci&oacute;n</legend>
                                 <p style="color:gold"><i><%= cambios %></i></p>

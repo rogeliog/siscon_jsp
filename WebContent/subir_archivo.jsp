@@ -29,7 +29,7 @@
     Statement statement = (Statement) connection.createStatement();              
 
     //Consulta de los exceles registrados    
-    ResultSet results = statement.executeQuery("SELECT * FROM registroexcel WHERE indexUsuario = "+Uid+ " AND tipo = 0");                     
+    ResultSet results = statement.executeQuery("SELECT * FROM registroExcel WHERE indexUsuario = "+Uid+ " AND tipo = 0");                     
 %>                           
           
     <div class="container">        

@@ -71,6 +71,14 @@
     <servlet-name>GuardarPermisos</servlet-name>
     <url-pattern>/GuardarPermisos</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>CambiaPerfil</servlet-name>
+    <servlet-class>servlets.CambiaPerfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CambiaPerfil</servlet-name>
+    <url-pattern>/CambiaPerfil</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>FileUploadServlet</servlet-name>
     <url-pattern>/servlet/FileUploadServlet</url-pattern>
