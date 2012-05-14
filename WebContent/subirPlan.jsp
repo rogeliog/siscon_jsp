@@ -10,6 +10,7 @@
  <%@page import="clases.Usuarios" import="clases.Conexion" %> 
  <%@page import="com.mysql.jdbc.Connection"%>
  <%@page import="com.mysql.jdbc.Statement"%>
+ <%@page import="clases.Conexion"%>
  
  <script src="assets/js/subir_archivo.js"></script>
   
@@ -22,13 +23,18 @@
     String[] temp; //String temporal para la fecha y hora que regresa la consulta tipo DATETIME de la base de datos.
     
     //Establecer la conexion a la base de datos y sentencias para realizar las consultas.
+<<<<<<< HEAD
+   Connection connection=null;       
+    connection = Conexion.con();           
+=======
     Connection connection=null;
     connection = Conexion.con();         
+>>>>>>> cfebd3bdf2b56a79e6af6a03f4e1978fc41a9a22
     Statement statement = (Statement) connection.createStatement(); 
     
     //Consulta de los exceles registrados    
     //Verificar idUsuario de session********************************************
-    ResultSet results = statement.executeQuery("SELECT * FROM registroexcel WHERE indexUsuario = " + Uid + " AND tipo = 1");                     
+    ResultSet results = statement.executeQuery("SELECT * FROM registroExcel WHERE indexUsuario = " + Uid + " AND tipo = 1");                     
 %>
     
        

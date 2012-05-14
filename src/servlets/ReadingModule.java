@@ -216,7 +216,8 @@ public class ReadingModule extends HttpServlet {
                      case "vi3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[18] = "Viernes";} break;
                      case "sa3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[19] = "Sabado";} break;
                      case "do3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[20] = "Domingo";} break;
-                     case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length()-1);} break;
+//                     case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length()-1);} break;
+                     case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length());} break;
                      case "salón1": if(stringCellValue.indexOf(".") != -1){salon += stringCellValue.substring(0, stringCellValue.indexOf("."));
                                     } else {
                                         salon += stringCellValue;
@@ -247,7 +248,7 @@ public class ReadingModule extends HttpServlet {
                   String queryDepartamento = "insert into Departamento(siglas, departamento) values(?, ?)";
                   String queryGrupo = "insert into Grupo(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, atributos, horasClase, horasLaboratorio, unidades, porcentajeClase, numeroProfesores, claseExclusiva, alumnosInscritos) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                   String queryHorarios = "insert into Horarios(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, salon, diaSemana, horaInicio, horaFin) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                  String queryPeriodo = "insert into Periodo(anio, periodoValue, periodo) values(?, ?, ?)";
+                  String queryPeriodo = "insert into Periodo(idPeriodo, anio, periodoValue, periodo) values(?, ?, ?, ?)";
                   String queryUsuario = "insert into Usuario(idDepartamento, idUsuario, nombreUsuario, apellidoUsuario, password) values(?, ?, ?, ?, ?)";     
                   
                   
@@ -299,9 +300,10 @@ public class ReadingModule extends HttpServlet {
                   rs = pstmt.executeQuery();
                   if (!rs.next()){
                       pstmt = conexion.prepareStatement(queryPeriodo); // create a statement
-                      pstmt.setString(1, anio); // set input parameter 1
-                      pstmt.setInt(2, periodoValue); // set input parameter 2
-                      pstmt.setString(3, periodo);
+                      pstmt.setInt(1, idPeriodo);
+                      pstmt.setString(2, anio); // set input parameter 1
+                      pstmt.setInt(3, periodoValue); // set input parameter 2
+                      pstmt.setString(4, periodo);
                       pstmt.executeUpdate(); // execute insert statement
                       pstmt.clearParameters();                         
                   }

@@ -3,12 +3,12 @@ $(function() {
   //pagina de login
   $('#usuario').validate( {
     expression: "if(VAL) return true; else return false;",
-    message: "No puede estar vacio"
+    message: "No puede estar vac&iacute;o"
   });
 
   $('#pwd').validate( {
     expression: "if(VAL) return true; else return false;",
-    message: "No puede estar vacio"
+    message: "No puede estar vac&iacute;o"
   });
   //termina pagina de login
 
@@ -21,7 +21,7 @@ $(function() {
 
   $('#contrasenia').validate( {
     expression: "if (VAL) return true; else return false;",
-    message: "No puede estar vacio"
+    message: "No puede estar vac&iacute;o"
   });
 
   $('#contraseniaC').validate( {
@@ -32,17 +32,17 @@ $(function() {
 
   $('#nombre').validate( {
     expression: "if (VAL) return true; else return false;",
-    message: "No puede estar vacio"
+    message: "No puede estar vac&iacute;o"
   });
 
   $('#apellidoP').validate( {
     expression: "if (VAL) return true; else return false;",
-    message: "No puede estar vacio"
+    message: "No puede estar vac&iacute;o"
   });
 
   $('#apellidoM').validate( {
     expression: "if (VAL) return true; else return false;",
-    message: "No puede estar vacio"
+    message: "No puede estar vac&iacute;o"
   });
 
   $('#directorDept').validate( {
@@ -55,10 +55,22 @@ $(function() {
     message: "Seleccione un departamento"
   });
 
-  $("#email").validate({
+  jQuery("#email").validate({
     expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",
     message: "Formato de email no v\u00E1lido"
     //message: "Formato de email no válido"
+  });
+  
+  
+  //validacion en cambio de contrasenia
+  $('#pswd').validate( {
+	  expression: "if (VAL) return true; else return false",
+	  message: 	"No puede estar vac&iacuteo"
+  });
+  
+  $('#pswdC').validate( {
+	  expression: "if(VAL == $('#pswd').val() && VAL) return true; else return false;",
+	  message: "Las contrase\u00F1as deben ser iguales"
   });
 
 });
