@@ -36,18 +36,7 @@ public class borraAct extends HttpServlet {
             throws ServletException, IOException, SQLException {
             Connection connection = null;
 	        HttpSession session = request.getSession();
-<<<<<<< HEAD
-            try
-            {   
-                /* Conexión a la base de datos */
-	      
-		connection = Conexion.con();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-=======
             connection = Conexion.con();
->>>>>>> cfebd3bdf2b56a79e6af6a03f4e1978fc41a9a22
             String id = request.getParameter("borra");
             Statement statement = connection.createStatement();
             statement.executeUpdate("DELETE FROM actividadesExtra WHERE `idActividadesExtra`= "+id+";");
