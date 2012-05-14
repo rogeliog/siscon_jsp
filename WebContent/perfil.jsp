@@ -34,13 +34,28 @@
             </div>
         </div> <!-- /row -->
         <div class="row">      
-            <div class="span7 offset2">          
+            <div class="span7 offset2">
+            		   <%
+                       		if(!cambios.equals("")) {
+                       %>
+		                   <div class="alert alert-success">
+						       <a href="#" class="close" data-dismiss="alert">×</a>
+						       <i class="icon-ok"></i> <%= cambios %>
+				           </div>
+                       <%
+                       		} else if(!error.equals("")) {
+                       %>
+	                       <div class="alert alert-error">
+						       <a href="#" class="close" data-dismiss="alert">×</a>
+						       <h4><i class="icon icon-remove-sign"></i> ¡ERROR!</h4>
+						       <%= error %>
+				        	</div>
+                        <%
+                        	}
+                        %>             
                         <form class="form-horizontal" action="CambiaPerfil" method="post">
                             <fieldset>
                             <legend>Cambiar mi informaci&oacute;n</legend>
-                                <p style="color:gold"><i><%= cambios %></i></p>
-                                <p style="color:red"><i><%= error %></i></p>
-                                <br />
                                 <div class="control-group">
                                     <label class="control-label">N&oacute;mina</label>
                                     <div class="controls">
@@ -68,17 +83,7 @@
                                 <div class="control-group">
                                   <label class="control-label" for="telefonos">Tel&eacute;fonos</label>
                                   <div class="controls">
-                                    <textarea id="telefonos" name="telefonos" rows="3">
-	                                    <% 
-	                                    	String tel[] = usuario.getTelefonos(); 
-	                                		for(int i = 0; i < tel.length; i++) { 
-	                                			  if(!tel[i].equals("0")) 
-	                                	%>
-	                                	<%= tel[i] %>
-	                                	<% 
-	                                		}
-	                                	%>
-                                	</textarea>
+                                    <textarea id="telefonos" name="telefonos" rows="3"><% String tel[] = usuario.getTelefonos(); for(int i = 0; i < tel.length; i++) { if(!tel[i].equals("0")) %><%= tel[i] %><% } %></textarea>
                                     <p class="help-block">Escriba su(s) tel&eacute;fono(s) y su extensi&oacute;n separadas por saltos de l&iacute;nea.</p>
                                     <p class="help-block">Ejemplo:<br />83582000-4592<br />83284488</p>
                                   </div>
