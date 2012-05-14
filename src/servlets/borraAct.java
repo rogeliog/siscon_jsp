@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import clases.Conexion;
 import clases.Usuarios;
 
 /**
@@ -40,8 +41,8 @@ public class borraAct extends HttpServlet {
             try
             {   
                 /* Conexión a la base de datos */
-	        Class.forName( "com.mysql.jdbc.Driver" );
-		connection = DriverManager.getConnection("jdbc:mysql://localhost/SISCON","root","");
+	      
+		connection = Conexion.con();
             }catch(Exception e){
                 e.printStackTrace();
             }

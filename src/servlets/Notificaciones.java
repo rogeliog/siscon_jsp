@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import clases.Conexion;
 import clases.Usuarios;
 
 import com.mysql.jdbc.Connection;
@@ -30,14 +31,7 @@ public class Notificaciones extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException, SQLException {
 		        response.setContentType("text/html;charset=UTF-8");
-		        try {
-					Class.forName("com.mysql.jdbc.Driver");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		        String url = "jdbc:mysql://localhost/SISCON";
-		        Connection con = (Connection) DriverManager.getConnection(url, "root", "");
+		       Connection con = Conexion.con();
 		        Statement query = (Statement) con.createStatement();
 		        
 		        HttpSession session = request.getSession();

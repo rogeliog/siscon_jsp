@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import clases.Conexion;
 import clases.Usuarios;
 
 /**
@@ -36,14 +37,9 @@ public class guardaAct extends HttpServlet {
             throws ServletException, IOException, SQLException {
             Connection connection = null;
 	        HttpSession session = request.getSession();
-            try
-            {   
-                /* Conexión a la base de datos */
-	        Class.forName( "com.mysql.jdbc.Driver" );
-		connection = DriverManager.getConnection("jdbc:mysql://localhost/SISCON","root","");
-            }catch(Exception e){
-                e.printStackTrace();
-            }
+          
+		connection = Conexion.con();
+           
             /* Lectura de archivos de la forma */
             Usuarios usuario = (Usuarios) session.getAttribute("usuario");
             int idDepartamento = usuario.IdD();
