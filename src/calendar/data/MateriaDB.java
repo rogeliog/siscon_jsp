@@ -24,10 +24,9 @@ public class MateriaDB {
         ResultSet rs = null;
         
         String query = "";
-        
         if ( ! atributo.contains(","))
         {
-            query = "SELECT * FROM VplanesCarrera WHERE " + atributo + "='" + valor + "'";
+            query = "SELECT * FROM Materia WHERE " + atributo + " LIKE '%" + valor + "%'";
         }
         else
         {
@@ -39,7 +38,7 @@ public class MateriaDB {
             String valor1 = valores[0];
             String valor2 = valores[1];
             
-            query = "SELECT * FROM VplanesCarrera WHERE " + atributo1 + "='" + valor1 + "'"
+            query = "SELECT * FROM Materia WHERE " + atributo1 + "='" + valor1 + "'"
                             + "AND " + atributo2 + "='" + valor2 + "'";
         }
         
@@ -63,6 +62,7 @@ public class MateriaDB {
         }
         catch (SQLException e)
         {
+            e.printStackTrace();
             return null;
         }
         finally
@@ -78,7 +78,7 @@ public class MateriaDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM VhorariosProfesores WHERE materia='" + materia + "' AND curso='" + curso + "'";
+        String query = "SELECT * FROM Grupo WHERE materia='" + materia + "' AND curso='" + curso + "'";
         
         try
         {
@@ -89,21 +89,30 @@ public class MateriaDB {
             while (rs.next())
             {
                 Grupo g = new Grupo();
-                g.setCrn(rs.getInt("CRN"));
+                int crn = rs.getInt("CRN");
+                g.setCrn(crn);
+                g.setSalon(SalonDB.seleccionaSalonPorCrn(crn));
+                g.setHorario(HorarioDB.getHorarioGrupo(crn));
                 g.setMateria(rs.getString("materia"));
                 g.setCurso(rs.getInt("curso"));
                 g.setIdDepartamento(rs.getInt("idDepartamento"));
                 g.setIndexUsuario(rs.getInt("indexUsuario"));
+                
+                Usuario u = UsuarioDB.seleccionaUsuarioPorId(g.getIndexUsuario());
+                
+                g.setNombreUsuario(u.getNombreUsuario() + " " + u.getApellidoUsuario());
                 g.setAlumnosInscritos(rs.getInt("alumnosInscritos"));
                 g.setHorasLaboratorio(rs.getInt("horasLaboratorio"));
                 g.setIdPeriodo(rs.getInt("idPeriodo"));
                 g.setNumeroProfesores(rs.getInt("numeroProfesores"));
+                grupos.add(g);
             }
             
             return grupos;
         }
         catch (SQLException e)
         {
+            e.printStackTrace();
             return null;
         }
         finally

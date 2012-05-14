@@ -79,9 +79,9 @@
 	                  <div class="controls">
 	                    <select name="actividad" id="actividad" class="span2">
 	                    <option value="0">Seleccionar actividad</option>
-	                    <option value="comida">Comida</option>
-	                    <option value="asesorias">Asesorias</option>
-	                    <option value="otras">Otras Act</option>
+	                    <option value="Comida">Comida</option>
+	                    <option value="Asesorias">Asesorias</option>
+	                    <option value="Otras">Otras Act</option>
 	                    </select>
 	                    <span class="help-inline"></span>
 	                  </div>

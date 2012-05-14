@@ -6,18 +6,15 @@ package servlets;
 //Librerias necesarias
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mysql.jdbc.Connection;
-
-import clases.Conexion;
 
 /**
  * Servlet registroExcel
@@ -35,10 +32,9 @@ private static Connection connection;
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws SQLException 
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         //Informacion que sera registrada
         int Uid = Integer.parseInt(request.getParameter("idUsuario"));
         String deptPlan = request.getParameter("deptPlan");
@@ -47,7 +43,10 @@ private static Connection connection;
         String nombreArchivo = request.getParameter("nombreArchivo");
         int tipo=Integer.parseInt(request.getParameter("tipo"));
         
-            connection = Conexion.con();
+        try {
+            //Establecer la conexion a la base de datos
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/SISCON?user=root");
             Statement statement = connection.createStatement();
             //Consulta para obtener el id del departamento de acuerdo a su nombre
             //ResultSet results = statement.executeQuery("SELECT idDepartamento FROM siscon.departamento WHERE departamento='" + departamento + "'");
@@ -66,7 +65,9 @@ private static Connection connection;
                     + " `deptPlan`, `fecha`, `nombreArchivo`,`tipo`) VALUES (" + Uid + ",'" + deptPlan + "','" + fecha 
                     + " " + hora + "'," + "'" + nombreArchivo + "', "+ tipo +")");
 
-      
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //Enviar la respuesta
         PrintWriter out = response.getWriter();
         out.println("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
@@ -90,12 +91,7 @@ private static Connection connection;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-			processRequest(request, response);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        processRequest(request, response);
     }
 
     /** 
@@ -108,12 +104,7 @@ private static Connection connection;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-			processRequest(request, response);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        processRequest(request, response);
     }
 
     /** 

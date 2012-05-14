@@ -12,6 +12,7 @@ import java.util.Iterator;
 
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -79,7 +80,11 @@ public class ReadingModule extends HttpServlet {
    
           
     private static void insertIntoDb(ArrayList dataHolder) throws Exception{
-      
+//        String bd = "SISCON";
+//        String usuario = "root";
+//        String password = "";
+//        String url = "jdbc:mysql://localhost/"+bd;
+        
         Connection conexion = null;
         
          try{
@@ -105,7 +110,6 @@ public class ReadingModule extends HttpServlet {
              int numeroProfesores = 0;
              int claseExclusiva = 0;
              int alumnosInscritos = 0;
-             String estado ="";
              
              //Plan de estudios
              int idPlanDeEstudios = 0;
@@ -143,12 +147,15 @@ public class ReadingModule extends HttpServlet {
              String[] nombreUsuario = new String [3];
              String[] apellidoUsuario = new String [3];;
              int[] indexUsuario = new int [3];
-                                               
+
+             
+             
+             conexion = Conexion.con(); 
              PreparedStatement pstmt = null;
              String cleanTables1 = "delete from Grupo; ";
              String cleanTables2 = "delete from Horarios;";
-             
-             Statement statement = Conexion.con().createStatement();   
+             Statement statement = conexion.createStatement();
+                 
                   statement.executeUpdate(cleanTables1);
                   statement.executeUpdate(cleanTables2);
                  
@@ -186,7 +193,6 @@ public class ReadingModule extends HttpServlet {
                      case "materia": materia = stringCellValue; break;
                      case "curso": curso = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
                      case "nombredelamateria": nombreMateria = stringCellValue; break;
-                     case "estado": estado = stringCellValue; break;                     
                      case "hc": horasClase = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
                      case "hl": horasLabo = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
                      case "un": unidades = Integer.parseInt(stringCellValue.substring(0, stringCellValue.indexOf("."))); break;
@@ -218,7 +224,7 @@ public class ReadingModule extends HttpServlet {
                      case "vi3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[18] = "Viernes";} break;
                      case "sa3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[19] = "Sabado";} break;
                      case "do3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[20] = "Domingo";} break;
-                     case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length()-1);} break;
+                     case "edificio1": if(!stringCellValue.equals("")) {salon = stringCellValue.substring(2, stringCellValue.length());} break;
                      case "salón1": if(stringCellValue.indexOf(".") != -1){salon += stringCellValue.substring(0, stringCellValue.indexOf("."));
                                     } else {
                                         salon += stringCellValue;
@@ -245,11 +251,11 @@ public class ReadingModule extends HttpServlet {
              
              try {
                   
-                  conexion = Conexion.con();                  
+                  conexion = DriverManager.getConnection(url,usuario,password);                  
                   String queryDepartamento = "insert into Departamento(siglas, departamento) values(?, ?)";
                   String queryGrupo = "insert into Grupo(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, atributos, horasClase, horasLaboratorio, unidades, porcentajeClase, numeroProfesores, claseExclusiva, alumnosInscritos) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                   String queryHorarios = "insert into Horarios(CRN, materia, curso, idDepartamento, indexUsuario, idPeriodo, salon, diaSemana, horaInicio, horaFin) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                  String queryPeriodo = "insert into Periodo(idPeriodo, anio, periodoValue, periodo) values(?, ?, ?, ?)";
+                  String queryPeriodo = "insert into Periodo(anio, periodoValue, periodo) values(?, ?, ?)";
                   String queryUsuario = "insert into Usuario(idDepartamento, idUsuario, nombreUsuario, apellidoUsuario, password) values(?, ?, ?, ?, ?)";     
                   
                   
@@ -301,10 +307,9 @@ public class ReadingModule extends HttpServlet {
                   rs = pstmt.executeQuery();
                   if (!rs.next()){
                       pstmt = conexion.prepareStatement(queryPeriodo); // create a statement
-                      pstmt.setInt(1, idPeriodo);
-                      pstmt.setString(2, anio); // set input parameter 1
-                      pstmt.setInt(3, periodoValue); // set input parameter 2
-                      pstmt.setString(4, periodo);
+                      pstmt.setString(1, anio); // set input parameter 1
+                      pstmt.setInt(2, periodoValue); // set input parameter 2
+                      pstmt.setString(3, periodo);
                       pstmt.executeUpdate(); // execute insert statement
                       pstmt.clearParameters();                         
                   }
@@ -365,7 +370,7 @@ public class ReadingModule extends HttpServlet {
                       pstmt.setInt(5, idDepartamento);
                       pstmt.setInt(6, idPeriodo);
                       rs = pstmt.executeQuery();
-                      if (!rs.next() && estado.equals("Activo")){
+                      if (!rs.next()){
                           pstmt = conexion.prepareStatement(queryGrupo); // create a statement
                           pstmt.setInt(1, crn); // set input parameter 1
                           pstmt.setString(2, materia); // set input parameter 2
@@ -409,7 +414,12 @@ public class ReadingModule extends HttpServlet {
                       cont++;
                   }while(cont < numeroProfesores);
                   
-                    nombreDept=departamento;                                                                                       
+                    nombreDept=departamento;
+                                    
+
+                  
+                  
+                  
                   
                   } catch (Exception e) {
                       e.printStackTrace();
@@ -420,8 +430,14 @@ public class ReadingModule extends HttpServlet {
                  
                  }      
              } catch (SQLException ex){ 
-             System.out.println("Hubo un problema al intentar conectarse con la base de datos"); 
-                    }        
+             System.out.println("Hubo un problema al intentar conectarse con la base de datos "+url); 
+                    }
+            catch(ClassNotFoundException ex) { 
+                System.out.println(ex); 
+                }
+        
+ 
+
     }
     
     private static void printCellDataToConsole(ArrayList dataHolder) {
@@ -452,8 +468,7 @@ public class ReadingModule extends HttpServlet {
         try {
     ServletContext context = getServletContext();
     String ruta = context.getRealPath(request.getContextPath());
-    String slashType = (ruta.lastIndexOf("\\") > 0) ? "\\" : "/"; // Windows o UNIX    
-    String fileNameLocal = ruta + slashType + request.getParameter("archivo");
+    String fileNameLocal = ruta + "/" + request.getParameter("archivo");
     ArrayList dataHolder0= readExcelFile(fileNameLocal);
     insertIntoDb(dataHolder0);    
     PrintWriter out = response.getWriter();

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import clases.Conexion;
 import clases.Usuarios;
 
 /**
@@ -36,42 +37,35 @@ public class guardaAct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
             Connection connection = null;
-	        HttpSession session = request.getSession();          
-	        connection = Conexion.con();
-
+	        HttpSession session = request.getSession();
+            try
+            {   
+                /* Conexión a la base de datos */
+	        Class.forName( "com.mysql.jdbc.Driver" );
+		connection = DriverManager.getConnection("jdbc:mysql://localhost/SISCON","root","");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
             /* Lectura de archivos de la forma */
             Usuarios usuario = (Usuarios) session.getAttribute("usuario");
-            int idDepartamento = usuario.IdD();
-            int indexUsuario = usuario.IdU(); 
+            int idDepartamento = usuario.IdD(); //el 1 es TC, Cambiarlo por el de la session
+            int indexUsuario = usuario.IdU(); //el 1 es elda, cambiarlo por session.get(idUsuario)
             String horaInicio = request.getParameter("horaInicio");
             String horaFin = request.getParameter("horaFin");
             String actividad = request.getParameter("actividad");
             String[] dias = request.getParameterValues("dias");
-            String[] arr1 = horaInicio.split(":");
-        	String[] arr2 = horaFin.split(":");
-        	
-        	Double diferencia = Integer.parseInt(arr2[0]) - Integer.parseInt(arr1[0]) + 0.0;
-        	
-        	if(Integer.parseInt(arr2[1]) > 0){
-            diferencia = diferencia + 0.5;
-        	}
-        	if(Integer.parseInt(arr1[1]) > 0){
-            diferencia = diferencia - 0.5;
-        	}
             
             /* Guarda actividad en la base de datos */
             Statement statement = connection.createStatement();
             String query = "";
             for(int i=0; i<dias.length; i++){
-                query = "INSERT INTO actividadesExtra (`idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `duracion`, `actividad`) VALUES ("+idDepartamento+", "+indexUsuario + ", " + "201111" + ", '" + dias[i]+"', '"+horaInicio+"', '"+horaFin+"', "+ diferencia +", '"+actividad+"');";
+                query = "INSERT INTO actividadesExtra (`idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `duracion`, `actividad`) VALUES ("+idDepartamento+", "+indexUsuario + ", " + "201111" + ", '" + dias[i]+"', '"+horaInicio+"', '"+horaFin+"', "+ 2.0 +", '"+actividad+"');";
                 statement.executeUpdate(query);
             }
-            connection.close();
             
-//            ServletContext sc = getServletContext();
-//            RequestDispatcher rd = sc.getRequestDispatcher("/horario_usuario.jsp?id="+indexUsuario2);
-//            rd.forward(request, response);
-            response.sendRedirect("horario_usuario.jsp?id=" + indexUsuario);
+             ServletContext sc = getServletContext();
+             RequestDispatcher rd = sc.getRequestDispatcher("/horario_usuario.jsp?id="+indexUsuario);
+             rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

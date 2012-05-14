@@ -1,17 +1,18 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import clases.Conexion;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
@@ -27,8 +28,14 @@ public class GuardarUsuarios extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException, SQLException {
 	        response.setContentType("text/html;charset=UTF-8");
-	        Connection con = null;
-	        con = Conexion.con();
+	        try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        String url = "jdbc:mysql://localhost/SISCON";
+	        Connection con = (Connection) DriverManager.getConnection(url, "root", "");
 	        Statement query = (Statement) con.createStatement();
 	        
 	        HttpSession session = request.getSession();
@@ -66,9 +73,8 @@ public class GuardarUsuarios extends HttpServlet {
 	        session.setAttribute("cambios", cambios);
 	        
 
-	        // RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/administrarUsuarios.jsp");
-	        // dispatcher.forward(request, response);
-           response.sendRedirect("administrarUsuarios.jsp");
+	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/administrarUsuarios.jsp");
+	        dispatcher.forward(request, response);
 	}
 
 	/**

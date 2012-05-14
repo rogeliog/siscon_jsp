@@ -39,6 +39,7 @@ public class UsuarioDB
                 usuario.setIdDepartamento(rs.getInt("idDepartamento"));
                 usuario.setIdUsuario(rs.getString("idUsuario"));
                 usuario.setNombreUsuario(rs.getString("nombreUsuario"));
+                usuario.setApellidoUsuario(rs.getString("apellidoUsuario"));
                 usuario.setEmail(rs.getString("email"));
                 
                 idUsuario = rs.getString("idUsuario");

@@ -18,10 +18,6 @@ public class Usuarios {
 	private boolean alta;
 	private String contrasenia;
 	private String[] telefonos;
-	private boolean buscarProfesores;
-	private boolean buscarMateria;
-	private boolean buscarSalon;
-	
 	
 	public Usuarios() {
 		this.idU = 0;
@@ -36,13 +32,9 @@ public class Usuarios {
 		this.alta = false;
 		this.contrasenia = "";
 		this.telefonos = new String[5];
-		this.buscarProfesores = false;
-		this.buscarMateria = false;
-		this.buscarSalon = false;
 	}
 	
-	public Usuarios(int idU, int idD, String matricula, String nombre, String apellido, char genero, char rol, boolean esAdmin, String email, 
-			boolean alta, String contrasenia, String[] telefonos, boolean buscarProfesores, boolean buscarMateria, boolean buscarSalon) {
+	public Usuarios(int idU, int idD, String matricula, String nombre, String apellido, char genero, char rol, boolean esAdmin, String email, boolean alta, String contrasenia, String[] telefonos) {
 		this.idU = idU;
 		this.idD = idD;
 		this.matricula = matricula;
@@ -55,9 +47,6 @@ public class Usuarios {
 		this.alta = alta;
 		this.contrasenia = contrasenia;
 		this.telefonos = telefonos;
-		this.buscarProfesores = buscarProfesores;
-		this.buscarMateria = buscarMateria;
-		this.buscarSalon = buscarSalon;
 		
 	}
 	
@@ -157,30 +146,6 @@ public class Usuarios {
         for(int i = 0; i < telefonos.length; i++) {
         	this.telefonos[i] = telefonos[i];
         }
-    }
-    
-    public boolean getBuscarProfesores() {
-    	return buscarProfesores;
-    }
-    
-    public void setBuscarProfesores(boolean buscarProfesores) {
-    	this.buscarProfesores = buscarProfesores;
-    }
-    
-    public boolean getBuscarMateria() {
-    	return buscarMateria;
-    }
-    
-    public void setBuscarMateria(boolean buscarMateria) {
-    	this.buscarMateria = buscarMateria;
-    }
-    
-    public boolean getBuscarSalon() {
-    	return buscarSalon;
-    }
-    
-    public void setBuscarSalon (boolean buscarSalon) {
-    	this.buscarSalon = buscarSalon;
     }
     
 }

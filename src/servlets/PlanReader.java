@@ -19,8 +19,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import clases.Conexion;
-
 /**
  *
  * @author Ruben
@@ -63,7 +61,11 @@ public class PlanReader extends HttpServlet {
     }
     
         private static void insertIntoDb(ArrayList dataHolder) throws Exception{
-              
+        String bd = "SISCON";
+        String usuario = "root";
+        String password = "";
+        String url = "jdbc:mysql://localhost/"+bd;
+        
         Connection conexion = null;
         
          try{
@@ -92,8 +94,8 @@ public class PlanReader extends HttpServlet {
              
 
              
-           
-           
+             Class.forName("com.mysql.jdbc.Driver").newInstance();
+             conexion = null;
              PreparedStatement pstmt = null;
              
              for (int i=1;i<dataHolder.size(); i++){
@@ -112,17 +114,17 @@ public class PlanReader extends HttpServlet {
                  case "disciplina": disciplina = stringCellValue; break;
                  case "clave": materia = stringCellValue.substring(0,stringCellValue.length()-4);
                                curso = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-4)); break;
-                 case "semestrenumÃ©rico": semestre = Integer.parseInt(stringCellValue); break;
+                 case "semestrenumérico": semestre = Integer.parseInt(stringCellValue); break;
                  case "nombre": nombreMateria = stringCellValue; break;
-                 case "programaacadÃ©mico": anioPlan = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-2));
+                 case "programaacadémico": anioPlan = Integer.parseInt(stringCellValue.substring(stringCellValue.length()-2));
                                            siglasCarrera = stringCellValue.substring(0,stringCellValue.length()-2); break;
-                 case "descripciÃ³nÃ¡rea": descripcionPlan = stringCellValue; break;  
+                 case "descripciónárea": descripcionPlan = stringCellValue; break;  
              }
 
                  }
              
              try {
-            	  conexion = Conexion.con();   
+                  conexion = DriverManager.getConnection(url,usuario,password);
                   String queryMateria = "insert into Materia(materia, curso, nombreMateria, disciplina) values(?, ?, ?, ?)";
                   String queryCarrera = "insert into Carrera(nombreCarrera, siglasCarrera) values(?, ?)";
                   String queryPlan = "insert into PlanDeEstudios(idCarrera, anioPlan, descripcion) values(?, ?, ?)";
@@ -225,8 +227,11 @@ public class PlanReader extends HttpServlet {
                  
                  }      
              } catch (SQLException ex){ 
-             System.out.println("Hubo un problema al intentar conectarse con la base de datos "); 
+             System.out.println("Hubo un problema al intentar conectarse con la base de datos "+url); 
                     }
+            catch(ClassNotFoundException ex) { 
+                System.out.println(ex); 
+                }
         
  
 
@@ -247,8 +252,7 @@ public class PlanReader extends HttpServlet {
         try {
     ServletContext context = getServletContext();
     String ruta = context.getRealPath(request.getContextPath());
-    String slashType = (ruta.lastIndexOf("\\") > 0) ? "\\" : "/"; // Windows o UNIX    
-    String fileNameLocal = ruta + slashType + request.getParameter("archivo");
+    String fileNameLocal = ruta + "/" + request.getParameter("archivo");//aqui va el path
     ArrayList dataHolder0= readExcelFile(fileNameLocal);
     insertIntoDb(dataHolder0);
     PrintWriter out = response.getWriter();
