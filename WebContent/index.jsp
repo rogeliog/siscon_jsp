@@ -24,8 +24,8 @@
                     	if(!msg.equals("")) {
                     %>
                     	<div class="alert alert-error">
-			        		<a href="#" class="close" data-dismiss="alert">×</a>
-			        		<h4><i class="icon icon-remove-sign"></i> ¡ERROR!</h4>
+			        		<a href="#" class="close" data-dismiss="alert">ï¿½</a>
+			        		<h4><i class="icon icon-remove-sign"></i>&iexcl;ERROR!</h4>
 			        		<%= msg %>
 		        		</div>
                     <%
@@ -42,7 +42,7 @@
                               </div>
                             </div>
                               <div class="control-group">
-                                <label class="control-label" for="pwd">Contrase&nacute;a</label>
+                                <label class="control-label" for="pwd">Contrase&ntilde;a</label>
                                 <div class="controls">
                                   <input id="pwd" name="pswd" type="password" class="input-medium">
                                   <span class="help-inline" id="passInfo"></span>
