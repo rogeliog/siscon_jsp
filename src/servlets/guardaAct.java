@@ -52,10 +52,10 @@ public class guardaAct extends HttpServlet {
         	
         	Double diferencia = Integer.parseInt(arr2[0]) - Integer.parseInt(arr1[0]) + 0.0;
         	
-        	if(Integer.parseInt(arr2[1]) > 0){
+        	if(Integer.parseInt(arr2[1]) > 0){ // fin
             diferencia = diferencia + 0.5;
         	}
-        	if(Integer.parseInt(arr1[1]) > 0){
+        	if(Integer.parseInt(arr1[1]) > 0){ // inicio
             diferencia = diferencia - 0.5;
         	}
             
