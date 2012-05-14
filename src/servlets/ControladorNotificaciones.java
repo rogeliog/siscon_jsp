@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -29,9 +28,15 @@ public class ControladorNotificaciones extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException, SQLException {
+<<<<<<< HEAD
 		        response.setContentType("text/html;charset=UTF-8");		        
 		        
 		        Connection con = Conexion.con();
+=======
+		        response.setContentType("text/html;charset=UTF-8");
+		        Connection con = null;
+		        con = Conexion.con();
+>>>>>>> cfebd3bdf2b56a79e6af6a03f4e1978fc41a9a22
 		        Statement query = (Statement) con.createStatement();
 		        
 		        String acepta = (String) request.getParameter("acepta");

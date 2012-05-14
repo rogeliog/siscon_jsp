@@ -1,12 +1,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +27,12 @@ public class GuardarUsuarios extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException, SQLException {
 	        response.setContentType("text/html;charset=UTF-8");
+<<<<<<< HEAD
 	      Connection con = Conexion.con();
+=======
+	        Connection con = null;
+	        con = Conexion.con();
+>>>>>>> cfebd3bdf2b56a79e6af6a03f4e1978fc41a9a22
 	        Statement query = (Statement) con.createStatement();
 	        
 	        HttpSession session = request.getSession();

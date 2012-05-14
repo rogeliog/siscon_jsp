@@ -37,9 +37,13 @@ public class guardaAct extends HttpServlet {
             throws ServletException, IOException, SQLException {
             Connection connection = null;
 	        HttpSession session = request.getSession();
+<<<<<<< HEAD
           
 		connection = Conexion.con();
            
+=======
+	        connection = Conexion.con();
+>>>>>>> cfebd3bdf2b56a79e6af6a03f4e1978fc41a9a22
             /* Lectura de archivos de la forma */
             Usuarios usuario = (Usuarios) session.getAttribute("usuario");
             int idDepartamento = usuario.IdD();

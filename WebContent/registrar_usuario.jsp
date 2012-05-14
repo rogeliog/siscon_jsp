@@ -15,10 +15,10 @@
     }
 %>
 <%@ include file="includes/header_principal.jsp" %>
-<%@ page language="java" import="java.sql.*" %>
+<%@ page language="java" import="java.sql.*" import="clases.Conexion" %>
 <%
-    String url = "jdbc:mysql://localhost/SISCON";
-    Connection con = (Connection) DriverManager.getConnection(url, "root", "");
+    Connection con = null;
+	con = Conexion.con();
     Statement query = (Statement) con.createStatement();
 %>
 

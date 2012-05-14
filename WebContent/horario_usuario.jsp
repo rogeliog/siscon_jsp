@@ -147,7 +147,7 @@
         <div class="row">
         
 			<div class="span3 offset4">
-				<a class="btn btn-primary btn-large" data-toggle="modal" href="#myModal" >Agregar Actividad</a>
+				<a id="agregarBoton" class="btn btn-primary btn-large" data-toggle="modal" href="#myModal" >Agregar Actividad</a>
 			</div>
         </div>
          <div class="row">
