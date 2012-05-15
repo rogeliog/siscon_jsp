@@ -129,7 +129,7 @@
                          action="servlet/FileUploadServlet"  >
                        <label class="control-label">Selecciona el documento:</label>
                        <input type="file" name="txtFile" id="txtFile" /><br />
-                       <button type="submit" id="submitID" name="enviar" onclick="comprueba_extension(this.form, this.form.txtFile.value)">Subir</button>
+                       <button type="submit" id="submitID" name="enviar" onclick="comprueba_extension(this.form, this.form.txtFile.value)">Subir</button><span class="help-inline">Nota: Esperar unos segundos antes de dar click en "Subir"</span>
                    </form>
                        
                    <iframe id="uploadFrameID" name="uploadFrame" height="0" width="0" frameborder="0" scrolling="yes"></iframe>              

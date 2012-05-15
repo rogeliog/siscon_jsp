@@ -363,6 +363,9 @@ function prepareEventHandlers() {
 		if(x) {
 			return true;
 		}
+		else{
+			return false;
+		}
 		
 	};
 }
