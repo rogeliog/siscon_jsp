@@ -17,7 +17,7 @@
 <!--                     </ul> -->
 <!--                 </div> -->
 				<div class="span10">
-                    <h3>Horarios en que se da la materia: ${materia.nombreMateria}</h3>
+                    <h3>Horarios en que se da la materia</h3>
 					
 				</div>
                 <div class="span10" id="calendar">

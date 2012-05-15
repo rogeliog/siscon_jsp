@@ -423,6 +423,7 @@ INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `
 INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (2, 1, 'L00215087', 'Elda Guadalupe', 'Quiroga Gonzalez', 'F', 'x@itesm.mx', 0, '827ccb0eea8a706c4c34a16891f84e7b', 0, 'P'); -- 12345
 INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (3, 1, 'L00276543', 'Ramon Felipe', 'Brena Pinero', 'M', 'y@itesm.mx', 0, '827ccb0eea8a706c4c34a16891f84e7b', 0, 'P'); -- 12345
 INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (4, 1, 'L00265355', 'Hugo', 'Terashima Marin', 'M', 'w@itesm.mx', 0, '827ccb0eea8a706c4c34a16891f84e7b', 0, 'P'); -- 12345
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (5, 1, 'admin', 'Admin', 'Istra Dor', 'M', 'admin@itesm.mx', 1, '21232f297a57a5a743894a0e4a801fc3', 1, 'O'); -- admin
 
 COMMIT;
 
