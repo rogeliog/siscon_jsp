@@ -31,7 +31,7 @@ public class LimpiarBD extends HttpServlet {
 		
 		String idDept = request.getParameter("idDepartamento");
         HttpSession session = request.getSession();
-        String exito = "Finalizado.";
+        String exito = "La limpia de la base de datos ha finalizado.";
         String error = "Error al tratar de modificar la base de datos.";
         
         Connection con = null;

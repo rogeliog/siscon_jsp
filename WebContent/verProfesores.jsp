@@ -1,4 +1,4 @@
-<%String pageTitle = "SISCON | Calendario";%>
+<%String pageTitle = "SISCON | Resultados Busqueda Profesores";%>
 <%@page import="calendar.data.Usuario" %>
 <%@ include file="includes/header_calendario.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -1,4 +1,4 @@
-<%String pageTitle = "SISCON | Calendario";%>
+<%String pageTitle = "SISCON | Resultado Busqueda Sal&oacute;n";%>
 <%@ include file="includes/header_calendario.jsp" %>
 <div class="container">
     <div class="row-fluid">

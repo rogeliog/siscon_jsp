@@ -47,7 +47,7 @@
                        %>
 		                   <div class="alert alert-success">
 						       <a href="#" class="close" data-dismiss="alert">×</a>
-						       <%= not %>
+						       <h4><i class="icon-ok-circle"></i> <%= not %></h4>
 				           </div>
                        <%
                        		} else if(!error.equals("")) {
@@ -160,7 +160,7 @@
                                 <div class="control-group">
                                   <label class="control-label" for="telefonos">Tel&eacute;fonos</label>
                                   <div class="controls">
-                                    <textarea id="telefonos" name="telefonos" class="input-xlarge" rows="3"></textarea>
+                                    <textarea id="telefonos" name="telefonos" class="input-large" rows="3"></textarea>
                                     <p class="help-block">Escriba su(s) tel&eacute;fono(s) y su extensi&oacute;n separadas por saltos de l&iacute;nea.</p>
                                     <p class="help-block">Ejemplo:<br />83582000-4592<br />83284488</p>
                                   </div>

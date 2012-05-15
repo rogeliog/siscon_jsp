@@ -355,4 +355,18 @@ function procesarRespuestaRegistro(){
         cargarRegistroExceles(fecha, hora, deptPlan, nombreArchivo);
     }
 }
-        
+
+
+function prepareEventHandlers() {
+	document.getElementById("limpiaBD").onsubmit = function() {
+		var x = confirm("\u00BFSeguro que quiere limpiar la base de datos?");
+		if(x) {
+			return true;
+		}
+		
+	};
+}
+
+window.onload = function() {
+	prepareEventHandlers();
+};
