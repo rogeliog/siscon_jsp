@@ -15,6 +15,15 @@
     }
 
 %>
+<script type="text/javascript">
+function postForma(){
+		texto=$('#telefonos').val();
+		texto=texto.replace(/(\r\n|\n|\r)+/gm,"\n");
+		texto=texto.replace(/\s{2,}/g, ' ');
+		$('#telefonos').val(texto);
+		$('#formaCambio').submit();
+	}
+</script>
 <%@ include file="includes/header_aplicacion.jsp" %>
 <%@ page language="java" import="java.sql.*" import="clases.Conexion" %>
 <%
@@ -53,7 +62,7 @@
                         <%
                         	}
                         %>             
-                        <form class="form-horizontal" action="CambiaPerfil" method="post">
+                        <form id="formaCambio" class="form-horizontal" action="CambiaPerfil" method="post">
                             <fieldset>
                             <legend>Cambiar mi informaci&oacute;n</legend>
                                 <div class="control-group">
@@ -83,14 +92,14 @@
                                 <div class="control-group">
                                   <label class="control-label" for="telefonos">Tel&eacute;fonos</label>
                                   <div class="controls">
-                                    <textarea id="telefonos" name="telefonos" rows="3"><% String tel[] = usuario.getTelefonos(); for(int i = 0; i < tel.length; i++) { if(!tel[i].equals("0")) %><%= tel[i] %>
-<% } %></textarea>
+                                    <textarea id="telefonos" name="telefonos" rows="3"><% String tel[] = usuario.getTelefonos(); for(int i = 0; i < tel.length; i++)
+                                    { if(!tel[i].equals("0")) %><%= tel[i] %><% } %></textarea>
                                     <p class="help-block">Escriba su(s) tel&eacute;fono(s) y su extensi&oacute;n separadas por saltos de l&iacute;nea.</p>
                                     <p class="help-block">Ejemplo:<br />83582000-4592<br />83284488</p>
                                   </div>
                                 </div>
                                 <div class="form-actions">
-                                    <button class="btn btn-inverse" type="submit">Guardar cambios</button>
+                                    <button class="btn btn-inverse" type="button" onClick="postForma()" >Guardar cambios</button>
                                     <button class="btn" type="reset">Cancelar</button>
                                 </div>
                             </fieldset>
