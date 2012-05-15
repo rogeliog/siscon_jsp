@@ -19,6 +19,7 @@
     Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
     //Variables necesarias para obtener la informacion de los registros de lectura de los exceles.    
     int Uid = usuariologgeado.IdU(); 
+    int idDept = usuariologgeado.IdD(); 
     String fecha="";
     String hora="";
     String[] temp; //String temporal para la fecha y hora que regresa la consulta tipo DATETIME de la base de datos.
@@ -33,7 +34,16 @@
 %>                           
           
     <div class="container">        
-        <div class="row">            
+        <div class="row">
+          <div class="span3">
+            <form action="#" method="post">
+              <input type="hidden" name="idDepartamento" value="<%= idDept %>"/>
+              <button type="submit" class="btn btn-primary">Limpiar Base de Datos</button>
+            </form>
+          </div>
+        </div>
+        
+        <div class="row">
             <h1>Lectura de archivo fuente</h1>
             <br />
             <!-- Tabla de los ultimos archivos de excel que se subieron y actualizaron la base de datos -->
