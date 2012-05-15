@@ -27,7 +27,7 @@
           
               <tr>
                   <td><b>${materia.materia}${materia.curso}</b></td>
-                  <td><b>${materia.nombreMateria}</b></td>
+                  <td><b>${materia.nombreMateria} (<a href="Busqueda?id=${materia.materia}-${materia.curso}&objeto=grupos">Ver Calendario</a>)</b></td>
               </tr>
               <tr>
                   <td colspan="2">

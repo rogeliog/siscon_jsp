@@ -110,6 +110,13 @@ public class Busqueda extends HttpServlet {
            dispatcher = getServletContext().getRequestDispatcher(url);
            dispatcher.forward(request, response);
        }
+       else if (objeto.equals("grupos"))
+       {
+           url = "/verGrupo.jsp";
+           
+           dispatcher = getServletContext().getRequestDispatcher(url);
+           dispatcher.forward(request, response);
+       }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

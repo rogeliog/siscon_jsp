@@ -42,6 +42,96 @@ public class HorarioDB
         
         return 0;
     }
+    
+    public static Horario getHorarioMateria(String materia, int curso)
+    {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "SELECT * FROM VhorariosProfesores WHERE idPeriodo IN (SELECT MAX(idPeriodo) FROM VhorariosProfesores)";
+        query        += " AND materia='" + materia + "' AND curso='" + curso + "'";
+        
+        try
+        {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+            // genera Horario vacio
+            Horario horario = new Horario();
+            
+            while (rs.next())
+            {
+                Actividad actividad = new Actividad();
+                actividad.setMateria(rs.getString("materia"));
+                actividad.setCurso(rs.getInt("curso"));
+                actividad.setNombreMateria(rs.getString("nombreMateria"));
+                
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.DAY_OF_WEEK, getDia(rs.getString("diaSemana")));
+                int mes = cal.get(Calendar.MONTH) + 1;
+                int dia = cal.get(Calendar.DATE);
+                String date = 2012 + "/" + mes + "/" + dia;
+                Date utilDate = null;
+
+                try {
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+                    utilDate = formatter.parse(date);
+                } catch (ParseException e) {
+                    System.out.println(e.toString());
+                    e.printStackTrace();
+                }
+                
+                String horaInicio = rs.getString("horaInicio");
+                String temp[] = horaInicio.split(":");
+                
+                int horaDeInicio = Integer.parseInt(temp[0]);
+                int minutoDeInicio = Integer.parseInt(temp[1]);
+                
+                cal.setTime(utilDate);
+                cal.set(Calendar.HOUR_OF_DAY, horaDeInicio);
+                cal.set(Calendar.MINUTE, minutoDeInicio);
+                cal.set(Calendar.SECOND, 0);
+                cal.set(Calendar.MILLISECOND, 0);
+                
+                
+                utilDate = cal.getTime();
+                long iniciomillis = utilDate.getTime();
+                
+                String horaFin = rs.getString("horaFin");
+                String tempFin[] = horaFin.split(":");
+                
+                int horaDeFin = Integer.parseInt(tempFin[0]);
+                int minutoDeFin = Integer.parseInt(tempFin[1]);
+                
+//                double duracion = (horaDeFin - horaDeInicio) - (double) minutoDeInicio / 60;
+//                duracion *= 60 * 60 * 1000;
+//                long millisfin = iniciomillis + (long) duracion;
+                //millisfin += minutoDeFin * 60 * 1000;
+                
+                actividad.setFechaInicio(iniciomillis);
+                actividad.setFechaFin(iniciomillis + rs.getLong("duracionMillis"));
+                actividad.setSalon(rs.getString("salon"));
+                actividad.setNombreUsuario(rs.getString("nombreUsuario"));
+                actividad.setApellidoUsuario(rs.getString("apellidoUsuario"));
+                
+                horario.agregaActividad(actividad);
+            }
+            
+            return horario;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+        finally
+        {
+            pool.freeConnection(connection);
+        }
+    }
+    
     public static Horario getHorarioProfesor(String idUsuario)
     {
         ConnectionPool pool = ConnectionPool.getInstance();

@@ -134,10 +134,54 @@ public class ServidorCalendario extends HttpServlet {
                 throw new ServletException(e);
             }
         }
-        else if (objeto.equals("plan"))
+        else if (objeto.equals("grupos"))
         {
-            String nombrePlan = request.getParameter("nom");
-            int anio = Integer.parseInt(request.getParameter("anio"));
+
+            String id = request.getParameter("id");
+            String segment[] = id.split("-");
+            String materia   = segment[0];
+            int curso        = Integer.parseInt(segment[1]);
+           
+            Horario horario = HorarioDB.getHorarioMateria(materia, curso);
+            System.out.println(materia);
+            System.out.println(curso);
+            ArrayList<Actividad> actividades = horario.getActividades();
+
+            try
+            {
+                JSONObject responseObj = new JSONObject();
+
+                Iterator itr = actividades.iterator();
+
+                List<JSONObject> act = new LinkedList<JSONObject>();
+
+                while(itr.hasNext())
+                {
+                    JSONObject actObj = new JSONObject();
+                    Actividad a = (Actividad) itr.next();
+
+                    actObj.put("materia", a.getMateria());
+                    actObj.put("nombreMateria", a.getNombreMateria());
+                    actObj.put("nombreUsuario", a.getNombreUsuario());
+                    actObj.put("apellidoUsuario", a.getApellidoUsuario());
+                    actObj.put("curso", a.getCurso());
+                    actObj.put("fechaInicio", a.getFechaInicio());
+                    actObj.put("fechaFin", a.getFechaFin());
+                    actObj.put("salon", a.getSalon());
+                    act.add(actObj);
+                }
+
+                responseObj.put("horario", act);
+
+                PrintWriter writer = response.getWriter();
+                writer.write(responseObj.toString());
+                writer.flush();
+
+            }
+            catch (Exception e)
+            {
+                throw new ServletException(e);
+            }
         }
     }
 
