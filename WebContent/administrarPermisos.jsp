@@ -63,7 +63,7 @@
 		      <fieldset>
 		        <legend>Administrar permisos</legend>
 		        <div style="margin-left:15px;">
- 		        	<h3>Permisos de Profesores</h3>
+ 		        	<h4>Permisos de Profesores</h4>
 		        	<table style="margin-left:15px;">
 		        		<tr>
 		        			<td>
@@ -94,7 +94,7 @@
 		        		</tr>	
 		        	</table>
 		        	<br />
-		        	<h3>Permisos de Directores de Carrera</h3>
+		        	<h4>Permisos de Directores de Carrera</h4>
 		        	<table style="margin-left:15px;">
 		        		<tr>
 		        			<td>
