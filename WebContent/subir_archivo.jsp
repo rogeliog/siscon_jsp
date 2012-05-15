@@ -19,7 +19,13 @@
     Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
     //Variables necesarias para obtener la informacion de los registros de lectura de los exceles.    
     int Uid = usuariologgeado.IdU(); 
-    int idDept = usuariologgeado.IdD(); 
+    int idDept = usuariologgeado.IdD();
+    //Sesion
+    String exito = (String) session.getAttribute("exito");
+    if(exito == null) {
+    	exito = "";
+    }
+    
     String fecha="";
     String hora="";
     String[] temp; //String temporal para la fecha y hora que regresa la consulta tipo DATETIME de la base de datos.
@@ -33,10 +39,25 @@
     ResultSet results = statement.executeQuery("SELECT * FROM registroExcel WHERE indexUsuario = "+Uid+ " AND tipo = 0");                     
 %>                           
           
-    <div class="container">        
+    <div class="container">
+    <%
+    	if(!exito.equals("")) {
+    		
+    %>   
+    	<div class="row">
+    		<div class="span3">
+    			<div class="alert alert-success">
+				<a href="#" class="close" data-dismiss="alert">×</a>
+				<%= exito %>
+				</div>
+    		</div>
+    	</div>
+    <%
+    	}
+    %>
         <div class="row">
           <div class="span3">
-            <form action="#" method="post">
+            <form action="LimpiarBD" method="post">
               <input type="hidden" name="idDepartamento" value="<%= idDept %>"/>
               <button type="submit" class="btn btn-primary">Limpiar Base de Datos</button>
             </form>
@@ -138,3 +159,7 @@
         </div> <!-- /row -->
     </div> <!-- /container -->        
     <%@ include file="includes/footer_aplicacion_1.html" %>
+    <% 
+   session = request.getSession();
+   session.removeAttribute("exito"); 
+%>

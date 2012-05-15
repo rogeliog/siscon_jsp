@@ -44,10 +44,6 @@
     <servlet-class>servlets.ControladorNotificaciones</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>CambiarPerfil</servlet-name>
-    <servlet-class>servlets.CambiarPerfil</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>ControladorNotificacionesAdmin</servlet-name>
     <servlet-class>servlets.ControladorNotificacionesAdmin</servlet-class>
   </servlet>
@@ -74,6 +70,14 @@
   <servlet-mapping>
     <servlet-name>GuardarPermisos</servlet-name>
     <url-pattern>/GuardarPermisos</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>LimpiarBD</servlet-name>
+    <servlet-class>servlets.LimpiarBD</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LimpiarBD</servlet-name>
+    <url-pattern>/LimpiarBD</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>CambiaPerfil</servlet-name>
@@ -142,10 +146,6 @@
   <servlet-mapping>
     <servlet-name>Registro</servlet-name>
     <url-pattern>/Registro</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>CambiarPerfil</servlet-name>
-    <url-pattern>/CambiarPerfil</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

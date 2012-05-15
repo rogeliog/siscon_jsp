@@ -133,7 +133,7 @@ public class CambiaPerfil extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(CambiarPerfil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CambiaPerfil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -146,7 +146,7 @@ public class CambiaPerfil extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(CambiarPerfil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CambiaPerfil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
