@@ -53,7 +53,7 @@
 				if(!cambios.equals("")) {
 			%>
 				<div class="alert alert-success">
-					<a href="#" class="close" data-dismiss="alert">×</a>
+					<a href="#" class="close" data-dismiss="alert">ï¿½</a>
 					<i class="icon icon-ok"></i> <%= cambios %>
 				</div>
 			<%
@@ -63,8 +63,7 @@
 		      <fieldset>
 		        <legend>Administrar permisos</legend>
 		        <div style="margin-left:15px;">
-<!-- 		        	<legend style="font-size:17px;">Permisos de Profesores</legend> -->
-					<h3>Permisos de Profesores</h3>
+ 		        	<h4>Permisos de Profesores</h4>
 		        	<table style="margin-left:15px;">
 		        		<tr>
 		        			<td>
@@ -95,7 +94,7 @@
 		        		</tr>	
 		        	</table>
 		        	<br />
-		        	<legend style="font-size:17px;">Permisos de Directores de Carrera</legend>
+		        	<h4>Permisos de Directores de Carrera</h4>
 		        	<table style="margin-left:15px;">
 		        		<tr>
 		        			<td>
