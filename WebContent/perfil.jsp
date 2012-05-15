@@ -19,7 +19,7 @@
 function postForma(){
 		texto=$('#telefonos').val();
 		texto=texto.replace(/(\r\n|\n|\r)+/gm,"\n");
-		texto=texto.replace(/\s{2,}/g, ' ');
+		texto=texto.replace(/\s{2,}/g, '');
 		$('#telefonos').val(texto);
 		$('#formaCambio').submit();
 	}
