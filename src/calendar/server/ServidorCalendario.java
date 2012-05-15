@@ -143,8 +143,8 @@ public class ServidorCalendario extends HttpServlet {
             int curso        = Integer.parseInt(segment[1]);
            
             Horario horario = HorarioDB.getHorarioMateria(materia, curso);
-            System.out.println(materia);
-            System.out.println(curso);
+//            System.out.println(materia);
+//            System.out.println(curso);
             ArrayList<Actividad> actividades = horario.getActividades();
 
             try
