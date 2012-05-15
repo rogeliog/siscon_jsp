@@ -34,7 +34,8 @@
 					  	<th></th>
 					</tr>
 					<% 
-                        String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD();
+//                         String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD();
+					String q = "SELECT * FROM `Usuario` WHERE idDepartamento = " + usuario.IdD() + " AND alta = 1";
 						int cont = 0;
 					    ResultSet rs = query.executeQuery(q);
 					    while(rs.next()) {
