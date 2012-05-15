@@ -185,7 +185,7 @@ public class ReadingModule extends HttpServlet {
            
              // Leer por nombre de columna 
              switch(columnName){
-                     case "per韔do": idPeriodo = Integer.parseInt(stringCellValue.substring(0, 6));    //Lee el periodo    
+                     case "per铆odo": idPeriodo = Integer.parseInt(stringCellValue.substring(0, 6));    //Lee el periodo    
                             anio = stringCellValue.substring(0, 4);
                             periodoValue = Integer.parseInt(stringCellValue.substring(4, 6));
                             switch(periodoValue){
@@ -242,17 +242,17 @@ public class ReadingModule extends HttpServlet {
                      case "sa3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[19] = "Sabado";} break;
                      case "do3": if(stringCellValue != null && !stringCellValue.equals("")){ diaSemana[20] = "Domingo";} break;
                      case "edificio1": if(!stringCellValue.equals("")) {salon1 = stringCellValue.substring(2, stringCellValue.length()-1);} break;
-                     case "sal髇1": if(stringCellValue.indexOf(".") != -1){salon1 += stringCellValue.substring(0, stringCellValue.indexOf("."));
+                     case "sal贸n1": if(stringCellValue.indexOf(".") != -1){salon1 += stringCellValue.substring(0, stringCellValue.indexOf("."));
                                     } else {
                                         salon1 += stringCellValue;
                                     }break;
                      case "edificio2": if(!stringCellValue.equals("")) {salon2 = stringCellValue.substring(2, stringCellValue.length()-1);} break;
-                     case "sal髇2": if(stringCellValue.indexOf(".") != -1){salon2 += stringCellValue.substring(0, stringCellValue.indexOf("."));
+                     case "sal贸n2": if(stringCellValue.indexOf(".") != -1){salon2 += stringCellValue.substring(0, stringCellValue.indexOf("."));
                                     } else {
                                         salon2 += stringCellValue;
                                     }break;
                      case "edificio3": if(!stringCellValue.equals("")) {salon3 = stringCellValue.substring(2, stringCellValue.length()-1);} break;
-                     case "sal髇3": if(stringCellValue.indexOf(".") != -1){salon3 += stringCellValue.substring(0, stringCellValue.indexOf("."));
+                     case "sal贸n3": if(stringCellValue.indexOf(".") != -1){salon3 += stringCellValue.substring(0, stringCellValue.indexOf("."));
                                     } else {
                                         salon3 += stringCellValue;
                                     }break;
@@ -260,15 +260,15 @@ public class ReadingModule extends HttpServlet {
                      case "porcentaje1": porcentaje[0] = stringCellValue; break;
                      case "porcentaje2": porcentaje[1] = stringCellValue; break;
                      case "porcentaje3": porcentaje[2] = stringCellValue; break;
-                     case "n髆ina1": idUsuario[0] = stringCellValue; break;
+                     case "n贸mina1": idUsuario[0] = stringCellValue; break;
                      case "nombre1": nombreUsuario[0] = stringCellValue; break;
                      case "apaterno1": apellidoUsuario[0] = stringCellValue; break;
                      case "amaterno1": apellidoUsuario[0].concat(stringCellValue); break;
-                     case "n髆ina2": idUsuario[1] = stringCellValue; break;
+                     case "n贸mina2": idUsuario[1] = stringCellValue; break;
                      case "nombre2": nombreUsuario[1] = stringCellValue; break;
                      case "apaterno2": apellidoUsuario[1] = stringCellValue; break;
                      case "amaterno2": apellidoUsuario[1].concat(stringCellValue); break;
-                     case "n髆ina3": idUsuario[2] = stringCellValue; break;
+                     case "n贸mina3": idUsuario[2] = stringCellValue; break;
                      case "nombre3": nombreUsuario[2] = stringCellValue; break;
                      case "apaterno3": apellidoUsuario[2] = stringCellValue; break;
                      case "amaterno3": apellidoUsuario[2].concat(stringCellValue); break;            

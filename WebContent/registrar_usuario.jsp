@@ -27,7 +27,7 @@
           <div class="row">
             <div class="span7 offset2">
               <div class="alert alert-block">
-                <a class="close" data-dismiss="alert">&times;</a>
+                <a class="close" data-dismiss="alert">×</a>
                 <h3 class="alert-heading"><i class="icon-exclamation-sign"></i> &nbsp;Nota:</h3>
                 <p>Una vez registrado, se debe ser autorizado por el Director de Departamento para utilizar
                   el sistema.</p>

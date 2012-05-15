@@ -54,8 +54,7 @@ public class SalonDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon+"';";
-        System.out.println("Clave"+claveSalon);
+        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "'";
         try
         {
             ps = connection.prepareStatement(query);
@@ -115,7 +114,7 @@ public class SalonDB {
                 long millisfin = iniciomillis + (long) duracion;
                 
                 actividad.setFechaInicio(iniciomillis);
-                actividad.setFechaFin(millisfin+1000);
+                actividad.setFechaFin(millisfin);
                 actividad.setSalon(rs.getString("salon"));
                 actividad.setNombreUsuario(rs.getString("nombreUsuario"));
                 actividad.setApellidoUsuario(rs.getString("apellidoUsuario"));
