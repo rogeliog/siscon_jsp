@@ -114,7 +114,7 @@ public class SalonDB {
                 long millisfin = iniciomillis + (long) duracion;
                 
                 actividad.setFechaInicio(iniciomillis);
-                actividad.setFechaFin(millisfin);
+                actividad.setFechaFin(iniciomillis + rs.getLong("duracionMillis"));
                 actividad.setSalon(rs.getString("salon"));
                 actividad.setNombreUsuario(rs.getString("nombreUsuario"));
                 actividad.setApellidoUsuario(rs.getString("apellidoUsuario"));

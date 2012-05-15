@@ -103,14 +103,13 @@ public class HorarioDB
                 int horaDeFin = Integer.parseInt(tempFin[0]);
                 int minutoDeFin = Integer.parseInt(tempFin[1]);
                 
-                
-                double duracion = (horaDeFin - horaDeInicio) - (double) minutoDeInicio / 60;
-                duracion *= 60 * 60 * 1000;
-                long millisfin = iniciomillis + (long) duracion;
+//                double duracion = (horaDeFin - horaDeInicio) - (double) minutoDeInicio / 60;
+//                duracion *= 60 * 60 * 1000;
+//                long millisfin = iniciomillis + (long) duracion;
                 //millisfin += minutoDeFin * 60 * 1000;
                 
                 actividad.setFechaInicio(iniciomillis);
-                actividad.setFechaFin(millisfin);
+                actividad.setFechaFin(iniciomillis + rs.getLong("duracionMillis"));
                 actividad.setSalon(rs.getString("salon"));
                 actividad.setNombreUsuario(rs.getString("nombreUsuario"));
                 actividad.setApellidoUsuario(rs.getString("apellidoUsuario"));
