@@ -12,8 +12,6 @@
  <%@page import="com.mysql.jdbc.Connection"%>
  <%@page import="com.mysql.jdbc.Statement"%>
  
-  <script src="assets/js/subir_archivo.js"></script> 
-
 <%
 
     Usuarios usuariologgeado = (Usuarios) session.getAttribute("usuario");
@@ -22,8 +20,13 @@
     int idDept = usuariologgeado.IdD();
     //Sesion
     String exito = (String) session.getAttribute("exito");
+    String error = (String) session.getAttribute("error");
+   
     if(exito == null) {
     	exito = "";
+    }
+    if (error == null) {
+    	error = "";
     }
     
     String fecha="";
@@ -48,16 +51,29 @@
     		<div class="span3">
     			<div class="alert alert-success">
 				<a href="#" class="close" data-dismiss="alert">×</a>
-				<%= exito %>
+				<h4><i class="icon-ok-circle"></i> <%= exito %></h4>
 				</div>
     		</div>
     	</div>
     <%
-    	}
+    	} else if (!error.equals("")) {
+    		
+    %>
+    	<div class="row">
+    		<div class="span3">
+    			<div class="alert alert-error">
+				<a href="#" class="close" data-dismiss="alert">×</a>
+				<h4><i class="icon icon-remove-sign"></i> ¡ERROR!</h4>
+				<%= error %>
+				</div>
+    		</div>
+    	</div>    
+    <%
+    	}    
     %>
         <div class="row">
           <div class="span3">
-            <form action="LimpiarBD" method="post">
+            <form action="LimpiarBD" method="post" id="limpiaBD">
               <input type="hidden" name="idDepartamento" value="<%= idDept %>"/>
               <button type="submit" class="btn btn-primary">Limpiar Base de Datos</button>
             </form>
@@ -113,7 +129,7 @@
                          action="servlet/FileUploadServlet"  >
                        <label class="control-label">Selecciona el documento:</label>
                        <input type="file" name="txtFile" id="txtFile" /><br />
-                       <input type="submit" id="submitID" name="enviar" value="Subir" onclick="comprueba_extension(this.form, this.form.txtFile.value)"/>
+                       <button type="submit" id="submitID" name="enviar" onclick="comprueba_extension(this.form, this.form.txtFile.value)">Subir</button>
                    </form>
                        
                    <iframe id="uploadFrameID" name="uploadFrame" height="0" width="0" frameborder="0" scrolling="yes"></iframe>              
@@ -161,5 +177,6 @@
     <%@ include file="includes/footer_aplicacion_1.html" %>
     <% 
    session = request.getSession();
+   session.removeAttribute("error"); 
    session.removeAttribute("exito"); 
 %>

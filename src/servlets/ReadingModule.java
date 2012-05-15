@@ -418,7 +418,7 @@ public class ReadingModule extends HttpServlet {
                           pstmt.clearParameters();
                       }pstmt.clearParameters(); 
                    double numero = Double.parseDouble(numeroHorarios);
-                   System.out.println("numeroHorarios="+numero);
+//                   System.out.println("numeroHorarios="+numero);
                    for(int k=0; k < 20; k++){
                        if(diaSemana[k] != null){
                        if(!diaSemana[k].equals("")){                    	   

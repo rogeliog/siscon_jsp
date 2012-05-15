@@ -1,4 +1,4 @@
-<%String pageTitle = "SISCON | Calendario";%>
+<%String pageTitle = "SISCON | Resultados Busqueda de Materia";%>
 <%@ include file="includes/header_calendario.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
