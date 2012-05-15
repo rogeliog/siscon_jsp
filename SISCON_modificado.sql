@@ -362,14 +362,14 @@ CREATE TABLE IF NOT EXISTS `SISCON`.`VusuariosNotificacion` (`idtablaNotificacio
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `SISCON`.`VactividadesProfesores`;
 USE `SISCON`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `SISCON`.`VactividadesProfesores` AS select distinct `u`.`idDepartamento` AS `idDepartamento`,`u`.`indexUsuario` AS `indexUsuario`,`u`.`idUsuario` AS `idUsuario`,`u`.`nombreUsuario` AS `nombreUsuario`,`u`.`apellidoUsuario` AS `apellidoUsuario`,`u`.`genero` AS `genero`,`u`.`email` AS `email`,`ae`.`actividad` AS `actividad`,`ae`.`diaSemana` AS `diaSemana`,`ae`.`horaInicio` AS `horaInicio`,`ae`.`horaFin` AS `horaFin`,`ae`.`duracion` AS `duracion` from (`SISCON`.`Usuario` `u` join `SISCON`.`actividadesExtra` `ae`) where ((`ae`.`indexUsuario` = `u`.`indexUsuario`) and (`ae`.`idDepartamento` = `u`.`idDepartamento`)) order by `u`.`idDepartamento`,`u`.`indexUsuario`,`ae`.`diaSemana`,`ae`.`horaInicio`,`ae`.`horaFin`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `SISCON`.`VactividadesProfesores` AS select `u`.`idDepartamento` AS `idDepartamento`,`u`.`indexUsuario` AS `indexUsuario`,`u`.`idUsuario` AS `idUsuario`,`u`.`nombreUsuario` AS `nombreUsuario`,`u`.`apellidoUsuario` AS `apellidoUsuario`,`u`.`genero` AS `genero`,`u`.`email` AS `email`,`ae`.`actividad` AS `actividad`,`ae`.`diaSemana` AS `diaSemana`,`ae`.`horaInicio` AS `horaInicio`,`ae`.`horaFin` AS `horaFin`,`ae`.`duracion` AS `duracion` from (`SISCON`.`Usuario` `u` join `SISCON`.`actividadesExtra` `ae`) where ((`ae`.`indexUsuario` = `u`.`indexUsuario`) and (`ae`.`idDepartamento` = `u`.`idDepartamento`)) order by `u`.`idDepartamento`,`u`.`indexUsuario`,`ae`.`diaSemana`,`ae`.`horaInicio`,`ae`.`horaFin`;
 
 -- -----------------------------------------------------
 -- View `SISCON`.`VhorariosProfesores`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `SISCON`.`VhorariosProfesores`;
 USE `SISCON`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `SISCON`.`VhorariosProfesores` AS select distinct `u`.`idUsuario` AS `idUsuario`,`u`.`nombreUsuario` AS `nombreUsuario`,`u`.`apellidoUsuario` AS `apellidoUsuario`,`g`.`CRN` AS `CRN`,`g`.`horasClase` AS `horasClase`,`g`.`horasLaboratorio` AS `horasLaboratorio`,`g`.`unidades` AS `unidades`,`g`.`porcentajeClase` AS `porcentajeClase`,`g`.`numeroProfesores` AS `numeroProfesores`,`g`.`claseExclusiva` AS `claseExclusiva`,`g`.`alumnosInscritos` AS `alumnosInscritos`,`m`.`materia` AS `materia`,`m`.`curso` AS `curso`,`m`.`nombreMateria` AS `nombreMateria`,`p`.`idPeriodo` AS `idPeriodo`,`p`.`anio` AS `anio`,`p`.`periodo` AS `periodo`,`h`.`salon` AS `salon`,`h`.`diaSemana` AS `diaSemana`,`h`.`horaInicio` AS `horaInicio`,`h`.`horaFin` AS `horaFin` from ((((`SISCON`.`Usuario` `u` join `SISCON`.`Grupo` `g` on(((`u`.`indexUsuario` = `g`.`indexUsuario`) and (`u`.`idDepartamento` = `g`.`idDepartamento`)))) join `SISCON`.`Materia` `m` on(((`g`.`materia` = `m`.`materia`) and (`g`.`curso` = `m`.`curso`)))) join `SISCON`.`Periodo` `p` on((`g`.`idPeriodo` = `p`.`idPeriodo`))) join `SISCON`.`Horarios` `h` on(((`h`.`CRN` = `g`.`CRN`) and (`h`.`indexUsuario` = `g`.`indexUsuario`)))) order by `u`.`idUsuario`,`g`.`CRN`,`p`.`idPeriodo`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `SISCON`.`VhorariosProfesores` AS select `u`.`idUsuario` AS `idUsuario`,`u`.`nombreUsuario` AS `nombreUsuario`,`u`.`apellidoUsuario` AS `apellidoUsuario`,`g`.`CRN` AS `CRN`,`g`.`horasClase` AS `horasClase`,`g`.`horasLaboratorio` AS `horasLaboratorio`,`g`.`unidades` AS `unidades`,`g`.`porcentajeClase` AS `porcentajeClase`,`g`.`numeroProfesores` AS `numeroProfesores`,`g`.`claseExclusiva` AS `claseExclusiva`,`g`.`alumnosInscritos` AS `alumnosInscritos`,`m`.`materia` AS `materia`,`m`.`curso` AS `curso`,`m`.`nombreMateria` AS `nombreMateria`,`p`.`idPeriodo` AS `idPeriodo`,`p`.`anio` AS `anio`,`p`.`periodo` AS `periodo`,`h`.`salon` AS `salon`,`h`.`diaSemana` AS `diaSemana`,`h`.`horaInicio` AS `horaInicio`,`h`.`horaFin` AS `horaFin` from ((((`SISCON`.`Usuario` `u` join `SISCON`.`Grupo` `g` on(((`u`.`indexUsuario` = `g`.`indexUsuario`) and (`u`.`idDepartamento` = `g`.`idDepartamento`)))) join `SISCON`.`Materia` `m` on(((`g`.`materia` = `m`.`materia`) and (`g`.`curso` = `m`.`curso`)))) join `SISCON`.`Periodo` `p` on((`g`.`idPeriodo` = `p`.`idPeriodo`))) join `SISCON`.`Horarios` `h` on(((`h`.`CRN` = `g`.`CRN`) and (`h`.`indexUsuario` = `g`.`indexUsuario`)))) order by `u`.`idUsuario`,`g`.`CRN`,`p`.`idPeriodo`;
 
 -- -----------------------------------------------------
 -- View `SISCON`.`VplanesCarreras`
@@ -419,10 +419,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SISCON`;
-INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (1, 1, 'L00215087', 'Elda Guadalupe', 'Quiroga Gonzalez', 'F', 'x@itesm.mx', 0, '\'\'', 0, 'P');
-INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (2, 1, 'L00276543', 'Ramon Felipe', 'Brena Pinero', 'M', 'y@itesm.mx', 0, '\'\'', 0, 'P');
-INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (3, 1, 'L00265355', 'Hugo', 'Terashima Marin', 'M', 'w@itesm.mx', 0, '2012b50d721667cc8c83a045a770d9e6', 0, 'P');
-INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (4, 1, 'L00234153', 'Juan Arturo', 'Nolazco Flores', 'M', 'z@itesm.mx', 1, '12345', 1, 'P');
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (1, 1, 'L00234153', 'Juan Arturo', 'Nolazco Flores', 'M', 'z@itesm.mx', 1, '827ccb0eea8a706c4c34a16891f84e7b', 1, 'P'); -- 12345
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (2, 1, 'L00215087', 'Elda Guadalupe', 'Quiroga Gonzalez', 'F', 'x@itesm.mx', 0, '827ccb0eea8a706c4c34a16891f84e7b', 0, 'P'); -- 12345
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (3, 1, 'L00276543', 'Ramon Felipe', 'Brena Pinero', 'M', 'y@itesm.mx', 0, '827ccb0eea8a706c4c34a16891f84e7b', 0, 'P'); -- 12345
+INSERT INTO `SISCON`.`Usuario` (`indexUsuario`, `idDepartamento`, `idUsuario`, `nombreUsuario`, `apellidoUsuario`, `genero`, `email`, `alta`, `password`, `administrador`, `rol`) VALUES (4, 1, 'L00265355', 'Hugo', 'Terashima Marin', 'M', 'w@itesm.mx', 0, '827ccb0eea8a706c4c34a16891f84e7b', 0, 'P'); -- 12345
 
 COMMIT;
 
@@ -431,11 +431,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SISCON`;
-<<<<<<< HEAD
-INSERT INTO `SISCON`.`Telefono` (`idTelefono`, `indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES (1, 1, 1, '83284488', NULL);
-=======
-INSERT INTO `SISCON`.`Telefono` (`idTelefono`, `indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES (1, 1, 1, '83284488', '');
->>>>>>> eece3c9e3ec3ebac76ce1d9db795f0c2fcae218c
+INSERT INTO `SISCON`.`Telefono` (`idTelefono`, `indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES (1, 1, 1, '83284488', "");
 INSERT INTO `SISCON`.`Telefono` (`idTelefono`, `indexUsuario`, `idDepartamento`, `telefono`, `extension`) VALUES (2, 1, 1, '83582000', '4592');
 
 COMMIT;
@@ -603,7 +599,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SISCON`;
-INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (1, 1, 1);
+INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (1, 2, 1);
+INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (1, 3, 1);
+INSERT INTO `SISCON`.`tablaNotificacion` (`idtablaNotificacion`, `indexUsuario`, `idDepartamento`) VALUES (1, 4, 1);
 
 COMMIT;
 
@@ -616,5 +614,4 @@ INSERT INTO `SISCON`.`actividadesExtra` (`idActividadesExtra`, `idDepartamento`,
 INSERT INTO `SISCON`.`actividadesExtra` (`idActividadesExtra`, `idDepartamento`, `indexUsuario`, `idPeriodo`, `diaSemana`, `horaInicio`, `horaFin`, `duracion`, `actividad`) VALUES (1, 1, 2, 201111, 'Martes', '08:00', '09:30', '1.5', 'Asesoria');
 
 COMMIT;
-
 

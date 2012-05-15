@@ -85,7 +85,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>FileUploadServlet</servlet-name>
-    <url-pattern>/FileUploadServlet</url-pattern>
+    <url-pattern>/servlet/FileUploadServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>registroExcel</servlet-name>

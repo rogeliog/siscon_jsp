@@ -110,7 +110,7 @@ function comprueba_extension(formulario, archivo) {
     archivo=extractFilename(archivo);
     if (!archivo) { 
         //Si no tengo archivo, es que no se ha seleccionado un archivo en la forma 
-        mierror = "No has seleccionado ning�n archivo"; 
+        mierror = "No has seleccionado ning\u00FAn archivo"; 
     }else{ 
         //Se obtiene la extensi�n de este nombre de archivo 
         extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase(); 
@@ -124,7 +124,7 @@ function comprueba_extension(formulario, archivo) {
         } 
         //Si no es permitida, se despliega el mensaje de error.
         if (!permitida) { 
-            mierror = "Comprueba la extensi�n de los archivos a subir. \nS�lo se pueden subir archivos con extensiones: " + extensiones_permitidas.join(); 
+            mierror = "Comprueba la extensi\u00D3n de los archivos a subir. \nS\u00D3lo se pueden subir archivos con extensiones: " + extensiones_permitidas.join(); 
         }else{ 
             //Si se permite, llamar a la funcion ajax encargada de invocar al servlet que sube el archivo
             ajaxFunction();    

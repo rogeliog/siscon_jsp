@@ -24,7 +24,7 @@
                     	if(!msg.equals("")) {
                     %>
                     	<div class="alert alert-error">
-			        		<a href="#" class="close" data-dismiss="alert">ï¿½</a>
+			        		<a href="#" class="close" data-dismiss="alert">×</a>
 			        		<h4><i class="icon icon-remove-sign"></i>&iexcl;ERROR!</h4>
 			        		<%= msg %>
 		        		</div>

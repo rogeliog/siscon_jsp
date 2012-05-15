@@ -49,8 +49,8 @@ public class HorarioDB
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-//        String query = "SELECT * FROM VhorariosProfesores WHERE idUsuario='" + idUsuario + "' AND idPeriodo = '201112'"; //
-        String query = "SELECT * FROM VhorariosProfesores WHERE idUsuario='" + idUsuario + "'"; //
+        String query = "SELECT * FROM VhorariosProfesores WHERE idUsuario='" + idUsuario + "'";
+        
         try
         {
             ps = connection.prepareStatement(query);
