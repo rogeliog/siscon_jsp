@@ -54,8 +54,8 @@ public class SalonDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-//        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "' AND idPeriodo='201112'";
-          String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon + "'";
+        String query = "SELECT * FROM VhorariosProfesores WHERE salon='" + claveSalon+"';";
+        System.out.println("Clave"+claveSalon);
         try
         {
             ps = connection.prepareStatement(query);
@@ -106,18 +106,16 @@ public class SalonDB {
                 
                 String horaFin = rs.getString("horaFin");
                 String tempFin[] = horaFin.split(":");
-                String tempInicio[] = horaInicio.split(":");
                 
                 int horaDeFin = Integer.parseInt(temp[0]);
                 int minutoDeFin = Integer.parseInt(temp[1]);
                 
-                  double duracion = (horaDeFin - horaDeInicio) - (double) minutoDeInicio / 60 + (double) minutoDeFin / 60;
-                  duracion *= 60 * 60 * 1000;
-
-                long millisfin = iniciomillis +  (long) duracion;
+                double duracion = (horaDeFin - horaDeInicio) - (double) minutoDeInicio / 60;
+                duracion *= 60 * 60 * 1000;
+                long millisfin = iniciomillis + (long) duracion;
                 
                 actividad.setFechaInicio(iniciomillis);
-                actividad.setFechaFin(iniciomillis + millisfin);
+                actividad.setFechaFin(millisfin+1000);
                 actividad.setSalon(rs.getString("salon"));
                 actividad.setNombreUsuario(rs.getString("nombreUsuario"));
                 actividad.setApellidoUsuario(rs.getString("apellidoUsuario"));
